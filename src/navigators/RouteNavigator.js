@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import SettingsView from '../views/SettingsView';
 import HomeNavigator from './HomeNavigator';
-import FavouriteView from '../views/FacebookView';
+import FavouriteView from '../views/FavouriteView';
 import {HomeIcon, FavouriteIcon, SettingsIcon} from '../components/icons';
 
 const Tab = createBottomTabNavigator();
