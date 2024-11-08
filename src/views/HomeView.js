@@ -21,19 +21,19 @@ function HomeView() {
       <ImageBackground
           style={styles.image_background}
           resizeMode="cover"
-          source={require('../assets/background.jpeg')}>
+          source={require('../assets/images/background.jpeg')}>
             <View style={styles.item_list}>
-            <TouchableOpacity onPress={onFacebookPress}>
+              <TouchableOpacity onPress={onFacebookPress}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
-                  <Text style={styles.item_text}>New Facebook Post</Text>
+                    <Text style={styles.item_text}>New Facebook Post</Text>
                   </View>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity onPress={onInstagramPress}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
-                  <Text style={styles.item_text}>New Instagram Post</Text>
+                    <Text style={styles.item_text}>New Instagram Post</Text>
                   </View>
                 </View>
               </TouchableOpacity>

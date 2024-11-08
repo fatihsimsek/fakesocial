@@ -2,21 +2,20 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeView from '../views/HomeView';
-import FacebookView from '../views/FacebookView';
-import InstagramView from '../views/InstagramView';
-import WhatsappView from '../views/WhatsappView';
+import FacebookView from '../views/facebook/FacebookView';
+import InstagramView from '../views/instagram/InstagramView';
+import WhatsappView from '../views/whatsapp/WhatsappView';
 
-
-const Stack = createStackNavigator();
+const HomeStack = createStackNavigator();
 
 function HomeNavigator() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeView} options={{headerShown:false}} />
-            <Stack.Screen name="Whatsapp" component={WhatsappView} />  
-            <Stack.Screen name="Instagram" component={InstagramView} />   
-            <Stack.Screen name="Facebook" component={FacebookView} />    
-        </Stack.Navigator>
+        <HomeStack.Navigator>
+            <HomeStack.Screen name="Home" component={HomeView} options={{headerShown:false}} />
+            <HomeStack.Screen name="Whatsapp" component={WhatsappView} options={{headerShown:false}}  />  
+            <HomeStack.Screen name="Instagram" component={InstagramView} />   
+            <HomeStack.Screen name="Facebook" component={FacebookView} />    
+        </HomeStack.Navigator>
     );
 }
 

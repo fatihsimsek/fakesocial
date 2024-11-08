@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-function FacebookView() {
+function WhatsappFooter() {
     return (
         <View>
-            <Text>Facebook</Text>
+            <Text>Footer</Text>
         </View>
     );
 }
 
-export default FacebookView;
+export default WhatsappFooter;

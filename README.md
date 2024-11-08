@@ -1,4 +1,4 @@
 
 # Screen Shots
 
-![HomePage](./src/assets/screenshot_homepage.png)
+![HomePage](./src/assets/images/screenshot_homepage.png)
