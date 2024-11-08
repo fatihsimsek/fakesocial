@@ -3,26 +3,6 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import {LeftIcon} from '../icons';
 
-const styles = StyleSheet.create({
-    headerContainer: {
-      flexDirection:'row',
-      height:30,
-      backgroundColor:'#eee4dc'
-    },
-    headerLeft:{
-        flex:1,
-        flexDirection:'row',
-        alignItems:'center'
-    },
-    headerCenter:{
-        flex:1,
-        justifyContent:'center'
-    },
-    headerRight:{
-        flex:1
-    }
-});
-
 function WhatsappHeader() {
     const navigation = useNavigation();
 
@@ -49,5 +29,25 @@ function WhatsappHeader() {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    headerContainer: {
+      flexDirection:'row',
+      height:40,
+      backgroundColor:'#eee4dc'
+    },
+    headerLeft:{
+        flex:1,
+        flexDirection:'row',
+        alignItems:'center'
+    },
+    headerCenter:{
+        flex:1,
+        justifyContent:'center'
+    },
+    headerRight:{
+        flex:1
+    }
+});
 
 export default WhatsappHeader;

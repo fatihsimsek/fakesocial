@@ -23,9 +23,7 @@ function WhatsappMessageBubble({data}) {
         <View style={{
                 ...styles.messageContainer,
                 alignSelf: isMyMessage ? "flex-end": "flex-start",
-                backgroundColor: isMyMessage ? "#dfffc7" : "#fcfcfc",
-                borderTopLeftRadius: isMyMessage ? 5 : 0,
-                borderTopRightRadius: isMyMessage ? 0 : 5,
+                backgroundColor: isMyMessage ? "#dfffc7" : "#fcfcfc"
             }}>
                 <View style={{
                     ...styles.leftMessageArrow,
