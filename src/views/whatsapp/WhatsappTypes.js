@@ -10,10 +10,10 @@ export class WhatsappContent {
   }
 
   export class WhatsappConversation {
-    constructor(id, title, secondUser, contents) {
+    constructor(id, title, partner, contents) {
       this.id = id;
       this.title = title;
-      this.secondUser = secondUser;
+      this.partner = partner;
       this.contents = contents;
     }
   }

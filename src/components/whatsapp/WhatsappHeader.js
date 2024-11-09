@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
-import {LeftIcon} from '../icons';
+import {LeftIcon, VideoIcon, PhoneIcon} from '../icons';
 
-function WhatsappHeader() {
+function WhatsappHeader({data}) {
     const navigation = useNavigation();
 
     const onNavigateHome = () => {
@@ -23,8 +23,13 @@ function WhatsappHeader() {
                 </View>
             </View>
             <View style={styles.headerCenter}>
+                <Image source={require('../../assets/images/user-icon.png')}
+                       style={styles.avatar} />
+                <Text style={styles.headerCenterText}>{data.partner.fullname}</Text>
             </View>
             <View style={styles.headerRight}>
+                <VideoIcon width={22} height={22} style={{color:'#075E54'}} />
+                <PhoneIcon width={20} height={20} style={{marginLeft:10, color:'#075E54'}} />
             </View>
         </View>
     );
@@ -43,10 +48,29 @@ const styles = StyleSheet.create({
     },
     headerCenter:{
         flex:1,
-        justifyContent:'center'
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
     },
     headerRight:{
-        flex:1
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        alignItems:'center',
+        marginHorizontal:10
+    },
+    avatar:{
+        width: 30,
+		height: 30,
+		borderWidth: 0.5,
+        borderColor:'#075E54',
+		borderRadius: 30,
+		resizeMode: "cover"
+    },
+    headerCenterText:{
+        marginLeft: 5,
+        fontWeight:'600',
+        fontSize:14
     }
 });
 
