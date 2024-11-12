@@ -1,8 +1,11 @@
 export {default as CheckIcon} from './Check';
+export {default as EditIcon} from './Edit';
 export {default as FavouriteIcon} from './Favourite';
 export {default as HomeIcon} from './Home';
 export {default as LeftIcon} from './Left';
 export {default as PhoneIcon} from './Phone';
+export {default as SaveIcon} from './Save';
+export {default as SearchIcon} from './Search';
 export {default as SendIcon} from './Send';
 export {default as SettingsIcon} from './Settings';
 export {default as VideoIcon} from './Video';

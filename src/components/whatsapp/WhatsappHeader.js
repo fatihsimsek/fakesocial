@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
-import {LeftIcon, VideoIcon, PhoneIcon} from '../icons';
+import { LeftIcon, SaveIcon, SearchIcon} from '../icons';
 
 function WhatsappHeader({data}) {
     const navigation = useNavigation();
@@ -14,9 +14,9 @@ function WhatsappHeader({data}) {
         <View style={styles.headerContainer}>
             <View style={styles.headerLeft}>
                 <View>
-                    <TouchableOpacity onPress={onNavigateHome}>
+                    <Pressable onPress={onNavigateHome}>
                         <LeftIcon></LeftIcon>
-                    </TouchableOpacity>
+                    </Pressable>
                 </View>
                 <View>
                     <Text>Home</Text>
@@ -28,8 +28,12 @@ function WhatsappHeader({data}) {
                 <Text style={styles.headerCenterText}>{data.partner.fullname}</Text>
             </View>
             <View style={styles.headerRight}>
-                <VideoIcon width={22} height={22} style={{color:'#075E54'}} />
-                <PhoneIcon width={20} height={20} style={{marginLeft:10, color:'#075E54'}} />
+                <Pressable onPress={onNavigateHome}>
+                    <SearchIcon width={20} height={20} style={{color:'#075E54'}} />
+                </Pressable>
+                <Pressable onPress={onNavigateHome}>
+                    <SaveIcon width={20} height={20} style={{marginLeft:10, color:'#075E54'}} />
+                </Pressable>
             </View>
         </View>
     );

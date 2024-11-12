@@ -6,7 +6,7 @@ import { CheckIcon } from '../icons';
 function WhatsappMessageBubble({data}) {
     let getMessageStatusColor = (messageStatus) => {
         switch(messageStatus){
-            case WhatsappMessageStatus.REACHED:
+            case WhatsappMessageStatus.SEEN:
                 return "#34EB7F1";
             case WhatsappMessageStatus.READ:
                 return "#075E54";
@@ -16,7 +16,7 @@ function WhatsappMessageBubble({data}) {
     }
 
     const isMyMessage = data.messageType === WhatsappMessageType.SEND;
-    const showReachIcon = isMyMessage && (data.messageStatus === WhatsappMessageStatus.REACHED || data.messageStatus === WhatsappMessageStatus.READ);
+    const showReachIcon = isMyMessage && (data.messageStatus === WhatsappMessageStatus.RECEIVED || data.messageStatus === WhatsappMessageStatus.SEEN);
     const messageStatusColor = getMessageStatusColor(data.messageStatus);
 
     return (

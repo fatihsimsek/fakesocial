@@ -27,9 +27,9 @@ export class WhatsappContent {
   }
 
   export const WhatsappMessageStatus = {
-    READ:'Read',
-    UNREAD: 'UnRead',
-    REACHED: 'Reached'
+    RECEIVED:'Received',
+    SEEN: 'Seen',
+    SEND: 'Send',
   }
 
   export const WhatsappMessageType = {
