@@ -26,7 +26,7 @@ function WhatsappFooter() {
     };
 
     const toggleMessageBreak = () => setMessageBreak(previousState => !previousState);
-    const toggleMessageIsSend = () => setMessageBreak(previousState => !previousState);
+    const toggleMessageIsSend = () => setMessageIsSend(previousState => !previousState);
 
     return (
         <View style={styles.footerContainer}>
