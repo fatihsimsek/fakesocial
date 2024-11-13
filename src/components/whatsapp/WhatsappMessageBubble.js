@@ -7,7 +7,7 @@ function WhatsappMessageBubble({data}) {
     let getMessageStatusColor = (messageStatus) => {
         switch(messageStatus){
             case WhatsappMessageStatus.SEEN:
-                return "#34EB7F1";
+                return "#34B7F1";
             case WhatsappMessageStatus.READ:
                 return "#075E54";
             default:
