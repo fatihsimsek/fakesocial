@@ -40,8 +40,8 @@ function WhatsappMessageBubble({data}) {
                     }}>
                 <Text style={styles.timeText}>{data.time}</Text>
                 <View style={styles.checkContainer}>
-                    {isMyMessage && <CheckIcon flex={1} width={12} height={12} color={messageStatusColor} />}
-                    {showReachIcon && <CheckIcon flex={1} left={-8} width={12} height={12} color={messageStatusColor} />}
+                    {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} color={messageStatusColor} />}
+                    {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} color={messageStatusColor} />}
                 </View>
                 <View style={{
                         ...styles.rightMsgArrow,
