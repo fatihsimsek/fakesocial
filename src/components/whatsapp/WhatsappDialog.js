@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'row',
       alignItems: 'flex-start',
+      paddingVertical:10
     },
     listStyle: {
         flex: 1
@@ -17,7 +18,7 @@ function WhatsappDialog({data}) {
     return (
         <View style={styles.containerAlignTop}>
             <FlatList
-                data={data}
+                data={data.contents}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <WhatsappDialogItem data={item} />

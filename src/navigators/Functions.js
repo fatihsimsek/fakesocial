@@ -1,3 +1,6 @@
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from 'uuid';
+
 export function hideBottomTabNavigator(navigation){
     navigation.getParent()?.setOptions({
         tabBarStyle: {
@@ -12,4 +15,8 @@ export function showBottomTabNavigator(navigation){
           display: 'flex'
         }
       });
+}
+
+export function generateUUID(){
+  return uuidv4();
 }

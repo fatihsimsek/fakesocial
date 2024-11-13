@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import { TextInput, Text, View, StyleSheet, TouchableOpacity, Modal, Pressable, Switch } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { SendIcon } from '../icons';
-import { WhatsappMessageStatus } from '../../views/whatsapp/WhatsappTypes';
+import { WhatsappMessageStatus, WhatsappContent, WhatsappMessageType, WhatsappContentType } from '../../views/whatsapp/WhatsappTypes';
+import { generateUUID } from "../../navigators/Functions";
 
-function WhatsappFooter() {
+function WhatsappFooter({data, dispatch}) {
     const [modalVisible, setModalVisible] = useState(false);
     const [messageIsSend, setMessageIsSend] = useState(true);
-    const [messageBreak, setMessageBreak] = useState(false);
+    const [messageIsBreak, setMessageIsBreak] = useState(false);
     const [messageStatus, setMessageStatus] = useState(WhatsappMessageStatus.SEEN);
     const [messageStatusOpen, setMessageStatusOpen] = useState(false);
     const [message, setMessage] = useState('');
@@ -25,7 +26,26 @@ function WhatsappFooter() {
         }
     };
 
-    const toggleMessageBreak = () => setMessageBreak(previousState => !previousState);
+    const cancelModal = () => {
+        setMessage('');
+        setModalVisible(false);
+    }
+
+    const addMessage = () => {
+        let contentType = messageIsBreak ? WhatsappContentType.BREAK : WhatsappContentType.MESSAGE;
+        let messageType = messageIsSend ? WhatsappMessageType.SEND : WhatsappMessageType.RECEIVED;
+
+        let content = new WhatsappContent(generateUUID(), messageTime, message, contentType, messageType, messageStatus);
+        dispatch({
+            type: 'addContent',
+            data: content,
+        });
+
+        setMessage('');
+        setModalVisible(false);
+    }
+
+    const toggleMessageIsBreak = () => setMessageIsBreak(previousState => !previousState);
     const toggleMessageIsSend = () => setMessageIsSend(previousState => !previousState);
 
     return (
@@ -41,8 +61,8 @@ function WhatsappFooter() {
                             </View>
                             <View style={styles.modalRowContainer}>
                                 <Text style={styles.modalText}>Date Break:</Text>
-                                <Switch style={styles.modalValue} value={messageBreak}
-                                        onValueChange={toggleMessageBreak} />
+                                <Switch style={styles.modalValue} value={messageIsBreak}
+                                        onValueChange={toggleMessageIsBreak} />
                             </View>
                             <View style={styles.modalRowContainer}>
                                 <Text style={styles.modalText}>Time:</Text>
@@ -65,10 +85,10 @@ function WhatsappFooter() {
                             </View>
                         </View>
                         <View style={styles.modalButtonContainer}>
-                            <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                            <Pressable onPress={cancelModal}>
                                 <Text style={styles.modalButtonTextStyle}>Cancel</Text>
                             </Pressable>
-                            <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                            <Pressable onPress={addMessage}>
                                 <Text style={styles.modalButtonTextStyle}>OK</Text>
                             </Pressable>
                         </View>
@@ -101,7 +121,7 @@ const styles = StyleSheet.create({
     textInputContainer: {
         flexDirection: 'row',
         backgroundColor: 'white',
-        padding: 13,
+        padding: 10,
         borderRadius: 20,
         marginRight: 5,
         flex: 1,

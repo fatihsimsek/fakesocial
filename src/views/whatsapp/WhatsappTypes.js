@@ -1,3 +1,5 @@
+import { generateUUID } from "../../navigators/Functions";
+
 export class WhatsappContent {
     constructor(id, time, content, type, messageType, messageStatus) {
       this.id = id;
@@ -16,6 +18,9 @@ export class WhatsappContent {
       this.partner = partner;
       this.contents = contents;
     }
+    static Empty(){
+      return new WhatsappConversation(generateUUID(), '', WhatsappUser.Empty(), []);
+    }
   }
 
   export class WhatsappUser {
@@ -23,6 +28,9 @@ export class WhatsappContent {
       this.id = id;
       this.fullname = fullname;
       this.profileImage = profileImage;
+    }
+    static Empty(){
+      return new WhatsappUser(generateUUID(),'Partner Fullname', null);
     }
   }
 

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     headerCenter:{
-        flex:1,
+        flex:2,
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center'

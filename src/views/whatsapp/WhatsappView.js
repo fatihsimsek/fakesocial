@@ -1,23 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import { ImageBackground, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { WhatsappDialog, WhatsappHeader, WhatsappFooter } from '../../components/whatsapp';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
-import { WhatsappContent, WhatsappConversation, WhatsappUser, WhatsappMessageStatus, WhatsappMessageType, WhatsappContentType } from "./WhatsappTypes";
-
-const conversation = new WhatsappConversation('cd7acbea-c1b1-46c1-aed5-3ad53abb28ba', 'First Conversation', 
-                          new WhatsappUser('', 'Kerem Şimşek', ''), 
-                          [
-                            new WhatsappContent('bd7acbbb-c1b1-46d2-aed5-3ad53abb28ba', '10:28', 'Today', WhatsappContentType.BREAK, WhatsappMessageType.SEND, WhatsappMessageStatus.SEND),
-                            new WhatsappContent('bd7acbea-c1b1-46c1-aed5-3ad53abb28ba', '10:28', 'Hello Kerem, your food delivery is almost there.', WhatsappContentType.MESSAGE, WhatsappMessageType.SEND, WhatsappMessageStatus.SEEN),
-                            new WhatsappContent('bd7acbea-c1e2-46c2-aee4-3ad53abb28ba', '10:29', 'Where are you?', WhatsappContentType.MESSAGE, WhatsappMessageType.SEND, WhatsappMessageStatus.RECEIVED),
-                            new WhatsappContent('bd7acbea-c1f3-46c3-aed6-3ad53abb28ba', '12:30', 'I am very close', WhatsappContentType.MESSAGE, WhatsappMessageType.RECEIVED, WhatsappMessageStatus.SEND),
-                            new WhatsappContent('bd7acbec-c1b1-46a4-aed5-3ad53abb28ba', '12:31', 'Only 2 minutes to come', WhatsappContentType.MESSAGE, WhatsappMessageType.RECEIVED, WhatsappMessageStatus.SEND),
-                            new WhatsappContent('bd7acbca-c1b1-46a4-aed5-3ad53abb28ba', '12:31', 'OK', WhatsappContentType.MESSAGE, WhatsappMessageType.SEND, WhatsappMessageStatus.SEND)
-                          ]);
+import { WhatsappConversation } from "./WhatsappTypes";
+import { conversationReducer } from "./WhatsappConversationReducer";
 
 function WhatsAppView() {
     const navigation = useNavigation();
+    const [conversation, dispatch] = useReducer(conversationReducer, WhatsappConversation.Empty());
 
     useEffect(() => {
       hideBottomTabNavigator(navigation);
@@ -34,8 +25,8 @@ function WhatsAppView() {
                 resizeMode="cover">
                 <View style={styles.mainContainer}>
                     <WhatsappHeader data={conversation}></WhatsappHeader>
-                    <WhatsappDialog data={conversation.contents}></WhatsappDialog>
-                    <WhatsappFooter></WhatsappFooter>
+                    <WhatsappDialog data={conversation}></WhatsappDialog>
+                    <WhatsappFooter data={conversation} dispatch={dispatch}></WhatsappFooter>
                 </View>
             </ImageBackground>
         </View>
