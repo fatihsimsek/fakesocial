@@ -1,3 +1,5 @@
+import { WhatsappModalContent } from './WhatsappTypes'
+
 export function conversationReducer(state, action) {
     switch (action.type) {
       case 'addContent': {
@@ -6,7 +8,8 @@ export function conversationReducer(state, action) {
           contents:[
             ...state.contents,
             action.data
-          ]
+          ],
+          tempContent: WhatsappModalContent.Empty()
         };
       }
       case 'updateContent': {
@@ -19,7 +22,8 @@ export function conversationReducer(state, action) {
         });
         return {
           ...state,
-          contents: updatedContents
+          contents: updatedContents,
+          tempContent: WhatsappModalContent.Empty()
         };
       }
       case 'deleteContent': {
@@ -27,6 +31,12 @@ export function conversationReducer(state, action) {
         return {
           ...state,
           contents: deletedContents
+        };
+      }
+      case 'updateTempContent': {
+        return {
+          ...state,
+          tempContent: action.data
         };
       }
       default: {

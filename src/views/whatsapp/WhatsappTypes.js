@@ -17,6 +17,7 @@ export class WhatsappContent {
       this.title = title;
       this.partner = partner;
       this.contents = contents;
+      this.tempContent = WhatsappModalContent.Empty();
     }
     static Empty(){
       return new WhatsappConversation(generateUUID(), '', WhatsappUser.Empty(), []);
@@ -48,4 +49,17 @@ export class WhatsappContent {
   export const WhatsappContentType = {
     MESSAGE: 'Message',
     BREAK: 'Break'
+  }
+
+  export class WhatsappModalContent {
+    constructor(content, isSend, isBreak, status, time) {
+      this.content = content;
+      this.isSend = isSend;
+      this.isBreak = isBreak;
+      this.status = status;
+      this.time = time;
+    }
+    static Empty(){
+      return new WhatsappModalContent('', true, false, WhatsappMessageStatus.SEEN, '00:00');
+    }
   }

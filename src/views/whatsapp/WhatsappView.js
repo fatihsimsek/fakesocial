@@ -1,14 +1,23 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { ImageBackground, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { WhatsappDialog, WhatsappHeader, WhatsappFooter } from '../../components/whatsapp';
+import { WhatsappDialog, WhatsappHeader, WhatsappFooter, WhatsappMessageModal } from '../../components/whatsapp';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
-import { WhatsappConversation } from "./WhatsappTypes";
+import { WhatsappConversation, WhatsappMessageStatus } from "./WhatsappTypes";
 import { conversationReducer } from "./WhatsappConversationReducer";
 
 function WhatsAppView() {
     const navigation = useNavigation();
     const [conversation, dispatch] = useReducer(conversationReducer, WhatsappConversation.Empty());
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
+    const openModal = () => {
+      setModalVisible(true);
+    };
 
     useEffect(() => {
       hideBottomTabNavigator(navigation);
@@ -26,7 +35,9 @@ function WhatsAppView() {
                 <View style={styles.mainContainer}>
                     <WhatsappHeader data={conversation}></WhatsappHeader>
                     <WhatsappDialog data={conversation}></WhatsappDialog>
-                    <WhatsappFooter data={conversation} dispatch={dispatch}></WhatsappFooter>
+                    <WhatsappFooter data={conversation} dispatch={dispatch} sendMessage={openModal}></WhatsappFooter>
+                    <WhatsappMessageModal data={conversation} dispatch={dispatch} 
+                                          isVisible={modalVisible} close={closeModal} />
                 </View>
             </ImageBackground>
         </View>
