@@ -6,7 +6,7 @@ import { generateUUID } from "../../navigators/Functions";
 
 function WhatsappMessageModal({data, dispatch, isVisible, close}) {
     const [messageStatusOpen, setMessageStatusOpen] = useState(false);
-    
+
     const [messageStatuses, setMessageStatuses] = useState([
         {label: WhatsappMessageStatus.RECEIVED, value: WhatsappMessageStatus.RECEIVED},
         {label: WhatsappMessageStatus.SEEN, value: WhatsappMessageStatus.SEEN},
@@ -65,24 +65,43 @@ function WhatsappMessageModal({data, dispatch, isVisible, close}) {
     };
 
     const cancelModal = () => {
+        dispatch({
+            type: 'deleteTempContent'
+        });
         close();
     };
 
-    const addMessage = () => {
+    const saveMessage = () => {
         let contentType = data.tempContent.isBreak ? WhatsappContentType.BREAK : WhatsappContentType.MESSAGE;
         let messageType = data.tempContent.isSend ? WhatsappMessageType.SEND : WhatsappMessageType.RECEIVED;
-        let content = new WhatsappContent(generateUUID(), data.tempContent.time, data.tempContent.content, contentType, messageType, data.tempContent.status);
 
+        if(data.tempContent.id){
+            let content = new WhatsappContent(data.tempContent.id, data.tempContent.time, data.tempContent.content, contentType, messageType, data.tempContent.status);
+            dispatch({
+                type: 'updateContent',
+                data: content,
+            });
+        }
+        else {
+            let content = new WhatsappContent(generateUUID(), data.tempContent.time, data.tempContent.content, contentType, messageType, data.tempContent.status);
+            dispatch({
+                type: 'addContent',
+                data: content,
+            });
+        }
+        close();
+    };
+
+    const deleteMessage = () => {
         dispatch({
-            type: 'addContent',
-            data: content,
+            type: 'deleteContent',
+            id: data.tempContent.id,
         });
-
         close();
     };
 
     return(
-        <Modal animationType="slide" transparent={true} visible={isVisible}>
+        <Modal animationType="slide" visible={isVisible}>
             <View style={styles.modalContainer}>
                 <View style={styles.centerContainer}>
                     <View style={styles.modalChoiceContainer}>
@@ -127,8 +146,14 @@ function WhatsappMessageModal({data, dispatch, isVisible, close}) {
                         <Pressable onPress={cancelModal}>
                             <Text style={styles.modalButtonTextStyle}>Cancel</Text>
                         </Pressable>
-                        <Pressable onPress={addMessage}>
-                            <Text style={styles.modalButtonTextStyle}>OK</Text>
+                        {
+                            data.tempContent.id && 
+                            <Pressable onPress={deleteMessage}>
+                                <Text style={styles.modalButtonTextStyle}>Delete</Text>
+                            </Pressable>
+                        }
+                        <Pressable onPress={saveMessage}>
+                            <Text style={styles.modalButtonTextStyle}>Save</Text>
                         </Pressable>
                     </View>
                 </View>
@@ -142,6 +167,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)'
     },
     centerContainer: {
         width: "80%",

@@ -34,8 +34,8 @@ function WhatsAppView() {
                 resizeMode="cover">
                 <View style={styles.mainContainer}>
                     <WhatsappHeader data={conversation}></WhatsappHeader>
-                    <WhatsappDialog data={conversation}></WhatsappDialog>
-                    <WhatsappFooter data={conversation} dispatch={dispatch} sendMessage={openModal}></WhatsappFooter>
+                    <WhatsappDialog data={conversation} dispatch={dispatch} openModal={openModal}></WhatsappDialog>
+                    <WhatsappFooter data={conversation} dispatch={dispatch} openModal={openModal}></WhatsappFooter>
                     <WhatsappMessageModal data={conversation} dispatch={dispatch} 
                                           isVisible={modalVisible} close={closeModal} />
                 </View>

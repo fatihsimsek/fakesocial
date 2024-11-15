@@ -52,7 +52,8 @@ export class WhatsappContent {
   }
 
   export class WhatsappModalContent {
-    constructor(content, isSend, isBreak, status, time) {
+    constructor(id, content, isSend, isBreak, status, time) {
+      this.id = id;
       this.content = content;
       this.isSend = isSend;
       this.isBreak = isBreak;
@@ -60,6 +61,6 @@ export class WhatsappContent {
       this.time = time;
     }
     static Empty(){
-      return new WhatsappModalContent('', true, false, WhatsappMessageStatus.SEEN, '00:00');
+      return new WhatsappModalContent('', '', true, false, WhatsappMessageStatus.SEEN, '00:00');
     }
   }

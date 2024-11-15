@@ -30,13 +30,20 @@ export function conversationReducer(state, action) {
         let deletedContents = state.contents.filter((t) => t.id !== action.id);
         return {
           ...state,
-          contents: deletedContents
+          contents: deletedContents,
+          tempContent: WhatsappModalContent.Empty()
         };
       }
       case 'updateTempContent': {
         return {
           ...state,
           tempContent: action.data
+        };
+      }
+      case 'deleteTempContent': {
+        return {
+          ...state,
+          tempContent: WhatsappModalContent.Empty()
         };
       }
       default: {

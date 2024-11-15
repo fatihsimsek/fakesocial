@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
 import { SendIcon } from '../icons';
 
-function WhatsappFooter({data, dispatch, sendMessage}) {
+function WhatsappFooter({data, dispatch, openModal}) {
     const onTextChange = (text) => {
         dispatch({
             type: 'updateTempContent',
@@ -23,7 +23,7 @@ function WhatsappFooter({data, dispatch, sendMessage}) {
                     value={data.tempContent.content}
                     onChangeText={onTextChange} />
             </View>
-            <TouchableOpacity onPress={sendMessage}>
+            <TouchableOpacity onPress={openModal}>
                 <View style={styles.buttonContainer}>
                     <SendIcon size={28} color="white" />
                 </View>
