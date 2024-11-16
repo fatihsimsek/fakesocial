@@ -46,6 +46,12 @@ export function conversationReducer(state, action) {
           tempContent: WhatsappModalContent.Empty()
         };
       }
+      case 'updatePartnerFullname': {
+        return {
+          ...state,
+          partner: action.data
+        };
+      }
       default: {
         throw Error('Unknown action: ' + action.type);
       }

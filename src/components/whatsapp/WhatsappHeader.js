@@ -1,14 +1,32 @@
-import React from 'react';
-import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
+import React, {useState} from 'react';
+import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
-import { LeftIcon, SaveIcon, SearchIcon} from '../icons';
+import { LeftIcon, SaveIcon, SearchIcon, EditIcon } from '../icons';
 
-function WhatsappHeader({data}) {
+function WhatsappHeader({data, dispatch}) {
     const navigation = useNavigation();
+    const [textEditing, setTextEditing] = useState(false);
+    const [fullname, setFullname] = useState(data.partner.fullname);
 
     const onNavigateHome = () => {
         navigation.dispatch(CommonActions.goBack());
     }
+
+    const onSave = () => {
+        if(textEditing) {
+            setTextEditing(false);
+            dispatch({
+                type: 'updatePartnerFullname',
+                data: {
+                    ...data.partner,
+                    fullname: fullname
+                }
+            });
+        }
+        else {
+            setTextEditing(true);
+        }
+    };
 
     return (
         <View style={styles.headerContainer}>
@@ -25,7 +43,13 @@ function WhatsappHeader({data}) {
             <View style={styles.headerCenter}>
                 <Image source={require('../../assets/images/user-icon.png')}
                        style={styles.avatar} />
-                <Text style={styles.headerCenterText}>{data.partner.fullname}</Text>
+                { textEditing ?
+                    <TextInput style={styles.headerCenterText} value={fullname} autoFocus onChangeText={setFullname} /> :
+                    <Text style={styles.headerCenterText}>{fullname}</Text> 
+                }
+                <Pressable onPress={onSave}>
+                    <EditIcon width={20} height={20} style={{color:'#075E54', marginLeft:5}} />
+                </Pressable>
             </View>
             <View style={styles.headerRight}>
                 <Pressable onPress={onNavigateHome}>

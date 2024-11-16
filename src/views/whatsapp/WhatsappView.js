@@ -33,7 +33,7 @@ function WhatsAppView() {
                 source={require('../../assets/images/whatsapp.png')}
                 resizeMode="cover">
                 <View style={styles.mainContainer}>
-                    <WhatsappHeader data={conversation}></WhatsappHeader>
+                    <WhatsappHeader data={conversation} dispatch={dispatch}></WhatsappHeader>
                     <WhatsappDialog data={conversation} dispatch={dispatch} openModal={openModal}></WhatsappDialog>
                     <WhatsappFooter data={conversation} dispatch={dispatch} openModal={openModal}></WhatsappFooter>
                     <WhatsappMessageModal data={conversation} dispatch={dispatch} 
