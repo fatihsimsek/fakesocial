@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
+import {launchImageLibrary} from 'react-native-image-picker';
 import { LeftIcon, SaveIcon, SearchIcon, EditIcon } from '../icons';
 
 function WhatsappHeader({data, dispatch}) {
@@ -12,11 +13,36 @@ function WhatsappHeader({data, dispatch}) {
         navigation.dispatch(CommonActions.goBack());
     }
 
+    const options = {
+        title: 'Select Avatar',
+        mediaType: 'photo',
+        includeBase64: false
+      };
+
+    const onChangePhoto = () => {
+        launchImageLibrary(options, (response) => {
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('Image picker error: ', response.error);
+            } else {
+              let imageUri = response.uri || response.assets?.[0]?.uri;
+              dispatch({
+                type: 'updatePartner',
+                data: {
+                    ...data.partner,
+                    profileImage: imageUri
+                }
+              });
+            }
+          });
+    };
+
     const onSave = () => {
         if(textEditing) {
             setTextEditing(false);
             dispatch({
-                type: 'updatePartnerFullname',
+                type: 'updatePartner',
                 data: {
                     ...data.partner,
                     fullname: fullname
@@ -41,8 +67,12 @@ function WhatsappHeader({data, dispatch}) {
                 </View>
             </View>
             <View style={styles.headerCenter}>
-                <Image source={require('../../assets/images/user-icon.png')}
-                       style={styles.avatar} />
+                <Pressable onPress={onChangePhoto}>
+                {
+                    data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.avatar} /> 
+                                              : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
+                }
+                </Pressable>
                 { textEditing ?
                     <TextInput style={styles.headerCenterText} value={fullname} autoFocus onChangeText={setFullname} /> :
                     <Text style={styles.headerCenterText}>{fullname}</Text> 

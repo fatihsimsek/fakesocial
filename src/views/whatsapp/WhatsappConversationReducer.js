@@ -46,7 +46,7 @@ export function conversationReducer(state, action) {
           tempContent: WhatsappModalContent.Empty()
         };
       }
-      case 'updatePartnerFullname': {
+      case 'updatePartner': {
         return {
           ...state,
           partner: action.data

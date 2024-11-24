@@ -13,6 +13,12 @@ function WhatsappFooter({data, dispatch, openModal}) {
         });
     };
 
+    const onSend = () => {
+        if(data.tempContent.content?.length > 0){
+            openModal();
+        }
+    };
+
     return (
         <View style={styles.footerContainer}> 
             <View style={styles.textInputContainer}>
@@ -23,7 +29,7 @@ function WhatsappFooter({data, dispatch, openModal}) {
                     value={data.tempContent.content}
                     onChangeText={onTextChange} />
             </View>
-            <TouchableOpacity onPress={openModal}>
+            <TouchableOpacity onPress={onSend}>
                 <View style={styles.buttonContainer}>
                     <SendIcon size={28} color="white" />
                 </View>
