@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -17,7 +17,7 @@ function WhatsappHeader({data, dispatch}) {
         title: 'Select Avatar',
         mediaType: 'photo',
         includeBase64: false
-      };
+    };
 
     const onChangePhoto = () => {
         launchImageLibrary(options, (response) => {
@@ -35,7 +35,7 @@ function WhatsappHeader({data, dispatch}) {
                 }
               });
             }
-          });
+        });
     };
 
     const onSave = () => {

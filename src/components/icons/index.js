@@ -2,6 +2,7 @@ export {default as CheckIcon} from './Check';
 export {default as EditIcon} from './Edit';
 export {default as FavouriteIcon} from './Favourite';
 export {default as HomeIcon} from './Home';
+export {default as ImageIcon} from './Image';
 export {default as LeftIcon} from './Left';
 export {default as PhoneIcon} from './Phone';
 export {default as SaveIcon} from './Save';

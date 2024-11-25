@@ -12,6 +12,7 @@ function WhatsappDialog({data, dispatch, openModal}) {
             isBreak: item.type == WhatsappContentType.BREAK,
             status: item.messageStatus,
             time: item.time,
+            imageUrl: item.imageUrl
         };
 
         dispatch({

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 import { WhatsappMessageType, WhatsappMessageStatus } from '../../views/whatsapp/WhatsappTypes';
 import { CheckIcon } from '../icons';
 
@@ -32,10 +32,11 @@ function WhatsappMessageBubble({data}) {
                     display: isMyMessage ? "none" : "flex",
                     }}>
                 </View>
-                <Text style={{
-                    ...styles.messageText,
-                    left: isMyMessage ? 10 : 0,
-                    }}>{data.content}</Text>
+                {
+                  (data.imageUrl?.length > 0) 
+                                ? <Image source={{uri: data.imageUrl}} style={{width:"75%", paddingVertical:10, paddingLeft:10, height: 150}}></Image>
+                                : <Text style={{...styles.messageText, left: isMyMessage ? 10 : 0}}>{data.content}</Text>
+                }
                 <View style={{
                     ...styles.timeAndReadContainer,
                     left: isMyMessage ? 10 : 0,
@@ -51,7 +52,7 @@ function WhatsappMessageBubble({data}) {
                     }}>
                 </View>
             </View>
-            </View>
+          </View>
     );
 }
 

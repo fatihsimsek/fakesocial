@@ -1,8 +1,15 @@
 import React from 'react';
 import { TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
-import { SendIcon } from '../icons';
+import { SendIcon, ImageIcon } from '../icons';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 function WhatsappFooter({data, dispatch, openModal}) {
+    const options = {
+        title: 'Select Image',
+        mediaType: 'photo',
+        includeBase64: false
+    };
+
     const onTextChange = (text) => {
         dispatch({
             type: 'updateTempContent',
@@ -19,6 +26,28 @@ function WhatsappFooter({data, dispatch, openModal}) {
         }
     };
 
+    const onAddImage = () => {
+        launchImageLibrary(options, (response) => {
+            if (response.didCancel) {
+               console.log('User cancelled image picker');
+            } 
+            else if (response.error) {
+               console.log('Image picker error: ', response.error);
+            } 
+            else {
+               let imageUri = response.uri || response.assets?.[0]?.uri;
+               dispatch({
+                    type: 'updateTempContent',
+                    data: {
+                        ...data.tempContent,
+                        imageUrl:imageUri
+                    }
+               });
+               setTimeout(() => { openModal(); }, 500);
+            }
+        });
+    };
+
     return (
         <View style={styles.footerContainer}> 
             <View style={styles.textInputContainer}>
@@ -29,6 +58,11 @@ function WhatsappFooter({data, dispatch, openModal}) {
                     value={data.tempContent.content}
                     onChangeText={onTextChange} />
             </View>
+            <TouchableOpacity onPress={onAddImage}>
+                <View style={styles.buttonContainer}>
+                    <ImageIcon size={28} color="white" />
+                </View>
+            </TouchableOpacity>
             <TouchableOpacity onPress={onSend}>
                 <View style={styles.buttonContainer}>
                     <SendIcon size={28} color="white" />
@@ -64,6 +98,7 @@ const styles = StyleSheet.create({
         height: 45,
         justifyContent: 'center',
         alignItems: 'center',
+        marginLeft:5
     },
     
 });

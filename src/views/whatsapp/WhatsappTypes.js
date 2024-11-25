@@ -1,13 +1,14 @@
 import { generateUUID } from "../../navigators/Functions";
 
 export class WhatsappContent {
-    constructor(id, time, content, type, messageType, messageStatus) {
+    constructor(id, time, content, type, messageType, messageStatus, imageUrl) {
       this.id = id;
       this.time = time;
       this.content = content;
       this.type = type;
       this.messageType = messageType;
       this.messageStatus = messageStatus;
+      this.imageUrl = imageUrl;
     }
   }
 
@@ -52,15 +53,16 @@ export class WhatsappContent {
   }
 
   export class WhatsappModalContent {
-    constructor(id, content, isSend, isBreak, status, time) {
+    constructor(id, content, isSend, isBreak, status, time, imageUrl) {
       this.id = id;
       this.content = content;
       this.isSend = isSend;
       this.isBreak = isBreak;
       this.status = status;
       this.time = time;
+      this.imageUrl = imageUrl;
     }
     static Empty(){
-      return new WhatsappModalContent('', '', true, false, WhatsappMessageStatus.SEEN, '00:00');
+      return new WhatsappModalContent('', '', true, false, WhatsappMessageStatus.SEEN, '00:00', '');
     }
   }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { TextInput, Text, View, StyleSheet, Modal, Pressable, Switch } from 'react-native';
+import { TextInput, Text, View, StyleSheet, Modal, Pressable, Switch, Image } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {  WhatsappContent, WhatsappMessageType, WhatsappContentType, WhatsappMessageStatus } from '../../views/whatsapp/WhatsappTypes';
 import { generateUUID } from "../../navigators/Functions";
@@ -76,14 +76,16 @@ function WhatsappMessageModal({data, dispatch, isVisible, close}) {
         let messageType = data.tempContent.isSend ? WhatsappMessageType.SEND : WhatsappMessageType.RECEIVED;
 
         if(data.tempContent.id){
-            let content = new WhatsappContent(data.tempContent.id, data.tempContent.time, data.tempContent.content, contentType, messageType, data.tempContent.status);
+            let content = new WhatsappContent(data.tempContent.id, data.tempContent.time, data.tempContent.content, contentType, 
+                                              messageType, data.tempContent.status, data.tempContent.imageUrl);
             dispatch({
                 type: 'updateContent',
                 data: content,
             });
         }
         else {
-            let content = new WhatsappContent(generateUUID(), data.tempContent.time, data.tempContent.content, contentType, messageType, data.tempContent.status);
+            let content = new WhatsappContent(generateUUID(), data.tempContent.time, data.tempContent.content, contentType, 
+                                              messageType, data.tempContent.status, data.tempContent.imageUrl);
             dispatch({
                 type: 'addContent',
                 data: content,
@@ -140,6 +142,13 @@ function WhatsappMessageModal({data, dispatch, isVisible, close}) {
                                     setValue={onMessageStatusChange}
                                     setItems={setMessageStatuses} />
                             </View>            
+                        </View>
+                        <View style={styles.modalRowContainer}>
+                            <Text style={styles.modalText}>Image:</Text>
+                            {
+                                (data.tempContent.imageUrl?.length > 0) && 
+                                (<Image source={{uri: data.tempContent.imageUrl}} style={{...styles.modalValue, height: 150}}></Image>)
+                            }
                         </View>
                     </View>
                     <View style={styles.modalButtonContainer}>
