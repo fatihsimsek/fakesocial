@@ -43,7 +43,7 @@ function WhatsappFooter({data, dispatch, openModal}) {
                         imageUrl:imageUri
                     }
                });
-               setTimeout(() => { openModal(); }, 500);
+               setTimeout(() => { openModal(); }, 1000);
             }
         });
     };
