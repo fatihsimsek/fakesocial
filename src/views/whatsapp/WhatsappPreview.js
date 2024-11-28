@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import { Text, Modal, View, StyleSheet, ImageBackground, Image, Pressable, FlatList } from 'react-native';
+import { Text, Alert, Modal, View, StyleSheet, ImageBackground, Image, Pressable, FlatList } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
 import { CheckIcon } from '../../components/icons';
@@ -15,6 +15,7 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
     const takeScreenShot = () => {
         previewRef.current.capture().then(uri => {
             CameraRoll.saveAsset(uri, { type: 'photo' });
+            Alert.alert("Success", "Screenshot is saved on photos");
             close();
         });
     };
