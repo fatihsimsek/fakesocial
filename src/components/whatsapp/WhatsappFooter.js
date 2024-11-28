@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
-import { SendIcon, ImageIcon } from '../icons';
+import { SendIcon, CameraIcon } from '../icons';
 import {launchImageLibrary} from 'react-native-image-picker';
 
 function WhatsappFooter({data, dispatch, openModal}) {
@@ -60,7 +60,7 @@ function WhatsappFooter({data, dispatch, openModal}) {
             </View>
             <TouchableOpacity onPress={onAddImage}>
                 <View style={styles.buttonContainer}>
-                    <ImageIcon size={28} color="white" />
+                    <CameraIcon size={28} color="white" />
                 </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={onSend}>

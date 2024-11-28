@@ -14,7 +14,8 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
 
     const takeScreenShot = () => {
         previewRef.current.capture().then(uri => {
-            CameraRoll.saveAsset(uri, { type: 'photo' })
+            CameraRoll.saveAsset(uri, { type: 'photo' });
+            close();
         });
     };
 

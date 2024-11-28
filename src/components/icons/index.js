@@ -1,3 +1,4 @@
+export {default as CameraIcon} from './Camera';
 export {default as CheckIcon} from './Check';
 export {default as DownloadIcon} from './Download';
 export {default as EditIcon} from './Edit';
@@ -10,4 +11,6 @@ export {default as SaveIcon} from './Save';
 export {default as SearchIcon} from './Search';
 export {default as SendIcon} from './Send';
 export {default as SettingsIcon} from './Settings';
+export {default as Share2Icon} from './Share2';
+export {default as ShareIcon} from './Share';
 export {default as VideoIcon} from './Video';
