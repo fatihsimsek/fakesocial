@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import {launchImageLibrary} from 'react-native-image-picker';
-import { LeftIcon, SaveIcon, SearchIcon, EditIcon } from '../icons';
+import { LeftIcon, SaveIcon, DownloadIcon, EditIcon } from '../icons';
 
-function WhatsappHeader({data, dispatch}) {
+function WhatsappHeader({data, dispatch, openPreviewModal}) {
     const navigation = useNavigation();
     const [textEditing, setTextEditing] = useState(false);
     const [fullname, setFullname] = useState(data.partner.fullname);
@@ -36,6 +36,10 @@ function WhatsappHeader({data, dispatch}) {
               });
             }
         });
+    };
+
+    const onPreview = () => {
+        openPreviewModal();
     };
 
     const onSave = () => {
@@ -82,8 +86,8 @@ function WhatsappHeader({data, dispatch}) {
                 </Pressable>
             </View>
             <View style={styles.headerRight}>
-                <Pressable onPress={onNavigateHome}>
-                    <SearchIcon width={20} height={20} style={{color:'#075E54'}} />
+                <Pressable onPress={onPreview}>
+                    <DownloadIcon width={20} height={20} style={{color:'#075E54'}} />
                 </Pressable>
                 <Pressable onPress={onNavigateHome}>
                     <SaveIcon width={20} height={20} style={{marginLeft:10, color:'#075E54'}} />

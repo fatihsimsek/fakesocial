@@ -1,4 +1,5 @@
 export {default as CheckIcon} from './Check';
+export {default as DownloadIcon} from './Download';
 export {default as EditIcon} from './Edit';
 export {default as FavouriteIcon} from './Favourite';
 export {default as HomeIcon} from './Home';
