@@ -12,6 +12,7 @@
     "svgr": "svgr ./src/icons -d ./src/components/icons --native --icon --svg-props 'width=24,height=24,className='''"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.1.0",
     "@react-native-camera-roll/camera-roll": "^7.9.0",
     "@react-native-picker/picker": "^2.9.0",
     "@react-navigation/bottom-tabs": "^6.6.1",

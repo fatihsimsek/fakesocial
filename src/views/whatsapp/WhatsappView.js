@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { ImageBackground, View, StyleSheet } from 'react-native';
+import { Platform, ImageBackground, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { WhatsappDialog, WhatsappHeader, WhatsappFooter, WhatsappMessageModal } from '../../components/whatsapp';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
@@ -58,7 +58,14 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex:1,
     justifyContent:'flex-start',
-    paddingTop:20
+    ...Platform.select({
+      ios: {
+        paddingTop:20
+      },
+      android: {
+        paddingTop:10
+      }
+    })
   },
   backgroundImg:{
     flex:1

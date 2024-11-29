@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { TextInput, Text, View, StyleSheet, Modal, Pressable, Switch, Image } from 'react-native';
+import { Platform, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch, Image } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {  WhatsappContent, WhatsappMessageType, WhatsappContentType, WhatsappMessageStatus } from '../../views/whatsapp/WhatsappTypes';
 import { generateUUID } from "../../navigators/Functions";
@@ -116,12 +116,12 @@ function WhatsappMessageModal({data, dispatch, isVisible, close}) {
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>IsSend:</Text>
-                            <Switch style={styles.modalValue} value={data.tempContent.isSend}
+                            <Switch style={styles.switchValue} value={data.tempContent.isSend}
                                     onValueChange={toggleMessageIsSend} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>Date Break:</Text>
-                            <Switch style={styles.modalValue} value={data.tempContent.isBreak}
+                            <Switch style={styles.switchValue} value={data.tempContent.isBreak}
                                     onValueChange={toggleMessageIsBreak} />
                         </View>
                         <View style={styles.modalRowContainer}>
@@ -210,6 +210,15 @@ const styles = StyleSheet.create({
         width:"66%",
         flexDirection:'row',
         justifyContent:'flex-start'
+    },
+    switchValue:{
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        ...Platform.select({
+            ios: {
+              width: "66%",
+            },
+        })
     },
     modalButtonContainer: {
         flexDirection:'row',
