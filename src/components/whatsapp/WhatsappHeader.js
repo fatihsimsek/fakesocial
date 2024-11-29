@@ -63,7 +63,7 @@ function WhatsappHeader({data, dispatch, openPreviewModal}) {
             <View style={styles.headerLeft}>
                 <View>
                     <Pressable onPress={onNavigateHome}>
-                        <LeftIcon></LeftIcon>
+                        <LeftIcon style={{color:'#075E54'}}></LeftIcon>
                     </Pressable>
                 </View>
                 <View>
