@@ -1,4 +1,5 @@
 import { generateUUID } from "../../navigators/Functions";
+import { ListTypes } from "../Types";
 
 export class WhatsappContent {
     constructor(id, time, content, type, messageType, messageStatus, imageUrl) {
@@ -16,12 +17,13 @@ export class WhatsappContent {
     constructor(id, title, partner, contents) {
       this.id = id;
       this.title = title;
+      this.type = ListTypes.WHATSAPP,
       this.partner = partner;
       this.contents = contents;
       this.tempContent = WhatsappModalContent.Empty();
     }
     static Empty(){
-      return new WhatsappConversation(generateUUID(), '', WhatsappUser.Empty(), []);
+      return new WhatsappConversation('', '', WhatsappUser.Empty(), []);
     }
   }
 

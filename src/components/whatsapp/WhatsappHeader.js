@@ -4,7 +4,7 @@ import { useNavigation, CommonActions } from '@react-navigation/native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { LeftIcon, SaveIcon, DownloadIcon, EditIcon } from '../icons';
 
-function WhatsappHeader({data, dispatch, openPreviewModal}) {
+function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
     const navigation = useNavigation();
     const [textEditing, setTextEditing] = useState(false);
     const [fullname, setFullname] = useState(data.partner.fullname);
@@ -42,7 +42,7 @@ function WhatsappHeader({data, dispatch, openPreviewModal}) {
         openPreviewModal();
     };
 
-    const onSave = () => {
+    const onNameSave = () => {
         if(textEditing) {
             setTextEditing(false);
             dispatch({
@@ -56,6 +56,10 @@ function WhatsappHeader({data, dispatch, openPreviewModal}) {
         else {
             setTextEditing(true);
         }
+    };
+
+    const onSaveModalOpen = () => {
+        openSaveModal();
     };
 
     return (
@@ -81,7 +85,7 @@ function WhatsappHeader({data, dispatch, openPreviewModal}) {
                     <TextInput style={styles.headerCenterText} value={fullname} autoFocus onChangeText={setFullname} /> :
                     <Text style={styles.headerCenterText}>{fullname}</Text> 
                 }
-                <Pressable onPress={onSave}>
+                <Pressable onPress={onNameSave}>
                     <EditIcon width={20} height={20} style={{color:'#075E54', marginLeft:5}} />
                 </Pressable>
             </View>
@@ -89,7 +93,7 @@ function WhatsappHeader({data, dispatch, openPreviewModal}) {
                 <Pressable onPress={onPreview}>
                     <DownloadIcon width={20} height={20} style={{color:'#075E54'}} />
                 </Pressable>
-                <Pressable onPress={onNavigateHome}>
+                <Pressable onPress={onSaveModalOpen}>
                     <SaveIcon width={20} height={20} style={{marginLeft:10, color:'#075E54'}} />
                 </Pressable>
             </View>
