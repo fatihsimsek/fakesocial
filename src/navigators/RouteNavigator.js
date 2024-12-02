@@ -12,8 +12,8 @@ const Tab = createBottomTabNavigator();
 function RouteNavigator() {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="HomeNavigator">
-        <Tab.Screen name="HomeNavigator" component={HomeNavigator} 
+      <Tab.Navigator initialRouteName="HomePage">
+        <Tab.Screen name="HomePage" component={HomeNavigator} 
           options={{
             tabBarLabel: '',
             headerShown: false,

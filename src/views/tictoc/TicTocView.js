@@ -3,12 +3,12 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
 
-function InstagramView() {
+function TicTocView() {
     const navigation = useNavigation();
 
     const onNavigateHome = () => {
       navigation.dispatch(CommonActions.goBack());
-    }
+  }
     
     useEffect(() => {
       hideBottomTabNavigator(navigation);
@@ -19,11 +19,11 @@ function InstagramView() {
 
     return (
         <View style={{marginTop:40}}>
-            <TouchableOpacity onPress={onNavigateHome}>
-              <Text>Instagram</Text>
+             <TouchableOpacity onPress={onNavigateHome}>
+              <Text>TicToc</Text>
             </TouchableOpacity>
         </View>
     );
 }
 
-export default InstagramView;
+export default TicTocView;

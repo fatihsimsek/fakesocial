@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { TextInput, Alert, Text, View, StyleSheet, Modal, Pressable } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import {  Constant } from '../../views/Types';
+import { Constant } from '../../views/Types';
 import { generateUUID } from "../../navigators/Functions";
 
 function WhatsappSaveModal({data, dispatch, isVisible, close}) {
@@ -14,8 +14,6 @@ function WhatsappSaveModal({data, dispatch, isVisible, close}) {
         try {
             let favouriteString = await AsyncStorage.getItem(Constant.FAVOURITE);
             let favourites = JSON.parse(favouriteString);
-
-            console.log(favourites);
 
             if(favourites == null){
                 favourites = [];
@@ -38,6 +36,11 @@ function WhatsappSaveModal({data, dispatch, isVisible, close}) {
                 });
             }
             else {
+                if(favourites.length >= Constant.MAX_FAVOURITE_ITEM_COUNT){
+                    Alert.alert("Error", "Max Favourite Item Count:" + Constant.MAX_FAVOURITE_ITEM_COUNT);
+                    return;
+                }
+
                 let id = generateUUID();
                 dispatch({
                     type: 'updateConversation',
