@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Text, View, FlatList, TouchableOpacity, Pressable } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Constant } from './Types';
-import { RightIcon, TrashIcon, WhatsappIcon } from '../components/icons';
+import { TrashIcon, WhatsappIcon } from '../components/icons';
 import { useNavigation } from '@react-navigation/native';
 
 function FavouriteView() {
@@ -18,7 +18,7 @@ function FavouriteView() {
   });
 
   const onPressItem = (item) => {
-    navigation.navigate('HomePage', {itemId: item.id})
+    navigation.navigate('HomePage', {screen: "Whatsapp", params: {itemId: item.id}})
   };
 
   const onDeleteItem = async (item) => {

@@ -1,26 +1,21 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Text, View, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-function HomeView({route}) {
+function HomeView() {
     const navigation = useNavigation();
 
     const onInstagramPress = () => {
-      navigation.navigate('Instagram', {itemId:-1});
+      navigation.navigate('Instagram');
     }
 
     const onWhatsappPress = () => {
-      navigation.navigate('Whatsapp', {itemId:-1});
+      navigation.navigate('Whatsapp');
     }
 
     const onTicTocPress = () => {
-      navigation.navigate('TicToc', {itemId:-1});
+      navigation.navigate('TicToc');
     }
-
-    useEffect(() => {
-      console.log('Route-Home:');
-      console.log(route);
-    });
 
     return (
       <ImageBackground

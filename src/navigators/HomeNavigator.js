@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeView from '../views/HomeView';
@@ -9,13 +9,6 @@ import TicTocView from "../views/tictoc/TicTocView";
 const HomeStack = createStackNavigator();
 
 function HomeNavigator({route}) {
-    useEffect(() => {
-        console.log('Route-HomeNavigator:');
-        if(route?.params?.itemId){
-            console.log("ItemId:" + route.params.itemId);
-        }
-    });
-
     return (
         <HomeStack.Navigator>
             <HomeStack.Screen name="Home" component={HomeView} options={{headerShown:false}} />

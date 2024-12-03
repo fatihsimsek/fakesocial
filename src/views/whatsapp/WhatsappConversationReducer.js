@@ -59,6 +59,11 @@ export function conversationReducer(state, action) {
           title:action.data.title
         };
       }
+      case 'initConversation': {
+        return {
+          ...action.data
+        }
+      }
       default: {
         throw Error('Unknown action: ' + action.type);
       }
