@@ -17,8 +17,6 @@ function WhatsAppView({route}) {
     const [saveModalVisible, setSaveModalVisible] = useState(false);
 
     useEffect(() => {
-      console.log('Whatsapp View');
-      
       async function fetchData(itemId) {
         let favouriteString = await AsyncStorage.getItem(Constant.FAVOURITE);
         let favourites = JSON.parse(favouriteString);
@@ -30,7 +28,7 @@ function WhatsAppView({route}) {
         });
       }
 
-      if(route?.params?.itemId){
+      if(route?.params?.itemId) {
           let itemId = route?.params?.itemId;
           fetchData(itemId); 
       }
