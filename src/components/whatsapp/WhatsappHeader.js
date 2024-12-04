@@ -7,7 +7,6 @@ import { LeftIcon, SaveIcon, DownloadIcon, EditIcon } from '../icons';
 function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
     const navigation = useNavigation();
     const [textEditing, setTextEditing] = useState(false);
-    const [fullname, setFullname] = useState(data.partner.fullname);
 
     const onNavigateHome = () => {
         navigation.dispatch(CommonActions.goBack());
@@ -42,20 +41,14 @@ function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
         openPreviewModal();
     };
 
-    const onNameSave = () => {
-        if(textEditing) {
-            setTextEditing(false);
-            dispatch({
-                type: 'updatePartner',
-                data: {
-                    ...data.partner,
-                    fullname: fullname
-                }
-            });
-        }
-        else {
-            setTextEditing(true);
-        }
+    const onNameChange = (text) => {
+        dispatch({
+            type: 'updatePartner',
+            data: {
+                ...data.partner,
+                fullname: text
+            }
+        });
     };
 
     const onSaveModalOpen = () => {
@@ -82,10 +75,10 @@ function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
                 }
                 </Pressable>
                 { textEditing ?
-                    <TextInput style={styles.headerCenterText} value={fullname} autoFocus onChangeText={setFullname} /> :
-                    <Text style={styles.headerCenterText}>{fullname}</Text> 
+                    <TextInput style={styles.headerCenterText} value={data.partner.fullname} autoFocus onChangeText={onNameChange} /> :
+                    <Text style={styles.headerCenterText}>{data.partner.fullname}</Text> 
                 }
-                <Pressable onPress={onNameSave}>
+                <Pressable onPress={() => setTextEditing(previouseValue => !previouseValue)}>
                     <EditIcon width={20} height={20} style={{color:'#075E54', marginLeft:5}} />
                 </Pressable>
             </View>
@@ -134,9 +127,10 @@ const styles = StyleSheet.create({
 		resizeMode: "cover"
     },
     headerCenterText:{
-        marginLeft: 5,
+        marginLeft: 10,
         fontWeight:'600',
-        fontSize:14
+        fontSize:14,
+        width: 120
     }
 });
 

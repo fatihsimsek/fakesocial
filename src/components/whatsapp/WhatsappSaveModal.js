@@ -6,7 +6,7 @@ import { generateUUID } from "../../navigators/Functions";
 
 function WhatsappSaveModal({data, dispatch, isVisible, close}) {
     const saveConverstation = async () => {
-        
+
         if(data.title?.length == 0 || data.contents?.length == 0)
             return;
 
@@ -48,7 +48,7 @@ function WhatsappSaveModal({data, dispatch, isVisible, close}) {
                         title:data.title
                     }
                 });
-                favourites.push({...data, id:id, title:title, tempContent:{}});
+                favourites.push({...data, id:id, title:data.title, tempContent:{}});
             }
             
             await AsyncStorage.setItem(Constant.FAVOURITE, JSON.stringify(favourites));

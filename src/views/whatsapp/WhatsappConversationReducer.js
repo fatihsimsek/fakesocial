@@ -60,8 +60,11 @@ export function conversationReducer(state, action) {
         };
       }
       case 'initConversation': {
+        console.log('Data:');
+        console.log(action.data);
         return {
-          ...action.data
+          ...action.data,
+          tempContent: WhatsappModalContent.Empty()
         }
       } 
       case 'updateTitle': {
