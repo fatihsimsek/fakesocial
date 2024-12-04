@@ -5,10 +5,9 @@ import { Constant } from '../../views/Types';
 import { generateUUID } from "../../navigators/Functions";
 
 function WhatsappSaveModal({data, dispatch, isVisible, close}) {
-    const [title, setTitle] = useState('');
-
     const saveConverstation = async () => {
-        if(title?.length == 0 || data.contents?.length == 0)
+        
+        if(data.title?.length == 0 || data.contents?.length == 0)
             return;
 
         try {
@@ -24,12 +23,12 @@ function WhatsappSaveModal({data, dispatch, isVisible, close}) {
                     type: 'updateConversation',
                     data: {
                         id:data.id,
-                        title:title
+                        title:data.title
                     }
                 });
                 favourites = favourites.map((c) => {
                     if (c.id === data.id) {
-                        return {...data, title: title, tempContent:{}};
+                        return {...data, tempContent:{}};
                     } else {
                         return c;
                     }
@@ -46,7 +45,7 @@ function WhatsappSaveModal({data, dispatch, isVisible, close}) {
                     type: 'updateConversation',
                     data: {
                         id:id,
-                        title:title
+                        title:data.title
                     }
                 });
                 favourites.push({...data, id:id, title:title, tempContent:{}});
@@ -61,6 +60,13 @@ function WhatsappSaveModal({data, dispatch, isVisible, close}) {
         close();
     };
 
+    const onTextChange = (text) => {
+        dispatch({
+            type: 'updateTitle',
+            data: text
+        });
+    };
+
     return (
         <Modal animationType="slide" visible={isVisible}>
             <View style={styles.modalContainer}>
@@ -70,8 +76,8 @@ function WhatsappSaveModal({data, dispatch, isVisible, close}) {
                             <Text style={styles.modalText}>Title:</Text>
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type a title"} 
-                                        value={title}
-                                        onChangeText={setTitle} />
+                                        value={data.title}
+                                        onChangeText={onTextChange} />
                         </View>
                     </View>
                     <View style={styles.modalButtonContainer}>
