@@ -25,34 +25,36 @@ function WhatsappMessageBubble({data}) {
                 alignSelf: isMyMessage ? "flex-end": "flex-start",
                 backgroundColor: isMyMessage ? "#dfffc7" : "#fcfcfc",
                 borderBottomLeftRadius: isMyMessage ? 10 : 0,
-                borderBottomRightRadius: isMyMessage ? 0 : 10,
-            }}>
-                <View style={{
-                    ...styles.leftMessageArrow,
-                    display: isMyMessage ? "none" : "flex",
-                    }}>
-                </View>
+                borderBottomRightRadius: isMyMessage ? 0 : 10}}>
+            <View style={{
+                ...styles.leftMessageArrow,
+                display: isMyMessage ? "none" : "flex",
+                }}>
+            </View>
+            <View style={{flexDirection:'column'}}>
                 {
-                  (data.imageUrl?.length > 0) 
-                                ? <Image source={{uri: data.imageUrl}} style={{width:"75%", paddingVertical:10, paddingLeft:10, height: 150}}></Image>
-                                : <Text style={{...styles.messageText, left: isMyMessage ? 10 : 0}}>{data.content}</Text>
+                  (data.imageUrl?.length > 0) && 
+                  <Image source={{uri: data.imageUrl}} style={{width:"98%", paddingTop:10, paddingLeft:10, height: 150}}></Image>
                 }
-                <View style={{
-                    ...styles.timeAndReadContainer,
-                    left: isMyMessage ? 10 : 0,
-                    }}>
-                <Text style={styles.timeText}>{data.time}</Text>
-                <View style={styles.checkContainer}>
-                    {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} color={messageStatusColor} />}
-                    {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} color={messageStatusColor} />}
-                </View>
-                <View style={{
-                        ...styles.rightMsgArrow,
-                        display: isMyMessage ? "flex" : "none",
-                    }}>
+                <View style={{flexDirection:'row'}}>
+                  <Text style={{...styles.messageText, left: isMyMessage ? 10 : 0}}>{data.content}</Text>
+                  <View style={{
+                      ...styles.timeAndReadContainer,
+                      left: isMyMessage ? 10 : 0 }}>
+                      <Text style={styles.timeText}>{data.time}</Text>
+                      <View style={styles.checkContainer}>
+                          {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} color={messageStatusColor} />}
+                          {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} color={messageStatusColor} />}
+                      </View>
+                  </View>
                 </View>
             </View>
-          </View>
+            <View style={{
+                    ...styles.rightMsgArrow,
+                    display: isMyMessage ? "flex" : "none",
+                }}>
+            </View>
+        </View>
     );
 }
 
@@ -79,11 +81,11 @@ const styles = StyleSheet.create({
     },
     messageText: {
       fontSize: 14,
-      width: "75%",
+      width: "76%",
       paddingVertical:10
     },
     timeAndReadContainer: {
-      flexDirection: "row",
+      flexDirection: "row"
     },
     timeText: {
       fontSize: 10,
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
       borderBottomColor: "#e7ffdb",
       borderBottomWidth: 12,
       alignSelf: "flex-end",
-      left: -2,
+      left:3,
       bottom: 0,
     },
     checkContainer:{

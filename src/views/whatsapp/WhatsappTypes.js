@@ -34,7 +34,7 @@ export class WhatsappContent {
       this.profileImage = profileImage;
     }
     static Empty(){
-      return new WhatsappUser(generateUUID(),'Partner Fullname', '');
+      return new WhatsappUser(generateUUID(),'Partner Name', '');
     }
   }
 

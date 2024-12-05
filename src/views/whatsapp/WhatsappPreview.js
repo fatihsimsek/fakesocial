@@ -77,19 +77,23 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
                                                     display: isMyMessage ? "none" : "flex",
                                                     }}>
                                                 </View>
-                                                {
-                                                  (item.imageUrl?.length > 0) 
-                                                                ? <Image source={{uri: item.imageUrl}} style={{width:"75%", paddingVertical:10, paddingLeft:10, height: 150}}></Image>
-                                                                : <Text style={{...styles.messageText, left: isMyMessage ? 10 : 0}}>{item.content}</Text>
-                                                }
-                                                <View style={styles.timeAndReadContainer}>
-                                                    <Text style={styles.timeText}>{item.time}</Text>
-                                                    <View style={styles.checkContainer}>
-                                                        {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} color={messageStatusColor} />}
-                                                        {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} color={messageStatusColor} />}
+                                                <View style={{flexDirection:'column'}}>
+                                                    {
+                                                    (item.imageUrl?.length > 0) &&
+                                                        <Image source={{uri: item.imageUrl}} style={{width:"98%", paddingVertical:10, paddingLeft:10, height: 150}}></Image>
+                                                    }
+                                                    <View style={{flexDirection:'row'}}>
+                                                        <Text style={{...styles.messageText, left: isMyMessage ? 10 : 0}}>{item.content}</Text>
+                                                        <View style={styles.timeAndReadContainer}>
+                                                            <Text style={styles.timeText}>{item.time}</Text>
+                                                            <View style={styles.checkContainer}>
+                                                                {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} color={messageStatusColor} />}
+                                                                {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} color={messageStatusColor} />}
+                                                            </View>
+                                                         </View>
                                                     </View>
-                                                    <View style={{...styles.rightMsgArrow, display: isMyMessage ? "flex" : "none"}}></View>
                                                 </View>
+                                                <View style={{...styles.rightMsgArrow, display: isMyMessage ? "flex" : "none"}}></View>
                                             </View>
                                         )
                                     }
@@ -122,8 +126,7 @@ const styles = StyleSheet.create({
     centerContainer: {
         flex:1,
         width:"100%",
-        padding: 20,
-        paddingBottom:10,
+        padding: 10,
         borderRadius: 10,
         alignItems: 'center',
         shadowColor: '#000',
@@ -220,7 +223,7 @@ const styles = StyleSheet.create({
       },
       messageText: {
         fontSize: 14,
-        width: "75%",
+        width: "76%",
         paddingVertical:10
       },
       timeAndReadContainer: {
@@ -242,7 +245,7 @@ const styles = StyleSheet.create({
         borderBottomColor: "#e7ffdb",
         borderBottomWidth: 12,
         alignSelf: "flex-end",
-        left: -2,
+        left: 2,
         bottom: 0,
       },
       checkContainer:{
