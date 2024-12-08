@@ -33,7 +33,7 @@ function HomeView() {
               <TouchableOpacity onPress={onInstagramPress}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
-                    <Text style={styles.item_text}>New Instagram Post</Text>
+                    <Text style={styles.item_text}>New Instagram DM</Text>
                   </View>
                 </View>
               </TouchableOpacity>
