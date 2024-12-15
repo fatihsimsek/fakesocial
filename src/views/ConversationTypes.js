@@ -1,7 +1,7 @@
-import { generateUUID } from "../../navigators/Functions";
-import { ListTypes } from "../Types";
+import { generateUUID } from "../navigators/Functions";
+import { ListTypes } from "./Types";
 
-export class WhatsappContent {
+export class ConversationContent {
     constructor(id, time, content, type, messageType, messageStatus, imageUrl) {
       this.id = id;
       this.time = time;
@@ -13,48 +13,48 @@ export class WhatsappContent {
     }
   }
 
-  export class WhatsappConversation {
-    constructor(id, title, partner, contents) {
+  export class Conversation {
+    constructor(id, title, partner, type, contents) {
       this.id = id;
       this.title = title;
-      this.type = ListTypes.WHATSAPP,
+      this.type = type,
       this.partner = partner;
       this.contents = contents;
-      this.tempContent = WhatsappModalContent.Empty();
+      this.tempContent = ConversationModalContent.Empty();
     }
-    static Empty(){
-      return new WhatsappConversation('', '', WhatsappUser.Empty(), []);
+    static Empty(type){
+      return new Conversation('', '', ConversationUser.Empty(), type, []);
     }
   }
 
-  export class WhatsappUser {
+  export class ConversationUser {
     constructor(id, fullname, profileImage) {
       this.id = id;
       this.fullname = fullname;
       this.profileImage = profileImage;
     }
     static Empty(){
-      return new WhatsappUser(generateUUID(),'Partner Name', '');
+      return new ConversationUser(generateUUID(),'Partner Name', '');
     }
   }
 
-  export const WhatsappMessageStatus = {
+  export const ConversationMessageStatus = {
     RECEIVED:'Received',
     SEEN: 'Seen',
     SEND: 'Send',
   }
 
-  export const WhatsappMessageType = {
+  export const ConversationMessageType = {
     SEND: 'Send',
     RECEIVED: 'Received'
   }
 
-  export const WhatsappContentType = {
+  export const ConversationContentType = {
     MESSAGE: 'Message',
     BREAK: 'Break'
   }
 
-  export class WhatsappModalContent {
+  export class ConversationModalContent {
     constructor(id, content, isSend, isBreak, status, time, imageUrl) {
       this.id = id;
       this.content = content;
@@ -65,6 +65,6 @@ export class WhatsappContent {
       this.imageUrl = imageUrl;
     }
     static Empty(){
-      return new WhatsappModalContent('', '', true, false, WhatsappMessageStatus.SEEN, '00:00', '');
+      return new ConversationModalContent('', '', true, false, ConversationMessageStatus.SEEN, '00:00', '');
     }
   }

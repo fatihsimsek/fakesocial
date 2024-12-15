@@ -4,14 +4,14 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { WhatsappDialog, WhatsappHeader, WhatsappFooter, WhatsappMessageModal, WhatsappSaveModal } from '../../components/whatsapp';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
-import { WhatsappConversation } from "./WhatsappTypes";
+import { Conversation } from "../ConversationTypes";
 import { conversationReducer } from "./WhatsappConversationReducer";
 import WhatsappPreview from "./WhatsappPreview";
-import { Constant } from '../Types';
+import { Constant, ListTypes } from '../Types';
 
 function WhatsAppView({route}) {
     const navigation = useNavigation();
-    const [conversation, dispatch] = useReducer(conversationReducer, WhatsappConversation.Empty());
+    const [conversation, dispatch] = useReducer(conversationReducer, Conversation.Empty(ListTypes.WHATSAPP));
     const [modalVisible, setModalVisible] = useState(false);
     const [previewVisible, setPreviewVisible] = useState(false);
     const [saveModalVisible, setSaveModalVisible] = useState(false);

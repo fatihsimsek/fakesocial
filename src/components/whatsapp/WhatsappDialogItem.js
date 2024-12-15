@@ -1,10 +1,10 @@
 import React from 'react';
-import { WhatsappContentType } from '../../views/whatsapp/WhatsappTypes';
+import { ConversationContentType } from '../../views/ConversationTypes';
 import WhatsappDateBreak from './WhatsappDateBreak';
 import WhatsappMessageBubble from './WhatsappMessageBubble';
 
 function WhatsappDialogItem({data}) {
-    if(data.type == WhatsappContentType.BREAK){
+    if(data.type == ConversationContentType.BREAK){
         return (
             <WhatsappDateBreak data={data} />
         );

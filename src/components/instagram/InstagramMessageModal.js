@@ -4,13 +4,12 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {  ConversationContent, ConversationMessageType, ConversationContentType, ConversationMessageStatus } from '../../views/ConversationTypes';
 import { generateUUID } from "../../navigators/Functions";
 
-function WhatsappMessageModal({data, dispatch, isVisible, close}) {
+function InstagramMessageModal({data, dispatch, isVisible, close}) {
     const [messageStatusOpen, setMessageStatusOpen] = useState(false);
 
     const [messageStatuses, setMessageStatuses] = useState([
         {label: ConversationMessageStatus.RECEIVED, value: ConversationMessageStatus.RECEIVED},
-        {label: ConversationMessageStatus.SEEN, value: ConversationMessageStatus.SEEN},
-        {label: ConversationMessageStatus.SEND, value: ConversationMessageStatus.SEND}
+        {label: ConversationMessageStatus.SEEN, value: ConversationMessageStatus.SEEN}
     ]);
 
     const toggleMessageIsBreak = (value) => {
@@ -39,16 +38,6 @@ function WhatsappMessageModal({data, dispatch, isVisible, close}) {
             data: {
                 ...data.tempContent,
                 content:text
-            }
-        });
-    };
-
-    const onTimeChange = (time) => {
-        dispatch({
-            type: 'updateTempContent',
-            data: {
-                ...data.tempContent,
-                time:time
             }
         });
     };
@@ -123,13 +112,6 @@ function WhatsappMessageModal({data, dispatch, isVisible, close}) {
                             <Text style={styles.modalText}>Date Break:</Text>
                             <Switch style={styles.switchValue} value={data.tempContent.isBreak}
                                     onValueChange={toggleMessageIsBreak} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Time:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type a time"} 
-                                        value={data.tempContent.time}
-                                        onChangeText={onTimeChange} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>Status:</Text>
@@ -235,4 +217,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default WhatsappMessageModal;
+export default InstagramMessageModal;

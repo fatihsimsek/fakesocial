@@ -1,22 +1,22 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { WhatsappMessageType, WhatsappMessageStatus } from '../../views/whatsapp/WhatsappTypes';
+import { ConversationMessageType, ConversationMessageStatus } from '../../views/ConversationTypes';
 import { CheckIcon } from '../icons';
 
 function WhatsappMessageBubble({data}) {
     let getMessageStatusColor = (messageStatus) => {
         switch(messageStatus){
-            case WhatsappMessageStatus.SEEN:
+            case ConversationMessageStatus.SEEN:
                 return "#34B7F1";
-            case WhatsappMessageStatus.READ:
+            case ConversationMessageStatus.READ:
                 return "#075E54";
             default:
                 return "#128C7E";
         }
     }
 
-    const isMyMessage = data.messageType === WhatsappMessageType.SEND;
-    const showReachIcon = isMyMessage && (data.messageStatus === WhatsappMessageStatus.RECEIVED || data.messageStatus === WhatsappMessageStatus.SEEN);
+    const isMyMessage = data.messageType === ConversationMessageType.SEND;
+    const showReachIcon = isMyMessage && (data.messageStatus === ConversationMessageStatus.RECEIVED || data.messageStatus === ConversationMessageStatus.SEEN);
     const messageStatusColor = getMessageStatusColor(data.messageStatus);
 
     return (

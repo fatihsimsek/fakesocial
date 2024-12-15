@@ -1,4 +1,4 @@
-import { WhatsappModalContent } from './WhatsappTypes'
+import { ConversationModalContent } from '../ConversationTypes'
 
 export function conversationReducer(state, action) {
     switch (action.type) {
@@ -9,7 +9,7 @@ export function conversationReducer(state, action) {
             ...state.contents,
             action.data
           ],
-          tempContent: WhatsappModalContent.Empty()
+          tempContent: ConversationModalContent.Empty()
         };
       }
       case 'updateContent': {
@@ -23,7 +23,7 @@ export function conversationReducer(state, action) {
         return {
           ...state,
           contents: updatedContents,
-          tempContent: WhatsappModalContent.Empty()
+          tempContent: ConversationModalContent.Empty()
         };
       }
       case 'deleteContent': {
@@ -31,7 +31,7 @@ export function conversationReducer(state, action) {
         return {
           ...state,
           contents: deletedContents,
-          tempContent: WhatsappModalContent.Empty()
+          tempContent: ConversationModalContent.Empty()
         };
       }
       case 'updateTempContent': {
@@ -43,7 +43,7 @@ export function conversationReducer(state, action) {
       case 'deleteTempContent': {
         return {
           ...state,
-          tempContent: WhatsappModalContent.Empty()
+          tempContent: ConversationModalContent.Empty()
         };
       }
       case 'updatePartner': {
@@ -60,11 +60,9 @@ export function conversationReducer(state, action) {
         };
       }
       case 'initConversation': {
-        console.log('Data:');
-        console.log(action.data);
         return {
           ...action.data,
-          tempContent: WhatsappModalContent.Empty()
+          tempContent: ConversationModalContent.Empty()
         }
       } 
       case 'updateTitle': {

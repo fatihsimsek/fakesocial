@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import WhatsappDialogItem from './WhatsappDialogItem';
+import InstagramDialogItem from './InstagramDialogItem';
 import { ConversationMessageType , ConversationContentType } from '../../views/ConversationTypes';
 
-function WhatsappDialog({data, dispatch, openModal}) {
+function InstagramDialog({data, dispatch, openModal}) {
     const onPressDialogItem = (item) => {
         let tempContent = {
             id: item.id,
@@ -30,7 +30,7 @@ function WhatsappDialog({data, dispatch, openModal}) {
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => onPressDialogItem(item)}>
-                        <WhatsappDialogItem data={item} />
+                        <InstagramDialogItem data={item} />
                     </TouchableOpacity>
                 )}
             />
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default WhatsappDialog;
+export default InstagramDialog;

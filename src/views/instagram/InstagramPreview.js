@@ -5,7 +5,7 @@ import { CameraRoll } from "@react-native-camera-roll/camera-roll"
 import { CheckIcon } from '../../components/icons';
 import { ConversationContentType, ConversationMessageStatus, ConversationMessageType } from "../ConversationTypes";
 
-function WhatsappPreview({data, dispatch, isVisible, close}) {
+function InstagramPreview({data, dispatch, isVisible, close}) {
     const previewRef = useRef();
 
     const cancelModal = () => {
@@ -39,13 +39,12 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
             <View style={styles.modalContainer}>
                 <ViewShot ref={previewRef} style={styles.centerContainer} 
                       options={{fileName: 'Fake Social',  format: 'jpg', quality: 0.9 }}>
-                    <ImageBackground style={styles.backgroundImg} source={require('../../assets/images/whatsapp.png')}>
-                      <View style={styles.mainContainer}>
+                    <View style={styles.mainContainer}>
                         <View style={styles.headerContainer}>
                             <View style={styles.headerCenter}>
                                 {
                                     data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.avatar} /> 
-                                                              : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
+                                                                : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
                                 }
                                 <Text style={styles.headerCenterText}>{data.partner.fullname}</Text> 
                             </View>
@@ -67,7 +66,7 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
                                             </View>)
                                     }
                                     else {
-                                       return (
+                                        return (
                                             <View style={{
                                                 ...styles.messageContainer,
                                                 alignSelf: isMyMessage ? "flex-end": "flex-start",
@@ -93,7 +92,7 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
                                                                 {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} color={messageStatusColor} />}
                                                                 {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} color={messageStatusColor} />}
                                                             </View>
-                                                         </View>
+                                                            </View>
                                                     </View>
                                                 </View>
                                                 <View style={{...styles.rightMsgArrow, display: isMyMessage ? "flex" : "none"}}></View>
@@ -103,8 +102,7 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
                                 }}
                             />
                         </View>
-                      </View>              
-                    </ImageBackground>
+                    </View>              
                 </ViewShot>
                 <View style={styles.modalButtonContainer}>
                     <Pressable onPress={cancelModal}>
@@ -260,4 +258,4 @@ const styles = StyleSheet.create({
       }
   });
 
-export default WhatsappPreview;
+export default InstagramPreview;
