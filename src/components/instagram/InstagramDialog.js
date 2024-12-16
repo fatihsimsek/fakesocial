@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import InstagramDialogItem from './InstagramDialogItem';
-import { ConversationMessageType , ConversationContentType } from '../../views/ConversationTypes';
+import { ConversationMessageType , ConversationContentType, ConversationMessageStatus } from '../../views/ConversationTypes';
 
 function InstagramDialog({data, dispatch, openModal}) {
     const onPressDialogItem = (item) => {
@@ -23,6 +23,12 @@ function InstagramDialog({data, dispatch, openModal}) {
         openModal();
     };
 
+    let showStatus = function(contents, item) {
+        return contents?.length > 0 && contents[contents.length-1].id === item.id
+               && item.type === ConversationContentType.MESSAGE && item.messageType === ConversationMessageType.SEND
+               && item.messageStatus === ConversationMessageStatus.SEEN;
+    }
+
     return (
         <View style={styles.containerAlignTop}>
             <FlatList
@@ -31,6 +37,12 @@ function InstagramDialog({data, dispatch, openModal}) {
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => onPressDialogItem(item)}>
                         <InstagramDialogItem data={item} />
+                        {
+                            (showStatus(data.contents, item)) && 
+                            <View style={styles.statusContainer}>
+                                <Text style={styles.statusText}>Seen</Text>
+                            </View>
+                        }
                     </TouchableOpacity>
                 )}
             />
@@ -47,6 +59,14 @@ const styles = StyleSheet.create({
     },
     listStyle: {
         flex: 1
+    },
+    statusContainer: {
+        alignItems:'flex-end',
+        marginRight:15,
+        marginTop:3
+    },
+    statusText: {
+        color: "#c8c8c8"
     }
 });
 

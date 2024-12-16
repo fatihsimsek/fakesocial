@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import { Text, Alert, Modal, View, StyleSheet, ImageBackground, Image, Pressable, FlatList } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
-import { ConversationContentType, ConversationMessageType } from "../ConversationTypes";
+import { ConversationContentType, ConversationMessageType, ConversationMessageStatus } from "../ConversationTypes";
 
 function InstagramPreview({data, dispatch, isVisible, close}) {
     const previewRef = useRef();
@@ -44,24 +44,36 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                                 keyExtractor={item => item.id}
                                 renderItem={({ item }) => {
                                     let isMyMessage = item.messageType === ConversationMessageType.SEND;
+                                    let showStatus = data.contents?.length > 0 && data.contents[data.contents.length-1].id === item.id
+                                                     && item.type === ConversationContentType.MESSAGE && item.messageType === ConversationMessageType.SEND
+                                                    && item.messageStatus === ConversationMessageStatus.SEEN;
                                     if(item.type == ConversationContentType.BREAK) {
                                         return (
                                             <View style={styles.dateBreakContainer}>
                                                 <Text style={styles.dateBreakText}>{item.content}</Text>
-                                            </View>
+                                            </View> 
                                         )
                                     }
                                     else {
                                         if(data.imageUrl?.length > 0){
                                             return (
+                                                <>
                                                 <View style={{...styles.imageContainer,
                                                               alignSelf: isMyMessage ? "flex-end": "flex-start"}}>
                                                     <Image source={{uri: item.imageUrl}} style={{width:"98%", paddingTop:10, paddingLeft:10, height: 150}}></Image>
                                                 </View>
+                                                { showStatus && (
+                                                        <View style={styles.statusContainer}>
+                                                            <Text style={styles.statusText}>Seen</Text>
+                                                        </View>
+                                                    )
+                                                }
+                                                </>
                                             )
                                         }
                                         else {
                                             return (
+                                                <>
                                                 <View style={{
                                                                 ...styles.messageContainer,
                                                                 alignSelf: isMyMessage ? "flex-end": "flex-start",
@@ -74,6 +86,13 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                                                         </View>
                                                     </View>
                                                 </View>
+                                                { showStatus && (
+                                                        <View style={styles.statusContainer}>
+                                                            <Text style={styles.statusText}>Seen</Text>
+                                                        </View>
+                                                    )
+                                                }
+                                                </>
                                             )
                                         }
                                     }
@@ -202,6 +221,14 @@ const styles = StyleSheet.create({
       messageText: {
         fontSize: 14,
         padding:10
+      },
+      statusContainer: {
+          alignItems:'flex-end',
+          marginRight:15,
+          marginTop:3
+      },
+      statusText: {
+          color: "#c8c8c8"
       }
   });
 
