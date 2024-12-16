@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     },
     messageText: {
       fontSize: 14,
-      width: "76%",
       padding:10
     }
   });

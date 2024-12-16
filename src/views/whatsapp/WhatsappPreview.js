@@ -141,9 +141,6 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
-    screenshotContainer:{
-        width:"90%"
-    },
     mainContainer: {
       justifyContent:'flex-start',
       paddingTop:10

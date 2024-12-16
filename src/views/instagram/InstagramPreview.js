@@ -2,8 +2,7 @@ import React, {useRef} from 'react';
 import { Text, Alert, Modal, View, StyleSheet, ImageBackground, Image, Pressable, FlatList } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
-import { CheckIcon } from '../../components/icons';
-import { ConversationContentType, ConversationMessageStatus, ConversationMessageType } from "../ConversationTypes";
+import { ConversationContentType, ConversationMessageType } from "../ConversationTypes";
 
 function InstagramPreview({data, dispatch, isVisible, close}) {
     const previewRef = useRef();
@@ -23,17 +22,6 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
          });
     };
 
-    let getMessageStatusColor = (messageStatus) => {
-        switch(messageStatus){
-            case ConversationMessageStatus.SEEN:
-                return "#34B7F1";
-            case ConversationMessageStatus.READ:
-                return "#075E54";
-            default:
-                return "#128C7E";
-        }
-    }
-
     return(
         <Modal animationType="slide" visible={isVisible}>
             <View style={styles.modalContainer}>
@@ -41,7 +29,7 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                       options={{fileName: 'Fake Social',  format: 'jpg', quality: 0.9 }}>
                     <View style={styles.mainContainer}>
                         <View style={styles.headerContainer}>
-                            <View style={styles.headerCenter}>
+                            <View style={styles.headerLeft}>
                                 {
                                     data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.avatar} /> 
                                                                 : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
@@ -56,48 +44,38 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                                 keyExtractor={item => item.id}
                                 renderItem={({ item }) => {
                                     let isMyMessage = item.messageType === ConversationMessageType.SEND;
-                                    let showReachIcon = isMyMessage && (item.messageStatus === ConversationMessageStatus.RECEIVED || item.messageStatus === ConversationMessageStatus.SEEN);
-                                    let messageStatusColor = getMessageStatusColor(item.messageStatus);
-                                    
                                     if(item.type == ConversationContentType.BREAK) {
                                         return (
                                             <View style={styles.dateBreakContainer}>
                                                 <Text style={styles.dateBreakText}>{item.content}</Text>
-                                            </View>)
-                                    }
-                                    else {
-                                        return (
-                                            <View style={{
-                                                ...styles.messageContainer,
-                                                alignSelf: isMyMessage ? "flex-end": "flex-start",
-                                                backgroundColor: isMyMessage ? "#dfffc7" : "#fcfcfc",
-                                                borderBottomLeftRadius: isMyMessage ? 10 : 0,
-                                                borderBottomRightRadius: isMyMessage ? 0 : 10,
-                                            }}>
-                                                <View style={{
-                                                    ...styles.leftMessageArrow,
-                                                    display: isMyMessage ? "none" : "flex",
-                                                    }}>
-                                                </View>
-                                                <View style={{flexDirection:'column'}}>
-                                                    {
-                                                    (item.imageUrl?.length > 0) &&
-                                                        <Image source={{uri: item.imageUrl}} style={{width:"98%", paddingVertical:10, paddingLeft:10, height: 150}}></Image>
-                                                    }
-                                                    <View style={{flexDirection:'row'}}>
-                                                        <Text style={{...styles.messageText, left: isMyMessage ? 10 : 0}}>{item.content}</Text>
-                                                        <View style={styles.timeAndReadContainer}>
-                                                            <Text style={styles.timeText}>{item.time}</Text>
-                                                            <View style={styles.checkContainer}>
-                                                                {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} color={messageStatusColor} />}
-                                                                {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} color={messageStatusColor} />}
-                                                            </View>
-                                                            </View>
-                                                    </View>
-                                                </View>
-                                                <View style={{...styles.rightMsgArrow, display: isMyMessage ? "flex" : "none"}}></View>
                                             </View>
                                         )
+                                    }
+                                    else {
+                                        if(data.imageUrl?.length > 0){
+                                            return (
+                                                <View style={{...styles.imageContainer,
+                                                              alignSelf: isMyMessage ? "flex-end": "flex-start"}}>
+                                                    <Image source={{uri: item.imageUrl}} style={{width:"98%", paddingTop:10, paddingLeft:10, height: 150}}></Image>
+                                                </View>
+                                            )
+                                        }
+                                        else {
+                                            return (
+                                                <View style={{
+                                                                ...styles.messageContainer,
+                                                                alignSelf: isMyMessage ? "flex-end": "flex-start",
+                                                                backgroundColor: isMyMessage ? "#f5f5f5" : "#ffffff",
+                                                                borderBottomLeftRadius: 10,
+                                                                borderBottomRightRadius: 10}}>
+                                                    <View style={{flexDirection:'column'}}>
+                                                        <View style={{flexDirection:'row'}}>
+                                                            <Text style={styles.messageText}>{item.content}</Text>
+                                                        </View>
+                                                    </View>
+                                                </View>
+                                            )
+                                        }
                                     }
                                 }}
                             />
@@ -139,31 +117,33 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
-    screenshotContainer:{
-        width:"90%"
-    },
     mainContainer: {
+      width:'100%',
       justifyContent:'flex-start',
-      paddingTop:10
-    },
-    backgroundImg:{
-        flex:1,
-        width:"100%"
+      paddingTop:10,
+      marginBottom:15,
+      backgroundColor:'white'
     },
     headerContainer: {
-        height:40,
-        backgroundColor:'#eee4dc',
-        justifyContent:"center"
-    },
-    headerCenter:{
         flexDirection:'row',
-        justifyContent:'center',
-        alignItems:'center'
+        height:45,
+        backgroundColor:'#FAFAFA',
+        shadowColor: '#808080',
+        shadowOffset: {width: -2, height: 2},
+        shadowOpacity: 0.2,
+        shadowRadius: 3
+    },
+    headerLeft:{
+        flex:1,
+        flexDirection:'row',
+        alignItems:'center',
+        marginLeft:10
     },
     headerCenterText:{
-        marginLeft: 5,
+        marginLeft: 10,
         fontWeight:'600',
-        fontSize:14
+        fontSize:14,
+        width: 100
     },
     avatar:{
         width: 30,
@@ -198,63 +178,30 @@ const styles = StyleSheet.create({
         padding:10
     },
     dateBreakText:{
-        fontSize: 14,
-        color: "#075E54",
+        fontSize: 12,
+        color: "#c8c8c8",
         fontWeight:600
     },
     messageContainer: {
         width: "66%",
         marginVertical: 3,
-        marginHorizontal: 16,
-        paddingVertical: 0,
+        marginHorizontal: 10,
+        paddingVertical: 5,
         flexDirection: "row",
         borderRadius: 10,
+        borderColor: '#e9e9e9',
+        borderWidth:1
       },
-      leftMessageArrow: {
-        height: 0,
-        width: 0,
-        borderLeftWidth: 10,
-        borderLeftColor: "transparent",
-        borderBottomColor: "#fff",
-        borderBottomWidth: 10,
-        alignSelf: "flex-end",
-        borderRightColor: "black",
-        right: 10,
-        bottom: 0,
+      imageContainer: {
+        width: "66%",
+        marginVertical: 3,
+        marginHorizontal: 10,
+        paddingVertical: 5,
+        flexDirection: "row"
       },
       messageText: {
         fontSize: 14,
-        width: "76%",
-        paddingVertical:10
-      },
-      timeAndReadContainer: {
-        flexDirection: "row",
-      },
-      timeText: {
-        fontSize: 10,
-        color: "#7e8689",
-        alignSelf:'flex-end',
-        justifyContent:'flex-end',
-        flexDirection:'column',
-        paddingVertical:3
-      },
-      rightMsgArrow: {
-        height: 0,
-        width: 0,
-        borderRightWidth: 12,
-        borderRightColor: "transparent",
-        borderBottomColor: "#e7ffdb",
-        borderBottomWidth: 12,
-        alignSelf: "flex-end",
-        left: 2,
-        bottom: 0,
-      },
-      checkContainer:{
-          alignSelf:'flex-end',
-          flexDirection:'row',
-          paddingVertical:2,
-          paddingLeft:3,
-          width:25
+        padding:10
       }
   });
 

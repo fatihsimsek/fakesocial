@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
         padding:10
     },
     messageText:{
-        fontSize: 14,
-        color: "#075E54",
+        fontSize: 12,
+        color: "#c8c8c8",
         fontWeight:600
     }
 });  
