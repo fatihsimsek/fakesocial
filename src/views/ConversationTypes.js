@@ -1,5 +1,4 @@
 import { generateUUID } from "../navigators/Functions";
-import { ListTypes } from "./Types";
 
 export class ConversationContent {
     constructor(id, time, content, type, messageType, messageStatus, imageUrl) {

@@ -12,7 +12,7 @@ import InstagramProfileModal from "../../components/instagram/InstagramProfileMo
 
 function InstagramView({route}) {
     const navigation = useNavigation();
-    const [conversation, dispatch] = useReducer(conversationReducer, Conversation.Empty(ListTypes.Instagram));
+    const [conversation, dispatch] = useReducer(conversationReducer, Conversation.Empty(ListTypes.INSTAGRAM));
     const [modalVisible, setModalVisible] = useState(false);
     const [previewVisible, setPreviewVisible] = useState(false);
     const [saveModalVisible, setSaveModalVisible] = useState(false);

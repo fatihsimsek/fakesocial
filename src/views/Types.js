@@ -4,5 +4,6 @@ export const Constant = {
 }
 
 export const ListTypes = {
-    WHATSAPP:'WhatsApp',
+    WHATSAPP:'Whatsapp',
+    INSTAGRAM: 'Instagram'
 }
