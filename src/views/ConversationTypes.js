@@ -32,6 +32,9 @@ export class ConversationContent {
       this.id = id;
       this.fullname = fullname;
       this.profileImage = profileImage;
+      this.isOnline = true;
+      this.isVerified = false,
+      this.onlineText = '';
     }
     static Empty(){
       return new ConversationUser(generateUUID(),'Partner Name', '');

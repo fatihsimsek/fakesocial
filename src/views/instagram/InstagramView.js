@@ -8,6 +8,7 @@ import { Conversation } from "../ConversationTypes";
 import { conversationReducer } from "./InstagramConversationReducer";
 import InstagramPreview from "./InstagramPreview";
 import { Constant, ListTypes } from '../Types';
+import InstagramProfileModal from "../../components/instagram/InstagramProfileModal";
 
 function InstagramView({route}) {
     const navigation = useNavigation();
@@ -15,6 +16,7 @@ function InstagramView({route}) {
     const [modalVisible, setModalVisible] = useState(false);
     const [previewVisible, setPreviewVisible] = useState(false);
     const [saveModalVisible, setSaveModalVisible] = useState(false);
+    const [profileModalVisible, setProfileModalVisible] = useState(false);
 
     useEffect(() => {
       async function fetchData(itemId) {
@@ -58,6 +60,14 @@ function InstagramView({route}) {
       setSaveModalVisible(false);
     };
 
+    const openProfileModal = () => {
+      setProfileModalVisible(true);
+    };
+
+    const closeProfileModal = () => {
+      setProfileModalVisible(false);
+    };
+
     useEffect(() => {
       hideBottomTabNavigator(navigation);
         return () => {
@@ -68,13 +78,14 @@ function InstagramView({route}) {
     return (
         <View flex={1}>
             <View style={styles.mainContainer}>
-                <InstagramHeader data={conversation} dispatch={dispatch} openPreviewModal={openPreviewModal} openSaveModal={openSaveModal}></InstagramHeader>
+                <InstagramHeader data={conversation} dispatch={dispatch} openPreviewModal={openPreviewModal} openSaveModal={openSaveModal} openProfileModal={openProfileModal}></InstagramHeader>
                 <InstagramDialog data={conversation} dispatch={dispatch} openModal={openModal}></InstagramDialog>
                 <InstagramFooter data={conversation} dispatch={dispatch} openModal={openModal}></InstagramFooter>
                 <InstagramMessageModal data={conversation} dispatch={dispatch} isVisible={modalVisible} close={closeModal} />
             </View>
             <InstagramPreview data={conversation} dispatch={dispatch} isVisible={previewVisible} close={closePreviewModal} />
             <InstagramSaveModal data={conversation} dispatch={dispatch} isVisible={saveModalVisible} close={closeSaveModal} />
+            <InstagramProfileModal data={conversation} dispatch={dispatch} isVisible={profileModalVisible} close={closeProfileModal} />
         </View>
     );
 }

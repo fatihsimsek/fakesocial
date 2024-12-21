@@ -1,3 +1,4 @@
+export {default as BlueCheckIcon} from './BlueCheck';
 export {default as CameraIcon} from './Camera';
 export {default as CheckIcon} from './Check';
 export {default as DownloadIcon} from './Download';

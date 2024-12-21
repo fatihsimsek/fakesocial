@@ -1,8 +1,9 @@
 import React, {useRef} from 'react';
-import { Text, Alert, Modal, View, StyleSheet, ImageBackground, Image, Pressable, FlatList } from 'react-native';
+import { Text, Alert, Modal, View, StyleSheet, Image, Pressable, FlatList } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
 import { ConversationContentType, ConversationMessageType, ConversationMessageStatus } from "../ConversationTypes";
+import { BlueCheckIcon, RightIcon } from '../../components/icons';
 
 function InstagramPreview({data, dispatch, isVisible, close}) {
     const previewRef = useRef();
@@ -32,9 +33,26 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                             <View style={styles.headerLeft}>
                                 {
                                     data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.avatar} /> 
-                                                                : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
+                                                              : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
                                 }
-                                <Text style={styles.headerCenterText}>{data.partner.fullname}</Text> 
+                                {
+                                    data.partner.isOnline && <View style={styles.onlineStatus}></View>
+                                }
+                                <View>
+                                    <Text style={styles.headerCenterText}>
+                                        {data.partner.fullname}
+                                    </Text> 
+                                    {
+                                        (data.partner.isOnline && data.partner.onlineText?.length > 0) &&   
+                                        <Text style={styles.headerCenterInlineText}>
+                                            {data.partner.onlineText}
+                                        </Text> 
+                                    }
+                                </View>
+                                {
+                                    data.partner.isVerified ? <BlueCheckIcon width={16} height={16} /> 
+                                                            : <RightIcon width={16} height={16} style={{color:'#075E54'}}/> 
+                                }
                             </View>
                         </View>
                         <View style={styles.containerAlignTop}>
@@ -164,13 +182,30 @@ const styles = StyleSheet.create({
         fontSize:14,
         width: 100
     },
+    headerCenterInlineText: {
+        marginLeft: 5,
+        fontWeight:'500',
+        color: "#c8c8c8",
+        fontSize:12,
+        width: 100
+    },
+    onlineStatus: {
+        alignSelf:'flex-end',
+        backgroundColor:'#78de45',
+        width:10,
+        height:10,
+        borderRadius:5,
+        top:-5,
+        left:-10
+    },
     avatar:{
-        width: 30,
-		height: 30,
-		borderWidth: 0.5,
+        width: 36,
+		height: 36,
+		borderWidth: 0.6,
         borderColor:'#075E54',
-		borderRadius: 30,
-		resizeMode: "cover"
+		borderRadius: 36,
+		resizeMode: "cover",
+        padding:3
     },
     modalButtonContainer: {
         flexDirection:'row',
