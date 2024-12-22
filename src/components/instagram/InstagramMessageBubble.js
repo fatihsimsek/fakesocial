@@ -10,14 +10,14 @@ function InstagramMessageBubble({data, partner}) {
         <View style={{
           ...styles.imageContainer,
           width: isMyMessage ? "66%" : '75%',
-          marginHorizontal: isMyMessage ? 0 : 10,
+          marginLeft: isMyMessage ? 0 : 10,
+          marginRight: isMyMessage ? 10 : 0,
           alignSelf: isMyMessage ? "flex-end": "flex-start"}}>
           {
             !isMyMessage && (partner.profileImage ? <Image source={{uri: partner.profileImage}} style={styles.avatar} /> 
                                                   : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />)
           }
-          <Image source={{uri: data.imageUrl}} style={{...styles.imageSelf, 
-                                                       marginHorizontal: isMyMessage ? 10 : 0}}></Image>
+          <Image source={{uri: data.imageUrl}} style={styles.imageSelf}></Image>
         </View>
       );
     }

@@ -79,14 +79,14 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                                                 <View style={{
                                                 ...styles.imageContainer,
                                                 width: isMyMessage ? "66%" : '75%',
-                                                marginHorizontal: isMyMessage ? 0 : 10,
+                                                marginLeft: isMyMessage ? 0 : 10,
+                                                marginRight: isMyMessage ? 10 : 0,
                                                 alignSelf: isMyMessage ? "flex-end": "flex-start"}}>
                                                     {
                                                         !isMyMessage && (data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.messageAvatar} /> 
                                                                                                    : <Image source={require('../../assets/images/user-icon.png')} style={styles.messageAvatar} />)
                                                     }
-                                                    <Image source={{uri: item.imageUrl}} style={{...styles.imageSelf, 
-                                                                                                 marginHorizontal: isMyMessage ? 10 : 0}}></Image>
+                                                    <Image source={{uri: item.imageUrl}} style={styles.imageSelf}></Image>
                                                 </View>
                                                 { showStatus && (
                                                         <View style={styles.statusContainer}>
