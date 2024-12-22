@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
 
-function TicTocView() {
+function TikTokView() {
     const navigation = useNavigation();
 
     const onNavigateHome = () => {
@@ -20,10 +20,10 @@ function TicTocView() {
     return (
         <View style={{marginTop:40}}>
              <TouchableOpacity onPress={onNavigateHome}>
-              <Text>TicToc</Text>
+              <Text>TikTok</Text>
             </TouchableOpacity>
         </View>
     );
 }
 
-export default TicTocView;
+export default TikTokView;

@@ -13,8 +13,8 @@ function HomeView() {
       navigation.navigate('Whatsapp');
     }
 
-    const onTicTocPress = () => {
-      navigation.navigate('TicToc');
+    const onTikTokPress = () => {
+      navigation.navigate('TikTok');
     }
 
     return (
@@ -23,17 +23,31 @@ function HomeView() {
           resizeMode="cover"
           source={require('../assets/images/background.jpeg')}>
             <View style={styles.item_list}>
-              <TouchableOpacity onPress={onTicTocPress}>
+            <TouchableOpacity onPress={onTikTokPress}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
-                    <Text style={styles.item_text}>New TicToc Post</Text>
+                    <Text style={styles.item_text}>New TikTok Message</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onTikTokPress}>
+                <View style={styles.item_template}>
+                  <View style={styles.item_inside}>
+                    <Text style={styles.item_text}>New TikTok Post</Text>
                   </View>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity onPress={onInstagramPress}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
-                    <Text style={styles.item_text}>New Instagram DM</Text>
+                    <Text style={styles.item_text}>New Instagram Message</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onInstagramPress}>
+                <View style={styles.item_template}>
+                  <View style={styles.item_inside}>
+                    <Text style={styles.item_text}>New Instagram Post</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -61,10 +75,10 @@ function HomeView() {
     },
     item_template:{
       alignItems: 'flex-end',
-      marginBottom:10
+      marginBottom:8
     },
     item_inside:{
-      height:50,
+      height:40,
       width:200,
       textAlign:'center',
       justifyContent:'center',

@@ -51,23 +51,23 @@ function WhatsappFooter({data, dispatch, openModal}) {
     return (
         <View style={styles.footerContainer}> 
             <View style={styles.textInputContainer}>
+                <TouchableOpacity onPress={onAddImage}>
+                    <View style={styles.imageContainer}>
+                        <CameraIcon size={28} fill='white' />
+                    </View>
+                </TouchableOpacity>
                 <TextInput
                     placeholder={"Type a message"}
                     style={styles.textInput}
                     multiline
                     value={data.tempContent.content}
-                    onChangeText={onTextChange} />
+                    onChangeText={onTextChange} />   
+                <TouchableOpacity onPress={onSend}>
+                    <View style={styles.buttonContainer}>
+                        <SendIcon size={28} color="black" />
+                    </View>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={onAddImage}>
-                <View style={styles.buttonContainer}>
-                    <CameraIcon size={28} color="white" />
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={onSend}>
-                <View style={styles.buttonContainer}>
-                    <SendIcon size={28} color="white" />
-                </View>
-            </TouchableOpacity>
         </View>
     );
 }
@@ -84,23 +84,28 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 20,
         marginRight: 5,
-        flex: 1,
-        alignItems: 'flex-end',
+        flex: 1
     },
     textInput: {
         flex: 1,
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        marginTop:8
     },
-    buttonContainer: {
-        backgroundColor: '#0C6157',
-        borderRadius: 25,
-        width: 45,
-        height: 45,
+    imageContainer: {
+        width: 40,
+        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft:5
+        borderRadius:20,
+        backgroundColor: '#0C6157'
     },
-    
+    buttonContainer: {
+        width: 40,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft:10
+    }
 });
 
 export default WhatsappFooter;
