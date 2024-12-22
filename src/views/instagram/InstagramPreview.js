@@ -73,12 +73,20 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                                         )
                                     }
                                     else {
-                                        if(data.imageUrl?.length > 0){
+                                        if(item.imageUrl?.length > 0){
                                             return (
                                                 <>
-                                                <View style={{...styles.imageContainer,
-                                                              alignSelf: isMyMessage ? "flex-end": "flex-start"}}>
-                                                    <Image source={{uri: item.imageUrl}} style={{width:"98%", paddingTop:10, paddingLeft:10, height: 150}}></Image>
+                                                <View style={{
+                                                ...styles.imageContainer,
+                                                width: isMyMessage ? "66%" : '75%',
+                                                marginHorizontal: isMyMessage ? 0 : 10,
+                                                alignSelf: isMyMessage ? "flex-end": "flex-start"}}>
+                                                    {
+                                                        !isMyMessage && (data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.messageAvatar} /> 
+                                                                                                   : <Image source={require('../../assets/images/user-icon.png')} style={styles.messageAvatar} />)
+                                                    }
+                                                    <Image source={{uri: item.imageUrl}} style={{...styles.imageSelf, 
+                                                                                                 marginHorizontal: isMyMessage ? 10 : 0}}></Image>
                                                 </View>
                                                 { showStatus && (
                                                         <View style={styles.statusContainer}>
@@ -93,15 +101,19 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                                             return (
                                                 <>
                                                 <View style={{
-                                                                ...styles.messageContainer,
-                                                                alignSelf: isMyMessage ? "flex-end": "flex-start",
-                                                                backgroundColor: isMyMessage ? "#f5f5f5" : "#ffffff",
-                                                                borderBottomLeftRadius: 10,
-                                                                borderBottomRightRadius: 10}}>
-                                                    <View style={{flexDirection:'column'}}>
-                                                        <View style={{flexDirection:'row'}}>
-                                                            <Text style={styles.messageText}>{item.content}</Text>
-                                                        </View>
+                                                      width: isMyMessage ? "66%" : '75%',
+                                                      alignSelf: isMyMessage ? "flex-end": "flex-start",
+                                                      flexDirection: "row",
+                                                      marginVertical: 3,
+                                                      marginHorizontal: 10}}>
+                                                    {
+                                                        !isMyMessage && (data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.messageAvatar} /> 
+                                                                                                   : <Image source={require('../../assets/images/user-icon.png')} style={styles.messageAvatar} />)
+                                                    }
+                                                    <View style={{
+                                                        ...styles.messageContainer,   
+                                                        backgroundColor: isMyMessage ? "#f5f5f5" : "#ffffff"}}>
+                                                        <Text style={styles.messageText}>{item.content}</Text>
                                                     </View>
                                                 </View>
                                                 { showStatus && (
@@ -237,34 +249,41 @@ const styles = StyleSheet.create({
         fontWeight:600
     },
     messageContainer: {
-        width: "66%",
-        marginVertical: 3,
-        marginHorizontal: 10,
         paddingVertical: 5,
-        flexDirection: "row",
         borderRadius: 10,
         borderColor: '#e9e9e9',
-        borderWidth:1
-      },
-      imageContainer: {
-        width: "66%",
-        marginVertical: 3,
-        marginHorizontal: 10,
-        paddingVertical: 5,
+        borderWidth:1,
+        flex:1
+    },
+    imageContainer: {
+        paddingVertical: 5, 
         flexDirection: "row"
-      },
-      messageText: {
+    },
+    imageSelf: {
+        flex:1, 
+        height: 150, 
+        borderRadius:10
+    },
+    messageAvatar:{
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        resizeMode: "cover",
+        marginRight:5,
+        alignSelf:'flex-end'
+    },
+    messageText: {
         fontSize: 14,
         padding:10
-      },
-      statusContainer: {
-          alignItems:'flex-end',
-          marginRight:15,
-          marginTop:3
-      },
-      statusText: {
-          color: "#c8c8c8"
-      }
+    },
+    statusContainer: {
+        alignItems:'flex-end',
+        marginRight:15,
+        marginTop:3
+    },
+    statusText: {
+        color: "#c8c8c8"
+    }
   });
 
 export default InstagramPreview;

@@ -36,7 +36,7 @@ function InstagramDialog({data, dispatch, openModal}) {
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => onPressDialogItem(item)}>
-                        <InstagramDialogItem data={item} />
+                        <InstagramDialogItem data={item} partner={data.partner} />
                         {
                             (showStatus(data.contents, item)) && 
                             <View style={styles.statusContainer}>
