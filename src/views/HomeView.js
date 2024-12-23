@@ -5,16 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 function HomeView() {
     const navigation = useNavigation();
 
-    const onInstagramPress = () => {
-      navigation.navigate('Instagram');
-    }
-
-    const onWhatsappPress = () => {
-      navigation.navigate('Whatsapp');
-    }
-
-    const onTikTokPress = () => {
-      navigation.navigate('TikTok');
+    const onNavigatePress = (name) => {
+      navigation.navigate(name);
     }
 
     return (
@@ -23,35 +15,35 @@ function HomeView() {
           resizeMode="cover"
           source={require('../assets/images/background.jpeg')}>
             <View style={styles.item_list}>
-            <TouchableOpacity onPress={onTikTokPress}>
+            <TouchableOpacity onPress={()=> onNavigatePress('TikTok')}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
                     <Text style={styles.item_text}>New TikTok Message</Text>
                   </View>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={onTikTokPress}>
+              <TouchableOpacity onPress={()=> onNavigatePress('TikTokPost')}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
                     <Text style={styles.item_text}>New TikTok Post</Text>
                   </View>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={onInstagramPress}>
+              <TouchableOpacity onPress={()=> onNavigatePress('Instagram')}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
                     <Text style={styles.item_text}>New Instagram Message</Text>
                   </View>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={onInstagramPress}>
+              <TouchableOpacity onPress={()=> onNavigatePress('InstagramPost')}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
                     <Text style={styles.item_text}>New Instagram Post</Text>
                   </View>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={onWhatsappPress}>
+              <TouchableOpacity onPress={()=> onNavigatePress('Whatsapp')}>
                 <View style={styles.item_template}>
                   <View style={styles.item_inside}>
                     <Text style={styles.item_text}>New WhatsApp Message</Text>
