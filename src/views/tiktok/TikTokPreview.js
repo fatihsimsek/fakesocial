@@ -3,7 +3,7 @@ import { Text, Alert, Modal, View, StyleSheet, Image, Pressable, FlatList } from
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
 import { ConversationContentType, ConversationMessageType, TikTokConversationMessageStatus } from "../ConversationTypes";
-import { BlueCheckIcon } from '../../components/icons';
+import { BlueCheckIcon, FlagIcon } from '../../components/icons';
 
 function TikTokPreview({data, dispatch, isVisible, close}) {
     const previewRef = useRef();
@@ -52,6 +52,9 @@ function TikTokPreview({data, dispatch, isVisible, close}) {
                                 {
                                     data.partner.isVerified && <BlueCheckIcon width={16} height={16} /> 
                                 }
+                            </View>
+                            <View style={styles.headerRight}>
+                                <FlagIcon width={20} height={20} style={{color:'#075E54'}} />
                             </View>
                         </View>
                         <View style={styles.containerAlignTop}>
@@ -200,6 +203,13 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         marginLeft:10
+    },
+    headerRight:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        alignItems:'center',
+        marginHorizontal:10
     },
     headerCenterText:{
         marginLeft: 10,

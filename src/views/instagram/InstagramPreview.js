@@ -3,7 +3,7 @@ import { Text, Alert, Modal, View, StyleSheet, Image, Pressable, FlatList } from
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
 import { ConversationContentType, ConversationMessageType, ConversationMessageStatus } from "../ConversationTypes";
-import { BlueCheckIcon, RightIcon } from '../../components/icons';
+import { BlueCheckIcon, RightIcon, VideoIcon, PhoneIcon } from '../../components/icons';
 
 function InstagramPreview({data, dispatch, isVisible, close}) {
     const previewRef = useRef();
@@ -53,6 +53,10 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                                     data.partner.isVerified ? <BlueCheckIcon width={16} height={16} /> 
                                                             : <RightIcon width={16} height={16} style={{color:'#075E54'}}/> 
                                 }
+                            </View>
+                            <View style={styles.headerRight}>
+                                <PhoneIcon width={20} height={20} style={{color:'#075E54', marginRight:15}} />
+                                <VideoIcon width={20} height={20} style={{color:'#075E54'}} />
                             </View>
                         </View>
                         <View style={styles.containerAlignTop}>
@@ -187,6 +191,13 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         marginLeft:10
+    },
+    headerRight:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        alignItems:'center',
+        marginHorizontal:10
     },
     headerCenterText:{
         marginLeft: 10,

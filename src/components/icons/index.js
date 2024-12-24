@@ -4,6 +4,7 @@ export {default as CheckIcon} from './Check';
 export {default as DownloadIcon} from './Download';
 export {default as EditIcon} from './Edit';
 export {default as FavouriteIcon} from './Favourite';
+export {default as FlagIcon} from './Flag';
 export {default as GithubIcon} from './Github';
 export {default as HomeIcon} from './Home';
 export {default as ImageIcon} from './Image';

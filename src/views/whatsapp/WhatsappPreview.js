@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import { Text, Alert, Modal, View, StyleSheet, ImageBackground, Image, Pressable, FlatList } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
-import { CheckIcon } from '../../components/icons';
+import { CheckIcon, VideoIcon, PhoneIcon } from '../../components/icons';
 import { ConversationContentType, ConversationMessageStatus, ConversationMessageType } from "../ConversationTypes";
 
 function WhatsappPreview({data, dispatch, isVisible, close}) {
@@ -48,6 +48,10 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
                                                               : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
                                 }
                                 <Text style={styles.headerCenterText}>{data.partner.fullname}</Text> 
+                            </View>
+                            <View style={styles.headerRight}>
+                                <VideoIcon width={20} height={20} style={{color:'#075E54', marginRight:15}} />
+                                <PhoneIcon width={20} height={20} style={{color:'#075E54'}} />
                             </View>
                         </View>
                         <View style={styles.containerAlignTop}>
@@ -151,13 +155,22 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         height:40,
+        flexDirection:'row',
         backgroundColor:'#eee4dc',
         justifyContent:"center"
     },
     headerCenter:{
+        flex:2,
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center'
+    },
+    headerRight:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        alignItems:'center',
+        marginHorizontal:10
     },
     headerCenterText:{
         marginLeft: 5,
