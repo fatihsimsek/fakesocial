@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Text, View, FlatList, TouchableOpacity, Pressable } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Constant, ListTypes } from './Types';
-import { TrashIcon, WhatsappIcon, InstagramIcon } from '../components/icons';
+import { TrashIcon, WhatsappIcon, InstagramIcon, TiktokIcon } from '../components/icons';
 import { useNavigation } from '@react-navigation/native';
 
 function FavouriteView() {
@@ -45,6 +45,8 @@ function FavouriteView() {
                               return <WhatsappIcon size={28} color="white"></WhatsappIcon>
                             case ListTypes.INSTAGRAM:
                               return <InstagramIcon size={28} color="white"></InstagramIcon>
+                              case ListTypes.TIKTOK:
+                                return <TiktokIcon size={28} color="white"></TiktokIcon>
                             default:
                               return null
                           }

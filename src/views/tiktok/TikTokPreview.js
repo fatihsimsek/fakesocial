@@ -2,8 +2,8 @@ import React, {useRef} from 'react';
 import { Text, Alert, Modal, View, StyleSheet, Image, Pressable, FlatList } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
-import { ConversationContentType, ConversationMessageType, ConversationMessageStatus } from "../ConversationTypes";
-import { BlueCheckIcon, RightIcon } from '../../components/icons';
+import { ConversationContentType, ConversationMessageType, TikTokConversationMessageStatus } from "../ConversationTypes";
+import { BlueCheckIcon } from '../../components/icons';
 
 function TikTokPreview({data, dispatch, isVisible, close}) {
     const previewRef = useRef();
@@ -50,8 +50,7 @@ function TikTokPreview({data, dispatch, isVisible, close}) {
                                     }
                                 </View>
                                 {
-                                    data.partner.isVerified ? <BlueCheckIcon width={16} height={16} /> 
-                                                            : <RightIcon width={16} height={16} style={{color:'#075E54'}}/> 
+                                    data.partner.isVerified && <BlueCheckIcon width={16} height={16} /> 
                                 }
                             </View>
                         </View>
@@ -63,8 +62,8 @@ function TikTokPreview({data, dispatch, isVisible, close}) {
                                 renderItem={({ item }) => {
                                     let isMyMessage = item.messageType === ConversationMessageType.SEND;
                                     let showStatus = data.contents?.length > 0 && data.contents[data.contents.length-1].id === item.id
-                                                     && item.type === ConversationContentType.MESSAGE && item.messageType === ConversationMessageType.SEND
-                                                    && item.messageStatus === ConversationMessageStatus.SEEN;
+                                                     && item.type === ConversationContentType.MESSAGE && item.messageType === ConversationMessageType.SEND;
+
                                     if(item.type == ConversationContentType.BREAK) {
                                         return (
                                             <View style={styles.dateBreakContainer}>
@@ -90,7 +89,7 @@ function TikTokPreview({data, dispatch, isVisible, close}) {
                                                 </View>
                                                 { showStatus && (
                                                         <View style={styles.statusContainer}>
-                                                            <Text style={styles.statusText}>Seen</Text>
+                                                            <Text style={styles.statusText}>{item.messageStatus}</Text>
                                                         </View>
                                                     )
                                                 }
@@ -118,7 +117,7 @@ function TikTokPreview({data, dispatch, isVisible, close}) {
                                                 </View>
                                                 { showStatus && (
                                                         <View style={styles.statusContainer}>
-                                                            <Text style={styles.statusText}>Seen</Text>
+                                                            <Text style={styles.statusText}>{item.messageStatus}</Text>
                                                         </View>
                                                     )
                                                 }

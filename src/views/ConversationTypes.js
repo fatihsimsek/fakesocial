@@ -46,6 +46,12 @@ export class ConversationContent {
     SEND: 'Send',
   }
 
+  export const TikTokConversationMessageStatus = {
+    NOTSENT:'NotSent',
+    SEEN: 'Seen',
+    SENT: 'Sent',
+  }
+
   export const ConversationMessageType = {
     SEND: 'Send',
     RECEIVED: 'Received'

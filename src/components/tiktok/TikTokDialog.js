@@ -25,8 +25,7 @@ function TikTokDialog({data, dispatch, openModal}) {
 
     let showStatus = function(contents, item) {
         return contents?.length > 0 && contents[contents.length-1].id === item.id
-               && item.type === ConversationContentType.MESSAGE && item.messageType === ConversationMessageType.SEND
-               && item.messageStatus === ConversationMessageStatus.SEEN;
+               && item.type === ConversationContentType.MESSAGE && item.messageType === ConversationMessageType.SEND;
     }
 
     return (
@@ -40,7 +39,7 @@ function TikTokDialog({data, dispatch, openModal}) {
                         {
                             (showStatus(data.contents, item)) && 
                             <View style={styles.statusContainer}>
-                                <Text style={styles.statusText}>Seen</Text>
+                                <Text style={styles.statusText}>{item.messageStatus}</Text>
                             </View>
                         }
                     </TouchableOpacity>

@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import { Platform, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch, Image } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {  ConversationContent, ConversationMessageType, ConversationContentType, ConversationMessageStatus } from '../../views/ConversationTypes';
+import {  ConversationContent, ConversationMessageType, ConversationContentType, TikTokConversationMessageStatus } from '../../views/ConversationTypes';
 import { generateUUID } from "../../navigators/Functions";
 
 function TikTokMessageModal({data, dispatch, isVisible, close}) {
     const [messageStatusOpen, setMessageStatusOpen] = useState(false);
 
     const [messageStatuses, setMessageStatuses] = useState([
-        {label: ConversationMessageStatus.RECEIVED, value: ConversationMessageStatus.RECEIVED},
-        {label: ConversationMessageStatus.SEEN, value: ConversationMessageStatus.SEEN}
+        {label: TikTokConversationMessageStatus.NOTSENT, value: TikTokConversationMessageStatus.NOTSENT },
+        {label: TikTokConversationMessageStatus.SENT, value: TikTokConversationMessageStatus.SENT },
+        {label: TikTokConversationMessageStatus.SEEN, value: TikTokConversationMessageStatus.SEEN }
     ]);
 
     const toggleMessageIsBreak = (value) => {
