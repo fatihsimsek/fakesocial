@@ -1,14 +1,13 @@
 import { useEffect, useReducer, useState } from "react";
-import { Platform, ImageBackground, View, StyleSheet } from 'react-native';
+import { Platform, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { InstagramDialog, InstagramHeader, InstagramFooter, InstagramMessageModal, InstagramSaveModal } from '../../components/instagram';
+import { InstagramDialog, InstagramHeader, InstagramFooter, InstagramMessageModal, InstagramSaveModal, InstagramProfileModal } from '../../components/instagram';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
 import { Conversation } from "../ConversationTypes";
 import { conversationReducer } from "./InstagramConversationReducer";
 import InstagramPreview from "./InstagramPreview";
 import { Constant, ListTypes } from '../Types';
-import InstagramProfileModal from "../../components/instagram/InstagramProfileModal";
 
 function InstagramView({route}) {
     const navigation = useNavigation();

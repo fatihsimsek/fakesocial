@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { ConversationMessageType, ConversationMessageStatus } from '../../views/ConversationTypes';
 
-function InstagramMessageBubble({data, partner}) {
+function TikTokMessageBubble({data, partner}) {
     const isMyMessage = data.messageType === ConversationMessageType.SEND;
     if(data.imageUrl?.length > 0){
       return (
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default InstagramMessageBubble;
+export default TikTokMessageBubble;

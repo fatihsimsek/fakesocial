@@ -4,3 +4,4 @@ export {default as InstagramHeader} from './InstagramHeader';
 export {default as InstagramMessageBubble} from './InstagramMessageBubble';
 export {default as InstagramMessageModal} from './InstagramMessageModal';
 export {default as InstagramSaveModal} from './InstagramSaveModal.js'
+export {default as InstagramProfileModal} from './InstagramProfileModal.js'
