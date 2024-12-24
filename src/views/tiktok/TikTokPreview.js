@@ -78,8 +78,6 @@ function TikTokPreview({data, dispatch, isVisible, close}) {
                                                 <View style={{
                                                 ...styles.imageContainer,
                                                 width: isMyMessage ? "66%" : '75%',
-                                                marginLeft: isMyMessage ? 0 : 10,
-                                                marginRight: isMyMessage ? 10 : 0,
                                                 alignSelf: isMyMessage ? "flex-end": "flex-start"}}>
                                                     {
                                                         !isMyMessage && (data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.messageAvatar} /> 
@@ -103,16 +101,32 @@ function TikTokPreview({data, dispatch, isVisible, close}) {
                                                       width: isMyMessage ? "66%" : '75%',
                                                       alignSelf: isMyMessage ? "flex-end": "flex-start",
                                                       flexDirection: "row",
-                                                      marginVertical: 3,
-                                                      marginHorizontal: 10}}>
+                                                      margin:3}}>
                                                     {
                                                         !isMyMessage && (data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.messageAvatar} /> 
                                                                                                    : <Image source={require('../../assets/images/user-icon.png')} style={styles.messageAvatar} />)
                                                     }
                                                     <View style={{
+                                                            ...styles.leftMessageArrow,
+                                                            backgroundColor: "#ffffff",
+                                                            display: isMyMessage ? "none" : "flex",
+                                                            }}>
+                                                    </View>
+                                                    <View style={{
                                                         ...styles.messageContainer,   
-                                                        backgroundColor: isMyMessage ? "#f5f5f5" : "#ffffff"}}>
-                                                        <Text style={styles.messageText}>{item.content}</Text>
+                                                        backgroundColor: isMyMessage ? "#00a2c8" : "#ffffff",
+                                                        borderBottomLeftRadius: isMyMessage ? 10 : 0,
+                                                        borderBottomRightRadius: isMyMessage ? 0 : 10}}>
+                                                        <Text style={{...styles.messageText, 
+                                                                      color: isMyMessage ? "#ffffff" : "#000000"}}>
+                                                            {item.content}
+                                                        </Text>
+                                                    </View>
+                                                    <View style={{
+                                                                ...styles.rightMsgArrow,
+                                                                backgroundColor: "#00a2c8" ,
+                                                                display: isMyMessage ? "flex" : "none",
+                                                            }}>
                                                     </View>
                                                 </View>
                                                 { showStatus && (
@@ -253,7 +267,8 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         paddingVertical: 5, 
-        flexDirection: "row"
+        flexDirection: "row",
+        margin: 3
     },
     imageSelf: {
         flex:1, 
@@ -265,7 +280,6 @@ const styles = StyleSheet.create({
         height: 30,
         borderRadius: 30,
         resizeMode: "cover",
-        marginRight:5,
         alignSelf:'flex-end'
     },
     messageText: {
@@ -279,6 +293,28 @@ const styles = StyleSheet.create({
     },
     statusText: {
         color: "#c8c8c8"
+    },
+    leftMessageArrow: {
+      height: 0,
+      width: 0,
+      borderLeftWidth: 10,
+      borderLeftColor: "transparent",
+      borderBottomColor: "#e9e9e9",
+      borderBottomWidth: 10,
+      alignSelf: "flex-end",
+      right: 0,
+      bottom: 0,
+    },
+    rightMsgArrow: {
+      height: 0,
+      width: 0,
+      borderRightWidth: 12,
+      borderRightColor: "#e7ffdb",
+      borderBottomColor: "transparent",
+      borderBottomWidth: 12,
+      alignSelf: "flex-end",
+      left:-1,
+      bottom: 1,
     }
   });
 

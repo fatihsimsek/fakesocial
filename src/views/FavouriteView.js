@@ -12,7 +12,6 @@ function FavouriteView() {
   useEffect(() => {
     async function fetchData() {
       let favouriteString = await AsyncStorage.getItem(Constant.FAVOURITE);
-      console.log(favouriteString);
       setItems(JSON.parse(favouriteString));
     }
     fetchData();  
