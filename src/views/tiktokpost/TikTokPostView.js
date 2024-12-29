@@ -1,10 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { TikTokPostHeader, TikTokPostImage, TikTokPostFooter } from "../../components/tiktokpost";
 import TikTokPostPreview from "./TikTokPostPreview";
+import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
 
 function TikTokPostView() {
-    return (
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    hideBottomTabNavigator(navigation);
+      return () => {
+        showBottomTabNavigator(navigation);
+      }
+  }, []);
+
+  return (
       <View flex={1}>
           <View style={styles.mainContainer}>
             <TikTokPostHeader></TikTokPostHeader>
@@ -13,7 +24,7 @@ function TikTokPostView() {
           </View>
           <TikTokPostPreview></TikTokPostPreview>
       </View>
-    );
+  );
 }
 
 const styles = StyleSheet.create({
