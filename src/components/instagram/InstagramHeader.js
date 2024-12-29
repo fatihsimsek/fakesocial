@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-native';
+import React from 'react';
+import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { LeftIcon, RightIcon, SaveIcon, DownloadIcon, EditIcon, BlueCheckIcon } from '../icons';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-native';
 
-function TikTokPostPreview(){
+function InstagramPostImage(){
     return (
         <View></View>
     )
@@ -10,4 +10,4 @@ function TikTokPostPreview(){
 const styles = StyleSheet.create({
 });
 
-export default TikTokPostPreview;
+export default InstagramPostImage;

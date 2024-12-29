@@ -1,29 +1,35 @@
-import { useEffect } from "react";
-import { Text, TouchableOpacity, View } from 'react-native';
-import { useNavigation, CommonActions } from '@react-navigation/native';
-import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { TikTokPostHeader, TikTokPostImage, TikTokPostFooter } from "../../components/tiktokpost";
+import TikTokPostPreview from "./TikTokPostPreview";
 
 function TikTokPostView() {
-    const navigation = useNavigation();
-
-    const onNavigateHome = () => {
-      navigation.dispatch(CommonActions.goBack());
-  }
-    
-    useEffect(() => {
-      hideBottomTabNavigator(navigation);
-        return () => {
-          showBottomTabNavigator(navigation);
-        }
-    }, []);
-
     return (
-        <View style={{marginTop:40}}>
-             <TouchableOpacity onPress={onNavigateHome}>
-              <Text>TikTok-Post</Text>
-            </TouchableOpacity>
-        </View>
+      <View flex={1}>
+          <View style={styles.mainContainer}>
+            <TikTokPostHeader></TikTokPostHeader>
+            <TikTokPostImage></TikTokPostImage>
+            <TikTokPostFooter></TikTokPostFooter>
+          </View>
+          <TikTokPostPreview></TikTokPostPreview>
+      </View>
     );
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex:1,
+    justifyContent:'flex-start',
+    backgroundColor:'white',
+    ...Platform.select({
+      ios: {
+        paddingTop:20
+      },
+      android: {
+        paddingTop:10
+      }
+    })
+  }
+});
 
 export default TikTokPostView;
