@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
-import { HeartIcon, MessageCircleIcon, SendIcon, BookmarkIcon, EditIcon } from '../icons';
+import { HeartIcon, MessageBubbleIcon, SendIcon, BookmarkIcon, EditIcon } from '../icons';
 
 function InstagramPostFooter({data, dispatch}){
     return (
@@ -11,7 +11,7 @@ function InstagramPostFooter({data, dispatch}){
                         data.isLike ? <HeartIcon width="28" height="28" stroke="red" fill="red" style={styles.icons}></HeartIcon>
                                 : <HeartIcon width="28" height="28" color="black"  style={styles.icons}></HeartIcon>
                     }
-                    <MessageCircleIcon width="28" height="28" color="black" style={styles.icons}></MessageCircleIcon>
+                    <MessageBubbleIcon width="28" height="28" color="black" style={styles.icons}></MessageBubbleIcon>
                     <SendIcon width="28" height="28" color="black" style={styles.icons}></SendIcon>
                 </View>
                 <View style={styles.iconsRightSide}>

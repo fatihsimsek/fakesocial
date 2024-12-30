@@ -15,6 +15,7 @@ export {default as LeftIcon} from './Left';
 export {default as LinkedinIcon} from './Linkedin';
 export {default as MessageCircleIcon} from './MessageCircle';
 export {default as MessageSquareIcon} from './MessageSquare';
+export {default as MessageBubbleIcon} from './MessageBubble';
 export {default as MoreHorizontalIcon} from './MoreHorizontal';
 export {default as MoreVerticalIcon} from './MoreVertical';
 export {default as PhoneIcon} from './Phone';
