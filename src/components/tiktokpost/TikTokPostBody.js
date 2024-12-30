@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-native';
 
-function TikTokPostImage(){
+function TikTokPostBody(){
     return (
         <View></View>
     )
@@ -10,4 +10,4 @@ function TikTokPostImage(){
 const styles = StyleSheet.create({
 });
 
-export default TikTokPostImage;
+export default TikTokPostBody;

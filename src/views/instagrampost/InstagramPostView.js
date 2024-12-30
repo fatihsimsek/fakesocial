@@ -1,12 +1,34 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect, useReducer} from "react";
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { InstagramPostHeader, InstagramPostImage, InstagramPostFooter } from "../../components/instagrampost";
+import { postReducer } from "./InstagramPostReducer";
+import { InstagramPostHeader, InstagramPostBody, InstagramPostFooter } from "../../components/instagrampost";
 import InstagramPostPreview from "./InstagramPostPreview";
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
+import { ListTypes } from '../Types';
+import { Post } from "../PostTypes";
 
 function InstagramPostView() {
   const navigation = useNavigation();
+  const [post, dispatch] = useReducer(postReducer, Post.Empty(ListTypes.INSTAGRAMPOST));
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const [saveModalVisible, setSaveModalVisible] = useState(false);
+
+  const openPreviewModal = () => {
+    setPreviewVisible(true);
+  };
+
+  const closePreviewModal = () => {
+    setPreviewVisible(false);
+  };
+
+  const openSaveModal = () => {
+    setSaveModalVisible(true);
+  };
+
+  const closeSaveModal = () => {
+    setSaveModalVisible(false);
+  };
 
   useEffect(() => {
       hideBottomTabNavigator(navigation);
@@ -18,11 +40,11 @@ function InstagramPostView() {
   return (
       <View flex={1}>
           <View style={styles.mainContainer}>
-            <InstagramPostHeader></InstagramPostHeader>
-            <InstagramPostImage></InstagramPostImage>
-            <InstagramPostFooter></InstagramPostFooter>
+            <InstagramPostHeader data={post} dispatch={dispatch} openPreviewModal={openPreviewModal} openSaveModal={openSaveModal}></InstagramPostHeader>
+            <InstagramPostBody data={post} dispatch={dispatch}></InstagramPostBody>
+            <InstagramPostFooter data={post} dispatch={dispatch}></InstagramPostFooter>
           </View>
-          <InstagramPostPreview></InstagramPostPreview>
+          <InstagramPostPreview data={post} dispatch={dispatch}></InstagramPostPreview>
       </View>
   );
 }
