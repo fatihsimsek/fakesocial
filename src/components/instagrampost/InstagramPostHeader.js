@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-native';
+import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { LeftIcon, RightIcon, SaveIcon, DownloadIcon, EditIcon, BlueCheckIcon } from '../icons';
 
-function InstagramPostHeader({data, dispatch, openPreviewModal, openSaveModal}){
+function InstagramPostHeader({data, dispatch, openPreviewModal, openSaveModal, openProfileModal}){
     const navigation = useNavigation();
 
     const onNavigateHome = () => {
@@ -37,12 +37,15 @@ function InstagramPostHeader({data, dispatch, openPreviewModal, openSaveModal}){
     };
 
     const onPreview = () => {
+        openPreviewModal();
     };
 
     const onProfileModalOpen = () => {
+        openProfileModal();
     }
 
     const onSaveModalOpen = () => {
+        openSaveModal();
     };
 
     return (

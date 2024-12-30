@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, StyleSheet, Modal, Pressable } from 'react-native';
 
-function InstagramPostPreview({data, dispatch, isVisible, close}){
+function InstagramPostSaveModal({data, dispatch, isVisible, close}){
     return (
         <Modal animationType="slide" visible={isVisible}>
             <View style={styles.modalContainer}>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     modalButtonContainer: {
         flexDirection:'row',
-    },
+    }
 });
 
-export default InstagramPostPreview;
+export default InstagramPostSaveModal;

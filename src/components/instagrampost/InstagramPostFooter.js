@@ -2,7 +2,12 @@ import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import { HeartIcon, MessageBubbleIcon, SendIcon, BookmarkIcon, EditIcon } from '../icons';
 
-function InstagramPostFooter({data, dispatch}){
+function InstagramPostFooter({data, dispatch, openFooterModal}){
+    
+    const openFooterModalOpen = () => {
+        openFooterModal();
+    }
+
     return (
         <View style={styles.footerContainer}>
             <View style={styles.iconsContainer}>
@@ -24,7 +29,9 @@ function InstagramPostFooter({data, dispatch}){
                     }
                 </View>
                 <View style={styles.iconsRightSide}>
-                    <EditIcon width="24" height="24" color="black" style={styles.icons}></EditIcon>
+                    <Pressable onPress={openFooterModalOpen}>
+                        <EditIcon width="24" height="24" color="black" style={styles.icons}></EditIcon>
+                    </Pressable>
                 </View>
             </View>
             <View style={styles.commentContainer}>
