@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Platform, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { FollowType } from '../../views/PostTypes';
 
 function InstagramPostProfileModal({data, dispatch, isVisible, close}){
-    const toggleMessageIsOnline= (value) => {
-        dispatch({
-            type: 'updatePartner',
-            data: {
-                ...data.partner,
-                isOnline: value
-            }
-        });
-    };
+    const [followTypeOpen, setFollowTypeOpen] = useState(false);
+
+    const [followTypes, setFollowTypes] = useState([
+        {label: FollowType.HIDE, value: FollowType.HIDE},
+        {label: FollowType.FOLLOW, value: FollowType.FOLLOW},
+        {label: FollowType.FOLLOWING, value: FollowType.FOLLOWING}
+    ]);
 
     const toggleMessageIsVerified = (value) => {
         dispatch({
@@ -32,12 +32,23 @@ function InstagramPostProfileModal({data, dispatch, isVisible, close}){
         });
     };
 
-    const onOnlineTextChange = (text) => {
+    const onGeoLocationChange = (text) => {
         dispatch({
             type: 'updatePartner',
             data: {
                 ...data.partner,
-                onlineText:text
+                geoLocation:text
+            }
+        });
+    };
+
+    const onFollowTypeChange = (callback) => {
+        let selectedValue = callback(data.partner.followType);
+        dispatch({
+            type: 'updatePartner',
+            data: {
+                ...data.partner,
+                followType:selectedValue
             }
         });
     };
@@ -55,21 +66,28 @@ function InstagramPostProfileModal({data, dispatch, isVisible, close}){
                                         onChangeText={onFullnameChange} />
                         </View>
                         <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>IsOnline:</Text>
-                            <Switch style={styles.switchValue} value={data.partner.isOnline}
-                                    onValueChange={toggleMessageIsOnline} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>IsVerified:</Text>
                             <Switch style={styles.switchValue} value={data.partner.isVerified}
                                     onValueChange={toggleMessageIsVerified} />
                         </View>
                         <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Online Text:</Text>
+                            <Text style={styles.modalText}>Geo Location:</Text>
                             <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Online Text"} 
-                                        value={data.partner.onlineText}
-                                        onChangeText={onOnlineTextChange} />
+                                        placeholder={"Type Geo Location"} 
+                                        value={data.partner.geoLocation}
+                                        onChangeText={onGeoLocationChange} />
+                        </View>
+                        <View style={styles.modalRowContainer}>
+                            <Text style={styles.modalText}>Follow Type:</Text>
+                            <View style={styles.modalValue} >
+                                <DropDownPicker
+                                    open={followTypeOpen}
+                                    value={data.partner.followType}
+                                    items={followTypes}
+                                    setOpen={setFollowTypeOpen}
+                                    setValue={onFollowTypeChange}
+                                    setItems={setFollowTypes} />
+                            </View>            
                         </View>
                     </View>
                     <View style={styles.modalButtonContainer}>

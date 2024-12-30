@@ -25,11 +25,17 @@ export class PostUser {
       this.id = id;
       this.fullname = fullname;
       this.profileImage = profileImage;
-      this.isOnline = true;
-      this.isVerified = false,
-      this.onlineText = '';
+      this.isVerified = false;
+      this.followType = FollowType.HIDE;
+      this.geoLocation = '';
     }
     static Empty(){
       return new PostUser(generateUUID(),'Partner Name', '');
     }
+}
+
+export const FollowType = {
+  HIDE: 'Hide',
+  FOLLOW: 'Follow',
+  FOLLOWING: 'Following'
 }

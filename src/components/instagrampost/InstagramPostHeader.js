@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import {launchImageLibrary} from 'react-native-image-picker';
-import { LeftIcon, RightIcon, SaveIcon, DownloadIcon, EditIcon, BlueCheckIcon } from '../icons';
+import { LeftIcon, SaveIcon, DownloadIcon, EditIcon, BlueCheckIcon } from '../icons';
+import { FollowType } from '../../views/PostTypes';
 
 function InstagramPostHeader({data, dispatch, openPreviewModal, openSaveModal, openProfileModal}){
     const navigation = useNavigation();
@@ -62,24 +63,25 @@ function InstagramPostHeader({data, dispatch, openPreviewModal, openSaveModal, o
                                               : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
                 }
                 </Pressable>
-                {
-                    data.partner.isOnline && <View style={styles.onlineStatus}></View>
-                }
                 <View>
                     <Text style={styles.headerCenterText}>
                         {data.partner.fullname}
                     </Text> 
                     {
-                        (data.partner.isOnline && data.partner.onlineText?.length > 0) &&   
+                        data.partner.geoLocation?.length > 0 &&   
                         <Text style={styles.headerCenterInlineText}>
-                            {data.partner.onlineText}
+                            {data.partner.geoLocation}
                         </Text> 
                     }
                 </View>
-                {
-                    data.partner.isVerified ? <BlueCheckIcon width={16} height={16} /> 
-                                            : <RightIcon width={16} height={16} style={{color:'#075E54'}}/> 
-                }
+                <View style={{flexDirection:'row', alignSelf:'flex-start', marginTop:8}}>
+                    {
+                        data.partner.isVerified && <BlueCheckIcon width={16} height={16} /> 
+                    }
+                    {
+                        data.partner.followType != FollowType.HIDE && <Text style={styles.followTypeType}>{data.partner.followType}</Text>
+                    }
+                </View>
                <Pressable onPress={onProfileModalOpen}>
                     <EditIcon width={20} height={20} style={{color:'#075E54', marginLeft:10}} />
                 </Pressable>
@@ -120,11 +122,8 @@ const styles = StyleSheet.create({
     avatar:{
         width: 36,
 		height: 36,
-		borderWidth: 0.6,
-        borderColor:'#075E54',
 		borderRadius: 36,
-		resizeMode: "cover",
-        padding:3
+		resizeMode: "cover"
     },
     headerCenterText:{
         marginLeft: 5,
@@ -139,14 +138,12 @@ const styles = StyleSheet.create({
         fontSize:12,
         width: 100
     },
-    onlineStatus: {
-        alignSelf:'flex-end',
-        backgroundColor:'#78de45',
-        width:10,
-        height:10,
-        borderRadius:5,
-        top:-5,
-        left:-10
+    followTypeType: {
+        justifyContent:'flex-start',
+        marginLeft:5,
+        fontSize:13,
+        fontWeight:'bold',
+        color:'#3897f0'
     }
 });
 
