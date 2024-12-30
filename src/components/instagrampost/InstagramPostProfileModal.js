@@ -1,11 +1,77 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet, Modal, Pressable } from 'react-native';
+import { Platform, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch } from 'react-native';
 
 function InstagramPostProfileModal({data, dispatch, isVisible, close}){
+    const toggleMessageIsOnline= (value) => {
+        dispatch({
+            type: 'updatePartner',
+            data: {
+                ...data.partner,
+                isOnline: value
+            }
+        });
+    };
+
+    const toggleMessageIsVerified = (value) => {
+        dispatch({
+            type: 'updatePartner',
+            data: {
+                ...data.partner,
+                isVerified:value
+            }
+        });
+    };
+
+    const onFullnameChange = (text) => {
+        dispatch({
+            type: 'updatePartner',
+            data: {
+                ...data.partner,
+                fullname:text
+            }
+        });
+    };
+
+    const onOnlineTextChange = (text) => {
+        dispatch({
+            type: 'updatePartner',
+            data: {
+                ...data.partner,
+                onlineText:text
+            }
+        });
+    };
+    
     return (
         <Modal animationType="slide" visible={isVisible}>
             <View style={styles.modalContainer}>
                 <View style={styles.centerContainer}>
+                <View style={styles.modalChoiceContainer}>
+                        <View style={styles.modalRowContainer}>
+                            <Text style={styles.modalText}>Fullname:</Text>
+                            <TextInput style={styles.modalValue} 
+                                        placeholder={"Type Fullname"} 
+                                        value={data.partner.fullname}
+                                        onChangeText={onFullnameChange} />
+                        </View>
+                        <View style={styles.modalRowContainer}>
+                            <Text style={styles.modalText}>IsOnline:</Text>
+                            <Switch style={styles.switchValue} value={data.partner.isOnline}
+                                    onValueChange={toggleMessageIsOnline} />
+                        </View>
+                        <View style={styles.modalRowContainer}>
+                            <Text style={styles.modalText}>IsVerified:</Text>
+                            <Switch style={styles.switchValue} value={data.partner.isVerified}
+                                    onValueChange={toggleMessageIsVerified} />
+                        </View>
+                        <View style={styles.modalRowContainer}>
+                            <Text style={styles.modalText}>Online Text:</Text>
+                            <TextInput style={styles.modalValue} 
+                                        placeholder={"Type Online Text"} 
+                                        value={data.partner.onlineText}
+                                        onChangeText={onOnlineTextChange} />
+                        </View>
+                    </View>
                     <View style={styles.modalButtonContainer}>
                         <Pressable onPress={close}>
                             <Text style={styles.modalButtonTextStyle}>Close</Text>
@@ -39,6 +105,45 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
+    modalChoiceContainer :{
+    },
+    modalRowContainer:{
+        flexDirection:'row',
+        paddingVertical:10,
+        paddingHorizontal:10
+    },
+    modalText:{
+        width:"33%",
+        justifyContent:'center',
+        alignSelf:'center',
+        fontWeight:'500'
+    },
+    modalValue:{
+        width:"66%",
+        flexDirection:'row',
+        justifyContent:'flex-start'
+    },
+    switchValue:{
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        ...Platform.select({
+            ios: {
+              width: "66%",
+            },
+        })
+    },
+    modalButtonContainer: {
+        flexDirection:'row',
+    },
+    modalButtonTextStyle: {
+        borderRadius: 5,
+        padding: 10,
+        marginBottom:10,
+        marginTop:20,
+        marginHorizontal:10,
+        elevation: 2,
+        backgroundColor: '#25d366'
+    }
 });
 
 export default InstagramPostProfileModal;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch, Image } from 'react-native';
+import { Platform, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch } from 'react-native';
 
 function InstagramProfileModal({data, dispatch, isVisible, close}) {
 
