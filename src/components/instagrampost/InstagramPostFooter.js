@@ -9,21 +9,25 @@ function InstagramPostFooter({data, dispatch}){
                 <View style={styles.iconsLeftSide}>
                     {
                         data.isLike ? <HeartIcon width="28" height="28" stroke="red" fill="red" style={styles.icons}></HeartIcon>
-                                : <HeartIcon width="28" height="28" color="black"  style={styles.icons}></HeartIcon>
+                                    : <HeartIcon width="28" height="28" color="black"  style={styles.icons}></HeartIcon>
+                    }
+                    {
+                        data.likeCount > 0 && <Text style={styles.iconCountText}>{data.likeCount}</Text>
                     }
                     <MessageBubbleIcon width="28" height="28" color="black" style={styles.icons}></MessageBubbleIcon>
+                    {
+                        data.commentCount > 0 && <Text style={styles.iconCountText}>{data.commentCount}</Text>
+                    }
                     <SendIcon width="28" height="28" color="black" style={styles.icons}></SendIcon>
+                    {
+                        data.sendCount > 0 && <Text style={styles.iconCountText}>{data.sendCount}</Text>
+                    }
                 </View>
                 <View style={styles.iconsRightSide}>
                     <EditIcon width="24" height="24" color="black" style={styles.icons}></EditIcon>
                 </View>
             </View>
             <View style={styles.commentContainer}>
-                {data.likeCount > 0 && <Text style={{fontWeight: "bold", marginVertical: 5}}>
-                                        {data.likeCount >= 1000 ? (Math.round(data.likeCount / 1000) + 'k'): data.likeCount} 
-                                        {data.likeCount < 2 ? ' like' : ' likes'}
-                                    </Text>
-                }
                 <View style={styles.postDescription}>
                     <Text style={styles.partnerFullnameText}>{data.partner.fullname}</Text>
                     <View style={{alignContent:'flex-start', flexShrink:1}}>
@@ -35,20 +39,6 @@ function InstagramPostFooter({data, dispatch}){
                         </Text>
                     </View>
                 </View>
-                <View style={{marginVertical:10}}>
-                    {
-                        data.commentCount > 0 && <Text style={styles.commentText}> 
-                                                      View all {data.commentCount} {data.commentCount < 2 ? 'comment' : 'comments'}
-                                                 </Text>
-                    }
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    {
-                        data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.avatar} /> 
-                                                : <Image source={require('../../assets/images/user-icon.png')} style={styles.avatar} />
-                    }
-                    <Text style={styles.addCommentText}>Add a comment...</Text>
-                </View>
                 <View style={{marginVertical:5}}>
                     <Text style={styles.timeText}>{data.time}</Text>
                 </View>
@@ -59,7 +49,7 @@ function InstagramPostFooter({data, dispatch}){
 
 const styles = StyleSheet.create({
     footerContainer: {
-        flex:1
+        marginTop:3
     },
     iconsContainer :{
         flexDirection:'row'
@@ -75,11 +65,16 @@ const styles = StyleSheet.create({
     icons: {
         marginHorizontal:5
     },
+    iconCountText: {
+        fontWeight: "bold",
+        alignSelf:'center'
+    },
     commentContainer: {
         margin:10
     },
     postDescription: {
-        flexDirection:'row'
+        flexDirection:'row',
+        marginVertical:5
     },
     partnerFullnameText: {
         fontWeight: "600",
@@ -88,19 +83,6 @@ const styles = StyleSheet.create({
     postDescriptionMoreText: {
         color:'#999999',
         fontSize:12
-    },
-    commentText:{
-        color:'#999999',
-        fontSize:14,
-        fontWeight:500
-    },
-    addCommentText: {
-        marginLeft: 10,
-        color:'#999999',
-        fontSize:14,
-        fontWeight:500,
-        alignItems:'center',
-        alignSelf:'center'
     },
     avatar:{
         width: 32,

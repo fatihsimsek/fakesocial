@@ -14,7 +14,7 @@ function InstagramPostBody({data, dispatch}){
 
 const styles = StyleSheet.create({
     postBody: {
-        flex:2,
+        flex:1,
         marginBottom: 10
     },
     postImage: {

@@ -11,6 +11,7 @@ export class Post {
       this.description = 'You can add #hashtags or desired text for post description.',
       this.likeCount = 250,
       this.commentCount = 25,
+      this.sendCount = 0,
       this.isLike = true,
       this.showMore = true
     }
