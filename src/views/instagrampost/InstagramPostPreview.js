@@ -1,5 +1,5 @@
 import React, {useRef}  from 'react';
-import { Text, View, StyleSheet, Image, Modal, Pressable } from 'react-native';
+import { Text, View, StyleSheet, Image, Modal, Pressable, Alert } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
 import { BlueCheckIcon, HeartIcon, MessageBubbleIcon, SendIcon, MoreHorizontalIcon, BookmarkIcon } from '../../components/icons';
