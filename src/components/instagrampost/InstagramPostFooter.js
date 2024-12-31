@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import { HeartIcon, MessageBubbleIcon, SendIcon, BookmarkIcon, EditIcon } from '../icons';
 
@@ -13,19 +13,19 @@ function InstagramPostFooter({data, dispatch, openFooterModal}){
             <View style={styles.iconsContainer}>
                 <View style={styles.iconsLeftSide}>
                     {
-                        data.isLike ? <HeartIcon width="28" height="28" stroke="red" fill="red" style={styles.icons}></HeartIcon>
-                                    : <HeartIcon width="28" height="28" color="black"  style={styles.icons}></HeartIcon>
+                        data.detail.isLike ? <HeartIcon width="28" height="28" stroke="red" fill="red" style={styles.icons}></HeartIcon>
+                                           : <HeartIcon width="28" height="28" color="black"  style={styles.icons}></HeartIcon>
                     }
                     {
-                        data.likeCount > 0 && <Text style={styles.iconCountText}>{data.likeCount}</Text>
+                        data.detail.likeCount > 0 && <Text style={styles.iconCountText}>{data.detail.likeCount}</Text>
                     }
                     <MessageBubbleIcon width="28" height="28" color="black" style={styles.icons}></MessageBubbleIcon>
                     {
-                        data.commentCount > 0 && <Text style={styles.iconCountText}>{data.commentCount}</Text>
+                        data.detail.commentCount > 0 && <Text style={styles.iconCountText}>{data.detail.commentCount}</Text>
                     }
                     <SendIcon width="28" height="28" color="black" style={styles.icons}></SendIcon>
                     {
-                        data.sendCount > 0 && <Text style={styles.iconCountText}>{data.sendCount}</Text>
+                        data.detail.sendCount > 0 && <Text style={styles.iconCountText}>{data.detail.sendCount}</Text>
                     }
                 </View>
                 <View style={styles.iconsRightSide}>
@@ -39,15 +39,15 @@ function InstagramPostFooter({data, dispatch, openFooterModal}){
                     <Text style={styles.partnerFullnameText}>{data.partner.fullname}</Text>
                     <View style={{alignContent:'flex-start', flexShrink:1}}>
                         <Text>
-                            {data.description}
+                            {data.detail.description}
                             {
-                                data.showMore && <Text style={styles.postDescriptionMoreText}> ...more</Text>
+                                data.detail.showMore && <Text style={styles.postDescriptionMoreText}> ...more</Text>
                             }
                         </Text>
                     </View>
                 </View>
                 <View style={{marginVertical:5}}>
-                    <Text style={styles.timeText}>{data.time}</Text>
+                    <Text style={styles.timeText}>{data.detail.time}</Text>
                 </View>
             </View>
         </View>

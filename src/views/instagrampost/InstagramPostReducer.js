@@ -7,23 +7,17 @@ export function postReducer(state, action) {
                 partner: action.data
             };
         }
-        case 'updatePost': {
+        case 'updatePostDetail': {
             return {
                 ...state,
-                id: action.data.id,
-                title:action.data.title
+                detail: action.data
             };
         }
-        case 'initPost': {
-            return {
-                ...action.data
-            }
-        } 
-        case 'updateTitle': {
+        case 'updatePostImage': {
             return {
                 ...state,
-                title: action.data
-            }
+                imageUrl: action.data
+            };
         }
         default: {
             throw Error('Unknown action: ' + action.type);
