@@ -25,7 +25,7 @@ function InstagramPostFooter({data, dispatch, openFooterModal}){
                     }
                     <SendIcon width="28" height="28" color="black" style={styles.icons}></SendIcon>
                     {
-                        data.detail.sendCount > 0 && <Text style={styles.iconCountText}>{data.detail.sendCount}</Text>
+                        data.detail.sharedCount > 0 && <Text style={styles.iconCountText}>{data.detail.sharedCount}</Text>
                     }
                 </View>
                 <View style={styles.iconsRightSide}>

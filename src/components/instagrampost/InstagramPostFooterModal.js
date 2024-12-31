@@ -32,12 +32,12 @@ function InstagramPostFooterModal({data, dispatch, isVisible, close}){
         });
     };
 
-    const onSendCountChange = (text) => {
+    const onSharedCountChange = (text) => {
         dispatch({
             type: 'updatePostDetail',
             data: {
                 ...data.detail,
-                sendCount:text
+                sharedCount:text
             }
         });
     };
@@ -97,11 +97,11 @@ function InstagramPostFooterModal({data, dispatch, isVisible, close}){
                                         onChangeText={onCommentCountChange} />
                         </View>
                         <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Send Count:</Text>
+                            <Text style={styles.modalText}>Shared Count:</Text>
                             <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Send Count"} 
-                                        value={data.detail.sendCount}
-                                        onChangeText={onSendCountChange} />
+                                        placeholder={"Type Shared Count"} 
+                                        value={data.detail.sharedCount}
+                                        onChangeText={onSharedCountChange} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>Show More:</Text>
