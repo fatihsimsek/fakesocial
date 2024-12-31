@@ -19,6 +19,24 @@ export function postReducer(state, action) {
                 imageUrl: action.data
             };
         }
+        case 'updatePostTitle': {
+            return {
+                ...state,
+                title: action.data
+            };
+        }
+        case 'updatePost': {
+            return {
+                ...state,
+                id: action.data.id,
+                title: action.data.title
+            };
+        }
+        case 'initPost': {
+            return {
+                ...action.data
+            }
+        } 
         default: {
             throw Error('Unknown action: ' + action.type);
         }

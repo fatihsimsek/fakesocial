@@ -44,8 +44,12 @@ function FavouriteView() {
                               return <WhatsappIcon size={28} color="white"></WhatsappIcon>
                             case ListTypes.INSTAGRAM:
                               return <InstagramIcon size={28} color="white"></InstagramIcon>
-                              case ListTypes.TIKTOK:
-                                return <TiktokIcon size={28} color="white"></TiktokIcon>
+                            case ListTypes.INSTAGRAMPOST:
+                              return <InstagramIcon size={28} color="white"></InstagramIcon>
+                            case ListTypes.TIKTOK:
+                              return <TiktokIcon size={28} color="white"></TiktokIcon>
+                            case ListTypes.TIKTOKPOST:
+                              return <TiktokIcon size={28} color="white"></TiktokIcon>
                             default:
                               return null
                           }

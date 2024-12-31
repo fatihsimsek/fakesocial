@@ -1,20 +1,39 @@
 import React, {useState, useEffect, useReducer} from "react";
-import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { postReducer } from "./InstagramPostReducer";
 import { InstagramPostHeader, InstagramPostBody, InstagramPostFooter, InstagramPostProfileModal, InstagramPostSaveModal, InstagramPostFooterModal } from "../../components/instagrampost";
 import InstagramPostPreview from "./InstagramPostPreview";
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
-import { ListTypes } from '../Types';
+import { Constant, ListTypes } from '../Types';
 import { Post } from "../PostTypes";
 
-function InstagramPostView() {
+function InstagramPostView({route}) {
   const navigation = useNavigation();
   const [post, dispatch] = useReducer(postReducer, Post.Empty(ListTypes.INSTAGRAMPOST));
   const [previewVisible, setPreviewVisible] = useState(false);
   const [saveModalVisible, setSaveModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
   const [footerModalVisible, setFooterModalVisible] = useState(false);
+
+  useEffect(() => {
+    async function fetchData(itemId) {
+      let favouriteString = await AsyncStorage.getItem(Constant.FAVOURITE);
+      let favourites = JSON.parse(favouriteString);
+      let conversationList = favourites.filter((t) => t.id === itemId);
+
+      dispatch({
+        type: 'initPost',
+        data: conversationList[0]
+      });
+    }
+
+    if(route?.params?.itemId) {
+        let itemId = route?.params?.itemId;
+        fetchData(itemId); 
+    }
+  }, [route?.params?.itemId]);
 
   const openPreviewModal = () => {
     setPreviewVisible(true);

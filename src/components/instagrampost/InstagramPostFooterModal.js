@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)'
     },
     centerContainer: {
-        width: "80%",
+        width: "90%",
         padding: 10,
         backgroundColor: 'white',
         borderRadius: 20,
