@@ -30,7 +30,7 @@ function InstagramPostBody({data, dispatch}){
             <Pressable flex={1} onPress={onChangePhoto}>
             {
                     data.imageUrl ? <Image source={{uri: data.imageUrl}} style={styles.postImage} /> 
-                                  : <Image source={require('../../assets/images/beach_default.jpg')} style={styles.postImage} />
+                                  : <Image source={require('../../assets/images/instagrampost_default.jpg')} style={styles.postImage} />
             }
             </Pressable>
         </View>
