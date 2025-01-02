@@ -25,12 +25,7 @@ function TikTokPostHeader(){
 const styles = StyleSheet.create({
     headerContainer: {
         flexDirection:'row',
-        height:45,
-        backgroundColor:'#FAFAFA',
-        shadowColor: '#808080',
-        shadowOffset: {width: -2, height: 2},
-        shadowOpacity: 0.2,
-        shadowRadius: 3
+        height:45
       },
       headerLeft:{
           flex:2,

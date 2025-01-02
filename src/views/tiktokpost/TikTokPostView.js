@@ -1,8 +1,9 @@
 import React, {useState, useEffect, useReducer} from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, ImageBackground, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TikTokPostHeader, TikTokPostBody, TikTokPostFooter } from "../../components/tiktokpost";
 import TikTokPostPreview from "./TikTokPostPreview";
+import { postReducer } from "./TikTokPostReducer";
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
 import { Constant, ListTypes } from '../Types';
 import { Post } from "../PostTypes";
@@ -20,11 +21,16 @@ function TikTokPostView() {
 
   return (
       <View flex={1}>
-          <View style={styles.mainContainer}>
-            <TikTokPostHeader data={post} dispatch={dispatch}></TikTokPostHeader>
-            <TikTokPostBody data={post} dispatch={dispatch}></TikTokPostBody>
-            <TikTokPostFooter data={post} dispatch={dispatch}></TikTokPostFooter>
-          </View>
+          <ImageBackground
+                style={styles.backgroundImg}
+                source={require('../../assets/images/tiktokpost_default.png')}
+                resizeMode="cover">
+              <View style={styles.mainContainer}>
+                <TikTokPostHeader data={post} dispatch={dispatch}></TikTokPostHeader>
+                <TikTokPostBody data={post} dispatch={dispatch}></TikTokPostBody>
+                <TikTokPostFooter data={post} dispatch={dispatch}></TikTokPostFooter>
+              </View>
+          </ImageBackground>
           <TikTokPostPreview data={post} dispatch={dispatch}></TikTokPostPreview>
       </View>
   );
@@ -33,8 +39,6 @@ function TikTokPostView() {
 const styles = StyleSheet.create({
   mainContainer: {
     flex:1,
-    justifyContent:'flex-start',
-    backgroundColor:'white',
     ...Platform.select({
       ios: {
         paddingTop:20
@@ -43,6 +47,9 @@ const styles = StyleSheet.create({
         paddingTop:10
       }
     })
+  },
+  backgroundImg:{
+    flex:1
   }
 });
 
