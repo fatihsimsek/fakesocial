@@ -19,6 +19,8 @@ export {default as MessageBubbleIcon} from './MessageBubble';
 export {default as MoreHorizontalIcon} from './MoreHorizontal';
 export {default as MoreVerticalIcon} from './MoreVertical';
 export {default as PhoneIcon} from './Phone';
+export {default as PlusCircleIcon} from './PlusCircle';
+export {default as PlusIcon} from './Plus';
 export {default as RightIcon} from './Right';
 export {default as SaveIcon} from './Save';
 export {default as SearchIcon} from './Search';

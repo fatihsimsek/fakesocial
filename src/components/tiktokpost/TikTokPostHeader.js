@@ -10,14 +10,34 @@ function TikTokPostHeader(){
         navigation.dispatch(CommonActions.goBack());
     }
 
+    const onPreview = () => {
+    };
+
+    const onSaveModalOpen = () => {
+    };
+
     return (
         <View style={styles.headerContainer}>
             <View style={styles.headerLeft}>
-                <View style={{marginRight:10}}>
-                    <Pressable onPress={onNavigateHome}>
-                        <LeftIcon style={{color:'#075E54'}}></LeftIcon>
-                    </Pressable>
-                </View>
+                <Pressable onPress={onNavigateHome}>
+                    <LeftIcon style={{color:'white'}}></LeftIcon>
+                </Pressable>
+            </View>
+            <View style={styles.headerCenter}>
+                <Text style={styles.headerText}>Explore</Text>
+                <Text style={styles.headerText}>Following</Text>
+                <View style={styles.headerCenterTextActive}>
+                    <Text style={styles.headerText}>For You</Text>
+                    <View style={styles.headerTextActive}></View>
+                </View> 
+            </View>
+            <View style={styles.headerRight}>
+                <Pressable onPress={onPreview}>
+                    <DownloadIcon width={22} height={22} style={{color:'white'}} />
+                </Pressable>
+                <Pressable onPress={onSaveModalOpen}>
+                    <SaveIcon width={22} height={22} style={{marginLeft:10, color:'white'}} />
+                </Pressable>
             </View>
         </View>)
 };
@@ -25,13 +45,42 @@ function TikTokPostHeader(){
 const styles = StyleSheet.create({
     headerContainer: {
         flexDirection:'row',
+        justifyContent:'space-between',
         height:45
       },
       headerLeft:{
-          flex:2,
+          marginRight:10,
           flexDirection:'row',
           alignItems:'center'
-      }
+      },
+      headerCenter:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignSelf:'center'
+      },
+      headerCenterTextActive:{
+        flexDirection:'column',
+        justifyContent:'center'
+      },
+      headerText :{
+        color:'white',
+        fontWeight:700,
+        fontSize: 17,
+        paddingRight:10
+      },
+      headerTextActive: {
+        width:30,
+        alignSelf:'center',
+        paddingBottom:5,
+        borderBottomColor:'white',
+        borderBottomWidth:4
+      },
+      headerRight:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginHorizontal:10
+    }
 });
 
 export default TikTokPostHeader;

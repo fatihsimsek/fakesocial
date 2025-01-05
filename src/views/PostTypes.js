@@ -8,6 +8,7 @@ export class Post {
       this.partner = partner;
       this.imageUrl = imageUrl;
       this.detail = detail;
+      this.albumImageUrl = '';
     }
     static Empty(type){
       return new Post('', '', PostUser.Empty(), '', PostDetail.Empty(), type);
@@ -20,7 +21,8 @@ export class PostDetail {
     this.description = 'You can add #hashtags or desired text for post description.';
     this.likeCount = '250';
     this.commentCount = '25';
-    this.sharedCount = '0';
+    this.bookmarkCount = '10';
+    this.sharedCount = '5';
     this.isLike = true;
     this.showMore = true;
   }

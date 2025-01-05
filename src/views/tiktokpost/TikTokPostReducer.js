@@ -20,6 +20,12 @@ export function postReducer(state, action) {
                 title: action.data
             }
         }
+        case 'updateAlbumImage': {
+            return {
+                ...state,
+                albumImageUrl: action.data
+            };
+        }
         default: {
             throw Error('Unknown action: ' + action.type);
         }

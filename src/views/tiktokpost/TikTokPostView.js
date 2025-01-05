@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useReducer} from "react";
-import { StyleSheet, ImageBackground, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, ImageBackground, Image, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TikTokPostHeader, TikTokPostBody, TikTokPostFooter } from "../../components/tiktokpost";
 import TikTokPostPreview from "./TikTokPostPreview";
@@ -8,7 +8,7 @@ import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators
 import { Constant, ListTypes } from '../Types';
 import { Post } from "../PostTypes";
 
-function TikTokPostView() {
+function TikTokPostView({route}) {
   const navigation = useNavigation();
   const [post, dispatch] = useReducer(postReducer, Post.Empty(ListTypes.TIKTOKPOST));
 
@@ -20,17 +20,16 @@ function TikTokPostView() {
   }, []);
 
   return (
-      <View flex={1}>
-          <ImageBackground
-                style={styles.backgroundImg}
-                source={require('../../assets/images/tiktokpost_default.png')}
-                resizeMode="cover">
-              <View style={styles.mainContainer}>
-                <TikTokPostHeader data={post} dispatch={dispatch}></TikTokPostHeader>
-                <TikTokPostBody data={post} dispatch={dispatch}></TikTokPostBody>
-                <TikTokPostFooter data={post} dispatch={dispatch}></TikTokPostFooter>
-              </View>
-          </ImageBackground>
+      <View flex={1}>  
+          {
+            post.imageUrl ? <Image source={{uri: post.imageUrl}} style={styles.backgroundImg} resizeMode="cover" /> 
+                          : <Image source={require('../../assets/images/tiktokpost_default.png')} style={styles.backgroundImg} resizeMode="cover" />
+          }     
+          <View style={styles.mainContainer}>
+            <TikTokPostHeader data={post} dispatch={dispatch}></TikTokPostHeader>
+            <TikTokPostBody data={post} dispatch={dispatch}></TikTokPostBody>
+            <TikTokPostFooter data={post} dispatch={dispatch}></TikTokPostFooter>
+          </View>
           <TikTokPostPreview data={post} dispatch={dispatch}></TikTokPostPreview>
       </View>
   );
@@ -38,7 +37,9 @@ function TikTokPostView() {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex:1,
+    width:'100%',
+    height:'100%',
+    position:'absolute',
     ...Platform.select({
       ios: {
         paddingTop:20
