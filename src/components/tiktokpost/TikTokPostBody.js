@@ -1,15 +1,43 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 import { PlusCircleIcon } from '../icons';
 
 function TikTokPostBody({data, dispatch}){
+    const options = {
+        title: 'Select Avatar',
+        mediaType: 'photo',
+        includeBase64: false
+    };
+
+    const onChangePhoto = () => {
+        launchImageLibrary(options, (response) => {
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('Image picker error: ', response.error);
+            } else {
+              let imageUri = response.uri || response.assets?.[0]?.uri;
+              dispatch({
+                type: 'updatePartner',
+                data: {
+                    ...data.partner,
+                    profileImage: imageUri
+                }
+              });
+            }
+        });
+    };
+
     return (
         <View style={styles.postBody}>
             <View style={styles.profileContainer}>
+                <Pressable onPress={onChangePhoto}>
                 {
                      data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.profileAvatar} />
                                                : <Image source={require('../../assets/images/user-icon.png')} style={styles.profileAvatar} />
                 }
+                </Pressable>
                 <PlusCircleIcon style={{top:-14}} size={36} fill='red' stroke='white' />
             </View>
             <View style={styles.postIconContainer}>
