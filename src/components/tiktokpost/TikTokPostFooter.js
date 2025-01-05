@@ -3,7 +3,7 @@ import { Text, View, Image, StyleSheet, Pressable } from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { EditIcon } from '../icons';
 
-function TikTokPostFooter({data, dispatch}){
+function TikTokPostFooter({data, dispatch, openFooterModal}){
     const options = {
         title: 'Select Album',
         mediaType: 'photo',
@@ -27,7 +27,7 @@ function TikTokPostFooter({data, dispatch}){
     };
 
     const openFooterModalOpen = () => {
-
+        openFooterModal();
     }
 
     return (

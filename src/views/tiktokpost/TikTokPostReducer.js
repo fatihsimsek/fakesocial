@@ -14,6 +14,12 @@ export function postReducer(state, action) {
                 title:action.data.title
             };
         }
+        case 'updatePostDetail': {
+            return {
+                ...state,
+                detail: action.data
+            };
+        }
         case 'updateTitle': {
             return {
                 ...state,
