@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, Pressable } from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
+import { EditIcon } from '../icons';
 
 function TikTokPostFooter({data, dispatch}){
     const options = {
@@ -25,10 +26,19 @@ function TikTokPostFooter({data, dispatch}){
         });
     };
 
+    const openFooterModalOpen = () => {
+
+    }
+
     return (
         <View style={styles.footerContainer}>
             <View style={styles.postDescriptionContainer}>
-                <Text style={styles.partnerFullnameText}>{data.partner.fullname}</Text>
+                <View style={{flexDirection:'row', marginBottom:5, alignItems:'center'}}>
+                    <Text style={styles.partnerFullnameText}>{data.partner.fullname}</Text>
+                    <Pressable onPress={openFooterModalOpen}>
+                        <EditIcon width="24" height="24" color="white"></EditIcon>
+                    </Pressable>
+                </View>  
                 <Text style={styles.postDescription}>{data.detail.description}</Text>
             </View>
             <View style={styles.profileContainer}>
@@ -57,7 +67,7 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize:16,
         fontWeight:700,
-        marginBottom:5
+        marginRight:10
     },
     postDescription: {
         color:'white',

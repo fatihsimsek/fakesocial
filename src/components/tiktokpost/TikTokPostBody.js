@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
-import { PlusCircleIcon } from '../icons';
+import { PlusCircleIcon, EditIcon } from '../icons';
 
 function TikTokPostBody({data, dispatch}){
     const options = {
@@ -10,7 +10,7 @@ function TikTokPostBody({data, dispatch}){
         includeBase64: false
     };
 
-    const onChangePhoto = () => {
+    const onChangePartnerPhoto = () => {
         launchImageLibrary(options, (response) => {
             if (response.didCancel) {
               console.log('User cancelled image picker');
@@ -29,10 +29,31 @@ function TikTokPostBody({data, dispatch}){
         });
     };
 
+    const onChangePhoto = () => {
+        launchImageLibrary(options, (response) => {
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('Image picker error: ', response.error);
+            } else {
+              let imageUri = response.uri || response.assets?.[0]?.uri;
+              dispatch({
+                type: 'updateImageUrl',
+                data: imageUri
+              });
+            }
+        });
+    };
+
     return (
         <View style={styles.postBody}>
-            <View style={styles.profileContainer}>
+            <View style={{...styles.postIconContainer, marginBottom:20}}>
                 <Pressable onPress={onChangePhoto}>
+                    <EditIcon width="24" height="24" color="white"></EditIcon>
+                </Pressable>
+            </View>
+            <View style={styles.profileContainer}>
+                <Pressable onPress={onChangePartnerPhoto}>
                 {
                      data.partner.profileImage ? <Image source={{uri: data.partner.profileImage}} style={styles.profileAvatar} />
                                                : <Image source={require('../../assets/images/user-icon.png')} style={styles.profileAvatar} />

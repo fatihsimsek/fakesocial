@@ -20,6 +20,12 @@ export function postReducer(state, action) {
                 title: action.data
             }
         }
+        case 'updateImageUrl': {
+            return {
+                ...state,
+                imageUrl: action.data
+            }
+        }
         case 'updateAlbumImage': {
             return {
                 ...state,
