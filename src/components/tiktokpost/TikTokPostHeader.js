@@ -3,7 +3,7 @@ import { Text, TextInput, View, StyleSheet, Image, Pressable } from 'react-nativ
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { LeftIcon, RightIcon, SaveIcon, DownloadIcon, EditIcon, BlueCheckIcon } from '../icons';
 
-function TikTokPostHeader(){
+function TikTokPostHeader({data, dispatch, openPreviewModal, openSaveModal}){
     const navigation = useNavigation();
 
     const onNavigateHome = () => {
@@ -11,9 +11,11 @@ function TikTokPostHeader(){
     }
 
     const onPreview = () => {
+        openPreviewModal();
     };
 
     const onSaveModalOpen = () => {
+        openSaveModal();
     };
 
     return (

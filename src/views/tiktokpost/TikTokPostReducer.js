@@ -20,11 +20,11 @@ export function postReducer(state, action) {
                 detail: action.data
             };
         }
-        case 'updateTitle': {
+        case 'updatePostTitle': {
             return {
                 ...state,
                 title: action.data
-            }
+            };
         }
         case 'updateImageUrl': {
             return {
@@ -38,6 +38,11 @@ export function postReducer(state, action) {
                 albumImageUrl: action.data
             };
         }
+        case 'initPost': {
+            return {
+                ...action.data
+            }
+        } 
         default: {
             throw Error('Unknown action: ' + action.type);
         }
