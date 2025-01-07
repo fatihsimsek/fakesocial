@@ -101,7 +101,8 @@ function InstagramMessageModal({data, dispatch, isVisible, close}) {
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type a content"} 
                                         value={data.tempContent.content}
-                                        onChangeText={onTextChange} />
+                                        onChangeText={onTextChange}
+                                        autoCorrect={false} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>IsSend:</Text>

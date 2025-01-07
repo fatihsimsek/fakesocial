@@ -53,7 +53,8 @@ function InstagramProfileModal({data, dispatch, isVisible, close}) {
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type Fullname"} 
                                         value={data.partner.fullname}
-                                        onChangeText={onFullnameChange} />
+                                        onChangeText={onFullnameChange}
+                                        autoCorrect={false} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>IsOnline:</Text>
@@ -70,7 +71,8 @@ function InstagramProfileModal({data, dispatch, isVisible, close}) {
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type Online Text"} 
                                         value={data.partner.onlineText}
-                                        onChangeText={onOnlineTextChange} />
+                                        onChangeText={onOnlineTextChange}
+                                        autoCorrect={false} />
                         </View>
                     </View>
                     <View style={styles.modalButtonContainer}>

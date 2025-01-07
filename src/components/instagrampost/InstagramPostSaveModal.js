@@ -77,7 +77,8 @@ function InstagramPostSaveModal({data, dispatch, isVisible, close}){
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type a title"} 
                                         value={data.title}
-                                        onChangeText={onTextChange} />
+                                        onChangeText={onTextChange}
+                                        autoCorrect={false} />
                         </View>
                     </View>
                     <View style={styles.modalButtonContainer}>

@@ -75,7 +75,7 @@ function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
                 }
                 </Pressable>
                 { textEditing ?
-                    <TextInput style={styles.headerCenterText} value={data.partner.fullname} autoFocus onChangeText={onNameChange} /> :
+                    <TextInput style={styles.headerCenterText} value={data.partner.fullname} autoFocus onChangeText={onNameChange} autoCorrect={false} /> :
                     <Text style={styles.headerCenterText}>{data.partner.fullname}</Text> 
                 }
                 <Pressable onPress={() => setTextEditing(previouseValue => !previouseValue)}>

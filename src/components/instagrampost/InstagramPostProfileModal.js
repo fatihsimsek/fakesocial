@@ -63,7 +63,8 @@ function InstagramPostProfileModal({data, dispatch, isVisible, close}){
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type Fullname"} 
                                         value={data.partner.fullname}
-                                        onChangeText={onFullnameChange} />
+                                        onChangeText={onFullnameChange}
+                                        autoCorrect={false} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>IsVerified:</Text>
@@ -75,7 +76,8 @@ function InstagramPostProfileModal({data, dispatch, isVisible, close}){
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type Geo Location"} 
                                         value={data.partner.geoLocation}
-                                        onChangeText={onGeoLocationChange} />
+                                        onChangeText={onGeoLocationChange}
+                                        autoCorrect={false} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>Follow Type:</Text>

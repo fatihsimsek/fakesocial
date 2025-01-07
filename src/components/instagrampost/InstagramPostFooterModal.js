@@ -87,21 +87,24 @@ function InstagramPostFooterModal({data, dispatch, isVisible, close}){
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type LikeCount"} 
                                         value={data.detail.likeCount}
-                                        onChangeText={onLikeCountChange} />
+                                        onChangeText={onLikeCountChange}
+                                        autoCorrect={false} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>Comment Count:</Text>
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type Comment Count"} 
                                         value={data.detail.commentCount}
-                                        onChangeText={onCommentCountChange} />
+                                        onChangeText={onCommentCountChange}
+                                        autoCorrect={false} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>Shared Count:</Text>
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type Shared Count"} 
                                         value={data.detail.sharedCount}
-                                        onChangeText={onSharedCountChange} />
+                                        onChangeText={onSharedCountChange}
+                                        autoCorrect={false} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>Show More:</Text>
@@ -113,7 +116,8 @@ function InstagramPostFooterModal({data, dispatch, isVisible, close}){
                             <TextInput style={styles.modalValue} 
                                         placeholder={"Type Time"} 
                                         value={data.detail.time}
-                                        onChangeText={onTimeChange} />
+                                        onChangeText={onTimeChange}
+                                        autoCorrect={false} />
                         </View>
                         <View style={styles.modalRowContainer}>
                             <Text style={styles.modalText}>Description:</Text>
@@ -122,7 +126,8 @@ function InstagramPostFooterModal({data, dispatch, isVisible, close}){
                                         value={data.detail.description}
                                         onChangeText={onDescriptionChange}
                                         multiline={true}
-                                        underlineColorAndroid={"transparent"} />
+                                        underlineColorAndroid={"transparent"}
+                                        autoCorrect={false} />
                         </View>
                     </View>
                     <View style={styles.modalButtonContainer}>

@@ -61,7 +61,8 @@ function InstagramFooter({data, dispatch, openModal}) {
                     style={styles.textInput}
                     multiline
                     value={data.tempContent.content}
-                    onChangeText={onTextChange} />    
+                    onChangeText={onTextChange}
+                    autoCorrect={false} />    
                 <TouchableOpacity onPress={onSend}>
                     <View style={styles.buttonContainer}>
                         <SendIcon size={28} color="black" />
