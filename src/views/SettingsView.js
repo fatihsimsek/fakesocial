@@ -1,8 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { GithubIcon, LinkedinIcon } from '../components/icons';
 
 function SettingsView() {
+  const onVote = () => {
+    console.log('Vote');
+  };
+
     return (
       <View style={{marginTop:4}}>
         <View style={{margin:2, paddingVertical:5, backgroundColor:'#E5E5E5'}}>
@@ -18,8 +22,22 @@ function SettingsView() {
             </View>
           </View>
         </View>
+        <View style={{flexDirection:'row', alignSelf:'center', alignItems:'center', marginTop:10 }}>
+            <TouchableOpacity onPress={onVote}>
+              <Text style={styles.buttonTextStyle}>Vote App</Text>
+            </TouchableOpacity>
+        </View>
       </View>
     );
   }
 
-  export default SettingsView;
+const styles = StyleSheet.create({
+    buttonTextStyle: {
+      borderRadius: 5,
+      padding: 15,
+      elevation: 2,
+      backgroundColor: '#25d366'
+    }
+});
+
+export default SettingsView;
