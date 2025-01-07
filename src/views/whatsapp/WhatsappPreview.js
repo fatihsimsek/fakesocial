@@ -94,8 +94,8 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
                                                         <View style={styles.timeAndReadContainer}>
                                                             <Text style={styles.timeText}>{item.time}</Text>
                                                             <View style={styles.checkContainer}>
-                                                                {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} color={messageStatusColor} />}
-                                                                {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} color={messageStatusColor} />}
+                                                                {isMyMessage && <CheckIcon flex={1} width={12} height={12} strokeWidth={showReachIcon ? 3 : 2} stroke={messageStatusColor} />}
+                                                                {showReachIcon && <CheckIcon flex={1} left={-8} width={12} strokeWidth={3} height={12} stroke={messageStatusColor} />}
                                                             </View>
                                                          </View>
                                                     </View>

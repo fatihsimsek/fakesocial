@@ -28,6 +28,7 @@ export {default as SendIcon} from './Send';
 export {default as SettingsIcon} from './Settings';
 export {default as Share2Icon} from './Share2';
 export {default as ShareIcon} from './Share';
+export {default as StarIcon} from './Star';
 export {default as TelegramIcon} from './Telegram';
 export {default as TiktokIcon} from './Tiktok';
 export {default as TrashIcon} from './Trash';

@@ -49,7 +49,7 @@ function TikTokPostBody({data, dispatch}){
         <View style={styles.postBody}>
             <View style={{...styles.postIconContainer, marginBottom:20}}>
                 <Pressable onPress={onChangePhoto}>
-                    <EditIcon width="24" height="24" color="white"></EditIcon>
+                    <EditIcon width="24" height="24" stroke="white"></EditIcon>
                 </Pressable>
             </View>
             <View style={styles.profileContainer}>

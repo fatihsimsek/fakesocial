@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SettingsView from '../views/SettingsView';
 import HomeNavigator from './HomeNavigator';
 import FavouriteView from '../views/FavouriteView';
-import {HomeIcon, FavouriteIcon, SettingsIcon} from '../components/icons';
+import {HomeIcon, StarIcon, SettingsIcon} from '../components/icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,21 +18,21 @@ function RouteNavigator() {
             tabBarLabel: '',
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <HomeIcon color={color} size={size} />
+              <HomeIcon stroke={"gray"} size={size} />
             )}}
         />
         <Tab.Screen name="Favourite" component={FavouriteView} 
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
-              <FavouriteIcon color={color} size={size} />
+              <StarIcon stroke={"gray"} size={size} />
             )}}
         />
         <Tab.Screen name="Settings" component={SettingsView} 
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
-              <SettingsIcon color={color} size={size} />
+              <SettingsIcon stroke={"gray"} size={size} />
             )}}
         />
       </Tab.Navigator>

@@ -36,7 +36,7 @@ function TikTokPostFooter({data, dispatch, openFooterModal}){
                 <View style={{flexDirection:'row', marginBottom:5, alignItems:'center'}}>
                     <Text style={styles.partnerFullnameText}>{data.partner.fullname}</Text>
                     <Pressable onPress={openFooterModalOpen}>
-                        <EditIcon width="24" height="24" color="white"></EditIcon>
+                        <EditIcon width="24" height="24" stroke="white"></EditIcon>
                     </Pressable>
                 </View>  
                 <Text style={styles.postDescription}>{data.detail.description}</Text>
