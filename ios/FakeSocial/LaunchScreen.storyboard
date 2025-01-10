@@ -18,23 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_image" translatesAutoresizingMaskIntoConstraints="NO" id="8eC-mC-Sy5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="626"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="FakeSocial" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MN2-I3-ftu">
-                                <rect key="frame" x="0.0" y="641" width="375" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="PL3-q5-czs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="8eC-mC-Sy5" secondAttribute="bottom" id="9fj-k1-PUO"/>
                             <constraint firstItem="8eC-mC-Sy5" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="MUs-SM-kLE"/>
-                            <constraint firstItem="MN2-I3-ftu" firstAttribute="top" secondItem="8eC-mC-Sy5" secondAttribute="bottom" constant="15" id="PXL-TP-R07"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="MN2-I3-ftu" secondAttribute="bottom" constant="5" id="QrN-FI-2t8"/>
                             <constraint firstItem="8eC-mC-Sy5" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="YF2-8T-RSo"/>
                             <constraint firstItem="8eC-mC-Sy5" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="Zdg-Nl-Ovx"/>
                         </constraints>
