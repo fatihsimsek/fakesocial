@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
       headerLeft:{
           marginRight:10,
           flexDirection:'row',
-          alignItems:'center'
+          alignItems:'center',
+          marginHorizontal:10
       },
       headerCenter:{
         flex:1,

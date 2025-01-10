@@ -58,14 +58,9 @@ function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
     return (
         <View style={styles.headerContainer}>
             <View style={styles.headerLeft}>
-                <View>
-                    <Pressable onPress={onNavigateHome}>
-                        <LeftIcon width={24} height={24} style={{color:'#075E54'}}></LeftIcon>
-                    </Pressable>
-                </View>
-                <View>
-                    <Text>Home</Text>
-                </View>
+                <Pressable onPress={onNavigateHome}>
+                    <LeftIcon width={24} height={24} style={{color:'#075E54'}}></LeftIcon>
+                </Pressable>
             </View>
             <View style={styles.headerCenter}>
                 <Pressable onPress={onChangePhoto}>
@@ -103,7 +98,8 @@ const styles = StyleSheet.create({
     headerLeft:{
         flex:1,
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        marginHorizontal:10
     },
     headerCenter:{
         flex:2,

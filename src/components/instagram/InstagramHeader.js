@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
     headerLeft:{
         flex:2,
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        marginHorizontal:10
     },
     headerRight:{
         flex:1,
