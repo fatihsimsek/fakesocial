@@ -53,7 +53,7 @@ function InstagramHeader({data, dispatch, openPreviewModal, openSaveModal, openP
             <View style={styles.headerLeft}>
                 <View style={{marginRight:10}}>
                     <Pressable onPress={onNavigateHome}>
-                        <LeftIcon style={{color:'#075E54'}}></LeftIcon>
+                        <LeftIcon width={24} height={24} style={{color:'#075E54'}}></LeftIcon>
                     </Pressable>
                 </View>
                 <Pressable onPress={onChangePhoto}>
@@ -81,15 +81,15 @@ function InstagramHeader({data, dispatch, openPreviewModal, openSaveModal, openP
                                             : <RightIcon width={16} height={16} style={{color:'#075E54'}}/> 
                 }
                 <Pressable onPress={onProfileModalOpen}>
-                    <EditIcon width={20} height={20} style={{color:'#075E54', marginLeft:10}} />
+                    <EditIcon width={24} height={24} style={{color:'#075E54', marginLeft:10}} />
                 </Pressable>
             </View>
             <View style={styles.headerRight}>
                 <Pressable onPress={onPreview}>
-                    <DownloadIcon width={20} height={20} style={{color:'#075E54'}} />
+                    <DownloadIcon width={24} height={24} style={{color:'#075E54'}} />
                 </Pressable>
                 <Pressable onPress={onSaveModalOpen}>
-                    <SaveIcon width={20} height={20} style={{marginLeft:10, color:'#075E54'}} />
+                    <SaveIcon width={24} height={24} style={{marginLeft:10, color:'#075E54'}} />
                 </Pressable>
             </View>
         </View>
@@ -99,7 +99,7 @@ function InstagramHeader({data, dispatch, openPreviewModal, openSaveModal, openP
 const styles = StyleSheet.create({
     headerContainer: {
       flexDirection:'row',
-      height:45,
+      height:50,
       backgroundColor:'#FAFAFA',
       shadowColor: '#808080',
       shadowOffset: {width: -2, height: 2},

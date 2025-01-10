@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { Platform, ImageBackground, View, StyleSheet } from 'react-native';
+import { ImageBackground, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { WhatsappDialog, WhatsappHeader, WhatsappFooter, WhatsappMessageModal, WhatsappSaveModal } from '../../components/whatsapp';
@@ -88,14 +88,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex:1,
     justifyContent:'flex-start',
-    ...Platform.select({
-      ios: {
-        paddingTop:20
-      },
-      android: {
-        paddingTop:10
-      }
-    })
+    paddingTop:30
   },
   backgroundImg:{
     flex:1

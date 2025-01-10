@@ -56,7 +56,7 @@ function InstagramPostPreview({data, dispatch, isVisible, close}){
                                 </View>
                             </View>
                             <View style={styles.headerRight}>
-                                <MoreHorizontalIcon width={20} height={20} style={{color:'#075E54'}} />
+                                <MoreHorizontalIcon width={24} height={24} style={{color:'#075E54'}} />
                             </View>
                         </View>
                         <View style={styles.postBody}>

@@ -54,7 +54,7 @@ function TikTokPreview({data, dispatch, isVisible, close}) {
                                 }
                             </View>
                             <View style={styles.headerRight}>
-                                <FlagIcon width={20} height={20} style={{color:'#075E54'}} />
+                                <FlagIcon width={24} height={24} style={{color:'#075E54'}} />
                             </View>
                         </View>
                         <View style={styles.containerAlignTop}>

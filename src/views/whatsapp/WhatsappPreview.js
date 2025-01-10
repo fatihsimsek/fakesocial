@@ -50,8 +50,8 @@ function WhatsappPreview({data, dispatch, isVisible, close}) {
                                 <Text style={styles.headerCenterText}>{data.partner.fullname}</Text> 
                             </View>
                             <View style={styles.headerRight}>
-                                <VideoIcon width={20} height={20} style={{color:'#075E54', marginRight:15}} />
-                                <PhoneIcon width={20} height={20} style={{color:'#075E54'}} />
+                                <VideoIcon width={24} height={24} style={{color:'#075E54', marginRight:15}} />
+                                <PhoneIcon width={24} height={24} style={{color:'#075E54'}} />
                             </View>
                         </View>
                         <View style={styles.containerAlignTop}>
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         width:"100%"
     },
     headerContainer: {
-        height:40,
+        height:50,
         flexDirection:'row',
         backgroundColor:'#eee4dc',
         justifyContent:"center"
@@ -178,11 +178,11 @@ const styles = StyleSheet.create({
         fontSize:14
     },
     avatar:{
-        width: 30,
-		height: 30,
+        width: 36,
+		height: 36,
 		borderWidth: 0.5,
         borderColor:'#075E54',
-		borderRadius: 30,
+		borderRadius: 36,
 		resizeMode: "cover"
     },
     modalButtonContainer: {

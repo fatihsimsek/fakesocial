@@ -60,7 +60,7 @@ function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
             <View style={styles.headerLeft}>
                 <View>
                     <Pressable onPress={onNavigateHome}>
-                        <LeftIcon style={{color:'#075E54'}}></LeftIcon>
+                        <LeftIcon width={24} height={24} style={{color:'#075E54'}}></LeftIcon>
                     </Pressable>
                 </View>
                 <View>
@@ -79,15 +79,15 @@ function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
                     <Text style={styles.headerCenterText}>{data.partner.fullname}</Text> 
                 }
                 <Pressable onPress={() => setTextEditing(previouseValue => !previouseValue)}>
-                    <EditIcon width={20} height={20} style={{color:'#075E54', marginLeft:5}} />
+                    <EditIcon width={24} height={24} style={{color:'#075E54', marginLeft:5}} />
                 </Pressable>
             </View>
             <View style={styles.headerRight}>
                 <Pressable onPress={onPreview}>
-                    <DownloadIcon width={20} height={20} style={{color:'#075E54'}} />
+                    <DownloadIcon width={24} height={24} style={{color:'#075E54'}} />
                 </Pressable>
                 <Pressable onPress={onSaveModalOpen}>
-                    <SaveIcon width={20} height={20} style={{marginLeft:10, color:'#075E54'}} />
+                    <SaveIcon width={24} height={24} style={{marginLeft:10, color:'#075E54'}} />
                 </Pressable>
             </View>
         </View>
@@ -97,7 +97,7 @@ function WhatsappHeader({data, dispatch, openPreviewModal, openSaveModal}) {
 const styles = StyleSheet.create({
     headerContainer: {
       flexDirection:'row',
-      height:40,
+      height:50,
       backgroundColor:'#eee4dc'
     },
     headerLeft:{
@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
         marginHorizontal:10
     },
     avatar:{
-        width: 30,
-		height: 30,
+        width: 36,
+		height: 36,
 		borderWidth: 0.5,
         borderColor:'#075E54',
-		borderRadius: 30,
+		borderRadius: 36,
 		resizeMode: "cover"
     },
     headerCenterText:{

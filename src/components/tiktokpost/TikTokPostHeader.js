@@ -35,10 +35,10 @@ function TikTokPostHeader({data, dispatch, openPreviewModal, openSaveModal}){
             </View>
             <View style={styles.headerRight}>
                 <Pressable onPress={onPreview}>
-                    <DownloadIcon width={22} height={22} style={{color:'white'}} />
+                    <DownloadIcon width={24} height={24} style={{color:'white'}} />
                 </Pressable>
                 <Pressable onPress={onSaveModalOpen}>
-                    <SaveIcon width={22} height={22} style={{marginLeft:10, color:'white'}} />
+                    <SaveIcon width={24} height={24} style={{marginLeft:10, color:'white'}} />
                 </Pressable>
             </View>
         </View>)
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     headerContainer: {
         flexDirection:'row',
         justifyContent:'space-between',
-        height:45
+        height:50
       },
       headerLeft:{
           marginRight:10,

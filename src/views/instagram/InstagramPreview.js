@@ -55,8 +55,8 @@ function InstagramPreview({data, dispatch, isVisible, close}) {
                                 }
                             </View>
                             <View style={styles.headerRight}>
-                                <PhoneIcon width={20} height={20} style={{color:'#075E54', marginRight:15}} />
-                                <VideoIcon width={20} height={20} style={{color:'#075E54'}} />
+                                <PhoneIcon width={24} height={24} style={{color:'#075E54', marginRight:15}} />
+                                <VideoIcon width={24} height={24} style={{color:'#075E54'}} />
                             </View>
                         </View>
                         <View style={styles.containerAlignTop}>
