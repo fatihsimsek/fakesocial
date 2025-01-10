@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { ImageBackground, View, StyleSheet } from 'react-native';
+import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ImageBackground, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { WhatsappDialog, WhatsappHeader, WhatsappFooter, WhatsappMessageModal, WhatsappSaveModal } from '../../components/whatsapp';
@@ -73,8 +73,14 @@ function WhatsAppView({route}) {
                 resizeMode="cover">
                 <View style={styles.mainContainer}>
                     <WhatsappHeader data={conversation} dispatch={dispatch} openPreviewModal={openPreviewModal} openSaveModal={openSaveModal}></WhatsappHeader>
-                    <WhatsappDialog data={conversation} dispatch={dispatch} openModal={openModal}></WhatsappDialog>
-                    <WhatsappFooter data={conversation} dispatch={dispatch} openModal={openModal}></WhatsappFooter>
+                    <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                      <TouchableWithoutFeedback flex={1} onPress={Keyboard.dismiss}>
+                        <View flex={1}>
+                          <WhatsappDialog data={conversation} dispatch={dispatch} openModal={openModal}></WhatsappDialog>
+                          <WhatsappFooter data={conversation} dispatch={dispatch} openModal={openModal}></WhatsappFooter>
+                        </View>
+                      </TouchableWithoutFeedback>
+                    </KeyboardAvoidingView>
                     <WhatsappMessageModal data={conversation} dispatch={dispatch} isVisible={modalVisible} close={closeModal} />
                 </View>
             </ImageBackground>

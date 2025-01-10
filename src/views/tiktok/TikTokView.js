@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { View, StyleSheet } from 'react-native';
+import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { TikTokDialog, TikTokHeader, TikTokFooter, TikTokMessageModal, TikTokSaveModal, TikTokProfileModal } from '../../components/tiktok';
@@ -79,8 +79,14 @@ function TikTokView({route}) {
             <View style={styles.mainContainer}>
                 <TikTokHeader data={conversation} dispatch={dispatch} openPreviewModal={openPreviewModal} 
                                                   openSaveModal={openSaveModal} openProfileModal={openProfileModal}></TikTokHeader>
-                <TikTokDialog data={conversation} dispatch={dispatch} openModal={openModal}></TikTokDialog>
-                <TikTokFooter data={conversation} dispatch={dispatch} openModal={openModal}></TikTokFooter>
+                <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                    <TouchableWithoutFeedback flex={1} onPress={Keyboard.dismiss}>
+                      <View flex={1}>
+                        <TikTokDialog data={conversation} dispatch={dispatch} openModal={openModal}></TikTokDialog>
+                        <TikTokFooter data={conversation} dispatch={dispatch} openModal={openModal}></TikTokFooter>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </KeyboardAvoidingView>
                 <TikTokMessageModal data={conversation} dispatch={dispatch} isVisible={modalVisible} close={closeModal} />  
             </View>
             <TikTokPreview data={conversation} dispatch={dispatch} isVisible={previewVisible} close={closePreviewModal} />

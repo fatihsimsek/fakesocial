@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { View, StyleSheet } from 'react-native';
+import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { InstagramDialog, InstagramHeader, InstagramFooter, InstagramMessageModal, InstagramSaveModal, InstagramProfileModal } from '../../components/instagram';
@@ -78,8 +78,14 @@ function InstagramView({route}) {
         <View flex={1}>
             <View style={styles.mainContainer}>
                 <InstagramHeader data={conversation} dispatch={dispatch} openPreviewModal={openPreviewModal} openSaveModal={openSaveModal} openProfileModal={openProfileModal}></InstagramHeader>
-                <InstagramDialog data={conversation} dispatch={dispatch} openModal={openModal}></InstagramDialog>
-                <InstagramFooter data={conversation} dispatch={dispatch} openModal={openModal}></InstagramFooter>
+                <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                    <TouchableWithoutFeedback flex={1} onPress={Keyboard.dismiss}>
+                      <View flex={1}>
+                        <InstagramDialog data={conversation} dispatch={dispatch} openModal={openModal}></InstagramDialog>
+                        <InstagramFooter data={conversation} dispatch={dispatch} openModal={openModal}></InstagramFooter>
+                      </View>
+                    </TouchableWithoutFeedback>
+                </KeyboardAvoidingView>
                 <InstagramMessageModal data={conversation} dispatch={dispatch} isVisible={modalVisible} close={closeModal} />
             </View>
             <InstagramPreview data={conversation} dispatch={dispatch} isVisible={previewVisible} close={closePreviewModal} />
