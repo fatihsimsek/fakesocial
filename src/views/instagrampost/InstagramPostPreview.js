@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
         width:'100%',
+        height:'100%',
         justifyContent:'flex-start',
         paddingTop:5,
         marginBottom:5,
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
         color:'#3897f0'
     },
     postBody: {
-        height:'75%',
+        flex:1,
         marginBottom: 8
     },
     postImage: {
