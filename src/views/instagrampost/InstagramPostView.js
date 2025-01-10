@@ -95,14 +95,7 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'flex-start',
     backgroundColor:'white',
-    ...Platform.select({
-      ios: {
-        paddingTop:20
-      },
-      android: {
-        paddingTop:10
-      }
-    })
+    paddingTop:30
   }
 });
 

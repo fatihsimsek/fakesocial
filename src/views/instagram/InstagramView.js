@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { Platform, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { InstagramDialog, InstagramHeader, InstagramFooter, InstagramMessageModal, InstagramSaveModal, InstagramProfileModal } from '../../components/instagram';
@@ -94,14 +94,7 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'flex-start',
     backgroundColor:'white',
-    ...Platform.select({
-      ios: {
-        paddingTop:20
-      },
-      android: {
-        paddingTop:10
-      }
-    })
+    paddingTop:30
   }
 });
 
