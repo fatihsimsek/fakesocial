@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         flex:2,
         flexDirection:'row',
         alignItems:'center',
-        marginHorizontal:5
+        paddingHorizontal:3
     },
     headerRight:{
         flex:1,
