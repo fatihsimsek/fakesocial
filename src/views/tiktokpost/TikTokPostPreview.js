@@ -136,7 +136,9 @@ const styles = StyleSheet.create({
         })
     },
     backgroundImg:{
-        flex:1
+        flex:1,
+        width:"100%",
+        height:"100%"
     },
     headerContainer: {
         flexDirection:'row',
@@ -144,7 +146,7 @@ const styles = StyleSheet.create({
         height:45
     },
     headerLeft:{
-        marginRight:10,
+        marginHorizontal:10,
         flexDirection:'row',
         alignItems:'center'
     },
