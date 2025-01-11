@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Platform, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch, Image } from 'react-native';
+import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch, Image } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {  ConversationContent, ConversationMessageType, ConversationContentType, ConversationMessageStatus } from '../../views/ConversationTypes';
 import { generateUUID } from "../../navigators/Functions";
@@ -104,71 +104,75 @@ function WhatsappMessageModal({data, dispatch, isVisible, close}) {
 
     return(
         <Modal animationType="slide" visible={isVisible}>
-            <View style={styles.modalContainer}>
-                <View style={styles.centerContainer}>
-                    <View style={styles.modalChoiceContainer}>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Content:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type a content"} 
-                                        value={data.tempContent.content}
-                                        onChangeText={onTextChange}
-                                        autoCorrect={false} />
+            <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                <TouchableWithoutFeedback flex={1} onPress={Keyboard.dismiss}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.centerContainer}>
+                        <View style={styles.modalChoiceContainer}>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Content:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type a content"} 
+                                            value={data.tempContent.content}
+                                            onChangeText={onTextChange}
+                                            autoCorrect={false} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>IsSend:</Text>
+                                <Switch style={styles.switchValue} value={data.tempContent.isSend}
+                                        onValueChange={toggleMessageIsSend} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Date Break:</Text>
+                                <Switch style={styles.switchValue} value={data.tempContent.isBreak}
+                                        onValueChange={toggleMessageIsBreak} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Time:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type a time"} 
+                                            value={data.tempContent.time}
+                                            onChangeText={onTimeChange}
+                                            autoCorrect={false} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Status:</Text>
+                                <View style={styles.modalValue} >
+                                    <DropDownPicker
+                                        open={messageStatusOpen}
+                                        value={data.tempContent.status}
+                                        items={messageStatuses}
+                                        setOpen={setMessageStatusOpen}
+                                        setValue={onMessageStatusChange}
+                                        setItems={setMessageStatuses} />
+                                </View>            
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Image:</Text>
+                                {
+                                    (data.tempContent.imageUrl?.length > 0) && 
+                                    (<Image source={{uri: data.tempContent.imageUrl}} style={{...styles.modalValue, height: 150}}></Image>)
+                                }
+                            </View>
                         </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>IsSend:</Text>
-                            <Switch style={styles.switchValue} value={data.tempContent.isSend}
-                                    onValueChange={toggleMessageIsSend} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Date Break:</Text>
-                            <Switch style={styles.switchValue} value={data.tempContent.isBreak}
-                                    onValueChange={toggleMessageIsBreak} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Time:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type a time"} 
-                                        value={data.tempContent.time}
-                                        onChangeText={onTimeChange}
-                                        autoCorrect={false} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Status:</Text>
-                            <View style={styles.modalValue} >
-                                <DropDownPicker
-                                    open={messageStatusOpen}
-                                    value={data.tempContent.status}
-                                    items={messageStatuses}
-                                    setOpen={setMessageStatusOpen}
-                                    setValue={onMessageStatusChange}
-                                    setItems={setMessageStatuses} />
-                            </View>            
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Image:</Text>
-                            {
-                                (data.tempContent.imageUrl?.length > 0) && 
-                                (<Image source={{uri: data.tempContent.imageUrl}} style={{...styles.modalValue, height: 150}}></Image>)
-                            }
-                        </View>
-                    </View>
-                    <View style={styles.modalButtonContainer}>
-                        <Pressable onPress={cancelModal}>
-                            <Text style={styles.modalButtonTextStyle}>Cancel</Text>
-                        </Pressable>
-                        {
-                            data.tempContent.id && 
-                            <Pressable onPress={deleteMessage}>
-                                <Text style={styles.modalButtonTextStyle}>Delete</Text>
+                        <View style={styles.modalButtonContainer}>
+                            <Pressable onPress={cancelModal}>
+                                <Text style={styles.modalButtonTextStyle}>Cancel</Text>
                             </Pressable>
-                        }
-                        <Pressable onPress={saveMessage}>
-                            <Text style={styles.modalButtonTextStyle}>Save</Text>
-                        </Pressable>
+                            {
+                                data.tempContent.id && 
+                                <Pressable onPress={deleteMessage}>
+                                    <Text style={styles.modalButtonTextStyle}>Delete</Text>
+                                </Pressable>
+                            }
+                            <Pressable onPress={saveMessage}>
+                                <Text style={styles.modalButtonTextStyle}>Save</Text>
+                            </Pressable>
+                        </View>
                     </View>
                 </View>
-            </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         </Modal>
     );
 }

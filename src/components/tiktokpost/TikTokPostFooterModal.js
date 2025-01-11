@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet, Modal, Pressable, Switch } from 'react-native';
+import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard,Text, TextInput, View, StyleSheet, Modal, Pressable } from 'react-native';
 
 function TikTokPostFooterModal({data, dispatch, isVisible, close}){
     const onFullnameChange = (text) => {
@@ -64,67 +64,71 @@ function TikTokPostFooterModal({data, dispatch, isVisible, close}){
 
     return (
         <Modal animationType="slide" visible={isVisible}>
-            <View style={styles.modalContainer}>
-                <View style={styles.centerContainer}>
-                    <View style={styles.modalChoiceContainer}>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Fullname:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Fullname"} 
-                                        value={data.partner.Fullname}
-                                        onChangeText={onFullnameChange}
-                                        autoCorrect={false} />
+            <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                <TouchableWithoutFeedback flex={1} onPress={Keyboard.dismiss}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.centerContainer}>
+                        <View style={styles.modalChoiceContainer}>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Fullname:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type Fullname"} 
+                                            value={data.partner.Fullname}
+                                            onChangeText={onFullnameChange}
+                                            autoCorrect={false} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Like Count:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type LikeCount"} 
+                                            value={data.detail.likeCount}
+                                            onChangeText={onLikeCountChange}
+                                            autoCorrect={false} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Comment Count:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type Comment Count"} 
+                                            value={data.detail.commentCount}
+                                            onChangeText={onCommentCountChange}
+                                            autoCorrect={false} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Bookmark Count:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type Bookmark Count"} 
+                                            value={data.detail.bookmarkCount}
+                                            onChangeText={onBookmarkCountChange}
+                                            autoCorrect={false} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Shared Count:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type Shared Count"} 
+                                            value={data.detail.sharedCount}
+                                            onChangeText={onSharedCountChange}
+                                            autoCorrect={false} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Description:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type Description"} 
+                                            value={data.detail.description}
+                                            onChangeText={onDescriptionChange}
+                                            multiline={true}
+                                            underlineColorAndroid={"transparent"}
+                                            autoCorrect={false} />
+                            </View>
                         </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Like Count:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type LikeCount"} 
-                                        value={data.detail.likeCount}
-                                        onChangeText={onLikeCountChange}
-                                        autoCorrect={false} />
+                        <View style={styles.modalButtonContainer}>
+                            <Pressable onPress={close}>
+                                <Text style={styles.modalButtonTextStyle}>Close</Text>
+                            </Pressable>
                         </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Comment Count:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Comment Count"} 
-                                        value={data.detail.commentCount}
-                                        onChangeText={onCommentCountChange}
-                                        autoCorrect={false} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Bookmark Count:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Bookmark Count"} 
-                                        value={data.detail.bookmarkCount}
-                                        onChangeText={onBookmarkCountChange}
-                                        autoCorrect={false} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Shared Count:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Shared Count"} 
-                                        value={data.detail.sharedCount}
-                                        onChangeText={onSharedCountChange}
-                                        autoCorrect={false} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Description:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Description"} 
-                                        value={data.detail.description}
-                                        onChangeText={onDescriptionChange}
-                                        multiline={true}
-                                        underlineColorAndroid={"transparent"}
-                                        autoCorrect={false} />
-                        </View>
-                    </View>
-                    <View style={styles.modalButtonContainer}>
-                        <Pressable onPress={close}>
-                            <Text style={styles.modalButtonTextStyle}>Close</Text>
-                        </Pressable>
                     </View>
                 </View>
-            </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         </Modal>
     )
 }

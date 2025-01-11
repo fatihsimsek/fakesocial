@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { TextInput, Alert, Text, View, StyleSheet, Modal, Pressable } from 'react-native';
+import React from 'react';
+import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, TextInput, Alert, Text, View, StyleSheet, Modal, Pressable } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Constant } from '../../views/Types';
 import { generateUUID } from "../../navigators/Functions";
@@ -69,28 +69,32 @@ function WhatsappSaveModal({data, dispatch, isVisible, close}) {
 
     return (
         <Modal animationType="slide" visible={isVisible}>
-            <View style={styles.modalContainer}>
-                <View style={styles.centerContainer}>
-                    <View style={styles.modalChoiceContainer}>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Title:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type a title"} 
-                                        value={data.title}
-                                        onChangeText={onTextChange}
-                                        autoCorrect={false} />
+            <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                <TouchableWithoutFeedback flex={1} onPress={Keyboard.dismiss}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.centerContainer}>
+                        <View style={styles.modalChoiceContainer}>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Title:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type a title"} 
+                                            value={data.title}
+                                            onChangeText={onTextChange}
+                                            autoCorrect={false} />
+                            </View>
+                        </View>
+                        <View style={styles.modalButtonContainer}>
+                            <Pressable onPress={close}>
+                                <Text style={styles.modalButtonTextStyle}>Cancel</Text>
+                            </Pressable>
+                            <Pressable onPress={saveConverstation}>
+                                <Text style={styles.modalButtonTextStyle}>Save</Text>
+                            </Pressable>
                         </View>
                     </View>
-                    <View style={styles.modalButtonContainer}>
-                        <Pressable onPress={close}>
-                            <Text style={styles.modalButtonTextStyle}>Cancel</Text>
-                        </Pressable>
-                        <Pressable onPress={saveConverstation}>
-                            <Text style={styles.modalButtonTextStyle}>Save</Text>
-                        </Pressable>
-                    </View>
                 </View>
-            </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         </Modal>
     );
 }

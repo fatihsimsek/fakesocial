@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch } from 'react-native';
+import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, TextInput, Text, View, StyleSheet, Modal, Pressable, Switch } from 'react-native';
 
 function InstagramProfileModal({data, dispatch, isVisible, close}) {
 
@@ -45,43 +45,47 @@ function InstagramProfileModal({data, dispatch, isVisible, close}) {
 
     return(
         <Modal animationType="slide" visible={isVisible}>
-            <View style={styles.modalContainer}>
-                <View style={styles.centerContainer}>
-                    <View style={styles.modalChoiceContainer}>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Fullname:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Fullname"} 
-                                        value={data.partner.fullname}
-                                        onChangeText={onFullnameChange}
-                                        autoCorrect={false} />
+            <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                <TouchableWithoutFeedback flex={1} onPress={Keyboard.dismiss}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.centerContainer}>
+                        <View style={styles.modalChoiceContainer}>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Fullname:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type Fullname"} 
+                                            value={data.partner.fullname}
+                                            onChangeText={onFullnameChange}
+                                            autoCorrect={false} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>IsOnline:</Text>
+                                <Switch style={styles.switchValue} value={data.partner.isOnline}
+                                        onValueChange={toggleMessageIsOnline} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>IsVerified:</Text>
+                                <Switch style={styles.switchValue} value={data.partner.isVerified}
+                                        onValueChange={toggleMessageIsVerified} />
+                            </View>
+                            <View style={styles.modalRowContainer}>
+                                <Text style={styles.modalText}>Online Text:</Text>
+                                <TextInput style={styles.modalValue} 
+                                            placeholder={"Type Online Text"} 
+                                            value={data.partner.onlineText}
+                                            onChangeText={onOnlineTextChange}
+                                            autoCorrect={false} />
+                            </View>
                         </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>IsOnline:</Text>
-                            <Switch style={styles.switchValue} value={data.partner.isOnline}
-                                    onValueChange={toggleMessageIsOnline} />
+                        <View style={styles.modalButtonContainer}>
+                            <Pressable onPress={close}>
+                                <Text style={styles.modalButtonTextStyle}>Close</Text>
+                            </Pressable>
                         </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>IsVerified:</Text>
-                            <Switch style={styles.switchValue} value={data.partner.isVerified}
-                                    onValueChange={toggleMessageIsVerified} />
-                        </View>
-                        <View style={styles.modalRowContainer}>
-                            <Text style={styles.modalText}>Online Text:</Text>
-                            <TextInput style={styles.modalValue} 
-                                        placeholder={"Type Online Text"} 
-                                        value={data.partner.onlineText}
-                                        onChangeText={onOnlineTextChange}
-                                        autoCorrect={false} />
-                        </View>
-                    </View>
-                    <View style={styles.modalButtonContainer}>
-                        <Pressable onPress={close}>
-                            <Text style={styles.modalButtonTextStyle}>Close</Text>
-                        </Pressable>
                     </View>
                 </View>
-            </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         </Modal>
     );
 }
