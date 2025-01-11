@@ -14,7 +14,7 @@ function InstagramPostFooter({data, dispatch, openFooterModal}){
                 <View style={styles.iconsLeftSide}>
                     {
                         data.detail.isLike ? <HeartIcon width="28" height="28" stroke="red" fill="red" style={styles.icons}></HeartIcon>
-                                           : <HeartIcon width="28" height="28" color="black"  style={styles.icons}></HeartIcon>
+                                           : <HeartIcon width="28" height="28" stroke="black" fill="white"  style={styles.icons}></HeartIcon>
                     }
                     {
                         data.detail.likeCount > 0 && <Text style={styles.iconCountText}>{data.detail.likeCount}</Text>
