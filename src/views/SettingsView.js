@@ -1,12 +1,20 @@
 import React from 'react';
-import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Platform, Alert, Linking, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { GithubIcon, LinkedinIcon } from '../components/icons';
 
 function SettingsView() {
   const onVote = () => {
-    console.log('Vote');
+    const url = Platform.OS === 'android' ? 'https://play.google.com/store/apps/details?id=YOUR_APP_ID'   
+                                          : 'https://apps.apple.com/us/app/fakesocialapp/id6739534150';
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        Linking.openURL(url);
+      }
+      else {
+        Alert.alert("Error", "Url cant be opened");
+      }
+    });
   };
-
     return (
       <View style={{marginTop:4}}>
         <View style={{margin:2, paddingVertical:5, backgroundColor:'#E5E5E5'}}>
@@ -24,7 +32,7 @@ function SettingsView() {
         </View>
         <View style={{flexDirection:'row', alignSelf:'center', alignItems:'center', marginTop:10 }}>
             <TouchableOpacity onPress={onVote}>
-              <Text style={styles.buttonTextStyle}>Vote App</Text>
+              <Text style={styles.buttonTextStyle}>Review App</Text>
             </TouchableOpacity>
         </View>
       </View>
