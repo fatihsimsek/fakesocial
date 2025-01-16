@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
       justifyContent:'flex-start',
-      paddingTop:10
+      paddingTop:20
     },
     backgroundImg:{
         flex:1,

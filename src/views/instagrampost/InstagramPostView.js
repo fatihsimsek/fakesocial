@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useReducer} from "react";
 import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { postReducer } from "./InstagramPostReducer";
 import { InstagramPostHeader, InstagramPostBody, InstagramPostFooter, InstagramPostProfileModal, InstagramPostSaveModal, InstagramPostFooterModal } from "../../components/instagrampost";
@@ -11,6 +12,8 @@ import { Post } from "../PostTypes";
 
 function InstagramPostView({route}) {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
+
   const [post, dispatch] = useReducer(postReducer, Post.Empty(ListTypes.INSTAGRAMPOST));
   const [previewVisible, setPreviewVisible] = useState(false);
   const [saveModalVisible, setSaveModalVisible] = useState(false);
@@ -76,7 +79,7 @@ function InstagramPostView({route}) {
 
   return (
       <View flex={1}>
-          <View style={styles.mainContainer}>
+          <View style={{...styles.mainContainer, paddingTop: insets.top}}>
             <InstagramPostHeader data={post} dispatch={dispatch} openPreviewModal={openPreviewModal} 
                                  openSaveModal={openSaveModal} openProfileModal={openProfileModal}></InstagramPostHeader>
             <InstagramPostBody data={post} dispatch={dispatch}></InstagramPostBody>
@@ -94,8 +97,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex:1,
     justifyContent:'flex-start',
-    backgroundColor:'white',
-    paddingTop:30
+    backgroundColor:'white'
   }
 });
 

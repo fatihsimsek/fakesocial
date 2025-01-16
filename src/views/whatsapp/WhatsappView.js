@@ -1,7 +1,8 @@
 import { useEffect, useReducer, useState } from "react";
 import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ImageBackground, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { WhatsappDialog, WhatsappHeader, WhatsappFooter, WhatsappMessageModal, WhatsappSaveModal } from '../../components/whatsapp';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
 import { Conversation } from "../ConversationTypes";
@@ -11,6 +12,8 @@ import { Constant, ListTypes } from '../Types';
 
 function WhatsAppView({route}) {
     const navigation = useNavigation();
+    const insets = useSafeAreaInsets();
+
     const [conversation, dispatch] = useReducer(conversationReducer, Conversation.Empty(ListTypes.WHATSAPP));
     const [modalVisible, setModalVisible] = useState(false);
     const [previewVisible, setPreviewVisible] = useState(false);
@@ -71,7 +74,7 @@ function WhatsAppView({route}) {
                 style={styles.backgroundImg}
                 source={require('../../assets/images/whatsapp.png')}
                 resizeMode="cover">
-                <View style={styles.mainContainer}>
+                <View style={{...styles.mainContainer, paddingTop: insets.top}}>
                     <WhatsappHeader data={conversation} dispatch={dispatch} openPreviewModal={openPreviewModal} openSaveModal={openSaveModal}></WhatsappHeader>
                     <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
                       <TouchableWithoutFeedback flex={1} onPress={Keyboard.dismiss}>
@@ -93,8 +96,7 @@ function WhatsAppView({route}) {
 const styles = StyleSheet.create({
   mainContainer: {
     flex:1,
-    justifyContent:'flex-start',
-    paddingTop:30
+    justifyContent:'flex-start'
   },
   backgroundImg:{
     flex:1

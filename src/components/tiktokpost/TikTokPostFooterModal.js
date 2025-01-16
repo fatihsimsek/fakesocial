@@ -73,7 +73,7 @@ function TikTokPostFooterModal({data, dispatch, isVisible, close}){
                                 <Text style={styles.modalText}>Fullname:</Text>
                                 <TextInput style={styles.modalValue} 
                                             placeholder={"Type Fullname"} 
-                                            value={data.partner.Fullname}
+                                            value={data.partner.fullname}
                                             onChangeText={onFullnameChange}
                                             autoCorrect={false} />
                             </View>

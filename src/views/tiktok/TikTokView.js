@@ -1,7 +1,8 @@
 import { useEffect, useReducer, useState } from "react";
 import { Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TikTokDialog, TikTokHeader, TikTokFooter, TikTokMessageModal, TikTokSaveModal, TikTokProfileModal } from '../../components/tiktok';
 import { hideBottomTabNavigator, showBottomTabNavigator } from "../../navigators/Functions";
 import { Conversation } from "../ConversationTypes";
@@ -11,6 +12,8 @@ import { Constant, ListTypes } from '../Types';
 
 function TikTokView({route}) {
     const navigation = useNavigation();
+    const insets = useSafeAreaInsets();
+
     const [conversation, dispatch] = useReducer(conversationReducer, Conversation.Empty(ListTypes.TIKTOK));
     const [modalVisible, setModalVisible] = useState(false);
     const [previewVisible, setPreviewVisible] = useState(false);
@@ -76,7 +79,7 @@ function TikTokView({route}) {
 
     return (
         <View flex={1}>
-            <View style={styles.mainContainer}>
+            <View style={{...styles.mainContainer, paddingTop: insets.top}}>
                 <TikTokHeader data={conversation} dispatch={dispatch} openPreviewModal={openPreviewModal} 
                                                   openSaveModal={openSaveModal} openProfileModal={openProfileModal}></TikTokHeader>
                 <KeyboardAvoidingView flex={1} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -100,8 +103,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex:1,
     justifyContent:'flex-start',
-    backgroundColor:'white',
-    paddingTop:30
+    backgroundColor:'white'
   }
 });
 

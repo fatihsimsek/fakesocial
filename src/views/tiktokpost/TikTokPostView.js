@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useReducer} from "react";
 import { StyleSheet, Image, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TikTokPostHeader, TikTokPostBody, TikTokPostFooter, TikTokPostSaveModal, TikTokPostFooterModal } from "../../components/tiktokpost";
 import TikTokPostPreview from "./TikTokPostPreview";
@@ -11,6 +12,8 @@ import { Post } from "../PostTypes";
 
 function TikTokPostView({route}) {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
+  
   const [post, dispatch] = useReducer(postReducer, Post.Empty(ListTypes.TIKTOKPOST));
   const [previewVisible, setPreviewVisible] = useState(false);
   const [saveModalVisible, setSaveModalVisible] = useState(false);
@@ -72,7 +75,7 @@ function TikTokPostView({route}) {
             post.imageUrl ? <Image source={{uri: post.imageUrl}} style={styles.backgroundImg} resizeMode="cover" /> 
                           : <Image source={require('../../assets/images/tiktokpost_default.png')} style={styles.backgroundImg} resizeMode="cover" />
           }     
-          <View style={styles.mainContainer}>
+          <View style={{...styles.mainContainer, paddingTop: insets.top}}>
             <TikTokPostHeader data={post} dispatch={dispatch} openPreviewModal={openPreviewModal} openSaveModal={openSaveModal}></TikTokPostHeader>
             <TikTokPostBody data={post} dispatch={dispatch}></TikTokPostBody>
             <TikTokPostFooter data={post} dispatch={dispatch} openFooterModal={openFooterModal}></TikTokPostFooter>
@@ -88,8 +91,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     width:'100%',
     height:'100%',
-    position:'absolute',
-    paddingTop:30
+    position:'absolute'
   },
   backgroundImg:{
     flex:1

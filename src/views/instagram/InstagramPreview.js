@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     mainContainer: {
       width:'100%',
       justifyContent:'flex-start',
-      paddingTop:10,
+      paddingTop:20,
       marginBottom:15,
       backgroundColor:'white'
     },

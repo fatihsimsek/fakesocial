@@ -126,14 +126,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         position:'absolute',
-        ...Platform.select({
-          ios: {
-            paddingTop:20
-          },
-          android: {
-            paddingTop:10
-          }
-        })
+        paddingTop:20
     },
     backgroundImg:{
         flex:1,
