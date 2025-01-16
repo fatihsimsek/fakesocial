@@ -65,7 +65,7 @@ function WhatsappFooter({data, dispatch, openModal}) {
                     autoCorrect={false} />   
                 <TouchableOpacity onPress={onSend}>
                     <View style={styles.buttonContainer}>
-                        <SendIcon size={28} color="black" />
+                        <SendIcon size={28} stroke="black" />
                     </View>
                 </TouchableOpacity>
             </View>
