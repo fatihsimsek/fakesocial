@@ -1,4 +1,4 @@
-package com.fakesocial
+package com.simsek.fakesocialapp
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

@@ -1,4 +1,4 @@
-package com.fakesocial
+package com.simsek.fakesocialapp
 
 import android.app.Application
 import com.facebook.react.PackageList
